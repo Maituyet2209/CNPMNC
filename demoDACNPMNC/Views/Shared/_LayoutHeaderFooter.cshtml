@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/StyleHeaderFooter.css" rel="stylesheet" />
+
+    <script src="https://kit.fontawesome.com/c0b1a641d5.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="main_header">
+            <div class="nav ">
+                <i class="fa-solid fa-list-ul list_menu">
+                    <div class="sidebar_menu">
+                        <li>Trang Chủ</li>
+                        <li>
+                            Apple
+                        </li>
+                        <li>SamSung</li>
+                        <li>Oppo</li>
+                        <li>Xiaomi</li>
+                        <li>Vsmart</li>
+                        <li>Realme</li>
+                        <li>Asus</li>
+                        <li>Nokia</li>
+                    </div>
+                </i>
+                <p class="name-shop"> T0BiTo</p>
+                <div class="area-shop">
+                    <span>Khu vực</span>
+                    <span>TP Hồ Chí Minh</span>
+                </div>
+            </div>
+            <div class="search_btn w-25 ">
+                <input type="search" placeholder="bạn cần tìm gì?" />
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="last_header">
+                <div class="number_phone">
+                    <i class="fa-solid fa-blender-phone"></i>
+                    <div class="khoi">
+                        <span> Gọi Mua Ngay</span>
+                        <span>0904962412</span>
+                    </div>
+                </div>
+                <div class="search_area">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span> Tìm Cửa Hàng</span>
+                </div>
+                <div class="cart">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    <p>Giỏ Hàng</p>
+                    <span>0</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div class="slide_show">
+            <div class="img_slideshow">
+                <img src="https://cdn2.cellphones.com.vn/690x300,webp,q100/https://dashboard.cellphones.com.vn/storage/iphone-vang-sliding.png" />
+            </div>
+            <div class="right_slideshow">
+                <img src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/RightBanner_690x300_M%E1%BB%9E-B%C3%81N-GLX-A14-LTE-new.png" />
+                <img src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/right-airpod-moi-th33.png" />
+            </div>
+        </div>
+
+        <div class="name_title">
+            <span>Hot Sale</span>
+        </div>
+
+        <div class="rowstyle">
+            <div class="box">
+                <div class="box_img">
+                    <img src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/i/p/iphone-14-storage-select-202209-6-1inch-y889.jpg" alt="">
+
+                </div>
+                <div class="name_sp">
+                    <span>Iphone 13 | chính hãng VN/A</span>
+                </div>
+                <div class="price">
+                    <span>24.000.000đ</span>
+                    <del>24.900.000đ</del>
+                </div>
+                <div class="btn_buy">
+                    <button> Mua</button>
+                    <button> +Giỏ Hàng </button>
+                </div>
+                <div class="number_sale">
+                    <span>-6%</span>
+                </div>
+                <div class="star">
+                    @*<i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>*@
+                    <p>11 đánh giá</p>
+                </div>
+            </div>
+            @RenderBody()
+        </div>
+
+    </div>
+    <div class="ab_footer">
+        <div class="footer">
+            <div class="coypyright">
+                <p>
+                    &#169; © 2021. Công ty cổ phần TOBITO. GPDKKD: 01241231909
+                    Địa chỉ: 2.25 Phan Thúc Duyện, Phường 4, Quận Tân Bình, Thành Phố Hồ Chí Minh. Điện thoại: 028
+                    38125960.
+                    GPMXH: 238/GP-BTTTT do Bộ Thông Tin và Truyền Thông cấp ngày 11/2021.
+                    Email: ltthanh22112002@gmail.com. Chịu trách nhiệm nội dung:
+                    Lê Tiến Thành <a href="">Xem chính sách sử dụng</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="modal js-modal">
+        <div class="modal-container js-modal-container">
+            <div>
+                <i class="fa-solid fa-xmark modal-close js-modal-close"></i>
+            </div>
+
+            <header class="modal-header">
+                <i class="modal-heading-icon ti-bag"></i>
+                Buy
+            </header>
+            <div class="modal-body">
+                <label for="tiket-quantity" class="modal-label">
+                    <div class="ti-shopping-cart"></div>
+                    <div id="name_buy"></div>
+                </label>
+                <input id="tiket-quantity" type="text" class="modal-input" placeholder="Số lượng?">
+
+                <label for="buy-quantity" class="modal-label">
+                    <div class="ti-user"></div>
+                </label>
+                <input id="buy-quantity" type="tel" class="modal-input" placeholder="Số điện thoại của bạn...">
+
+                <button id="buy-tickets">
+                    Thanh Toán <i class="ti-check"></i>
+                </button>
+            </div>
+
+            <footer class="modal-footer">
+                <p class="modal-help">Need <a href="">help?</a></p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- show and hide buy -->
+    <script>
+        const buyBtns = document.querySelectorAll(".btn_buy button")
+        const modal = document.querySelector('.js-modal')
+        const modalClose1 = document.querySelector('.js-modal-close')
+        const modalContainer = document.querySelector('.js-modal-container')
+
+        // function Show/hide buy tickets
+        function showBuyTicket(event) {
+            var buton = event.target;
+            var box = buton.parentElement.parentElement;
+            document.getElementById("name_buy").innerText = box.querySelectorAll('.name_sp span')[0].innerText + "//"
+                + box.querySelectorAll('.price span')[0].innerText;
+            modal.classList.add('open')
+        }
+
+        function hideBuyTicket() {
+            modal.classList.remove('open')
+        }
+        // lap tung button va ngh click
+        for (var i = 0; i < buyBtns.length; i++) {
+            if (i % 2 === 0) {
+                var buton = buyBtns[i];
+                buton.addEventListener('click', showBuyTicket);
+            }
+        }
+        // nghe hanh vi click vao button close
+        modalClose1.addEventListener('click', hideBuyTicket)
+
+        modal.addEventListener('click', hideBuyTicket)
+        // cham ngoai vung buy ticket de out ra
+        modalContainer.addEventListener('click', function (event) {
+            event.stopPropagation()
+        })
+    </script>
+
+</body>
+</html>
+

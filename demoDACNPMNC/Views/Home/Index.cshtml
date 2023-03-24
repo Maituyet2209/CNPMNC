@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHeaderFooter.cshtml";
+}
+
+        @foreach (Phone i in Model)
+        {
+            <div class="box">
+                <div class="box_img">
+                    <img src="@i.img" alt="">
+
+                </div>
+                <div class="name_sp">
+                    <span>@i.ten</span>
+                </div>
+                <div class="price">
+                    <span>@i.gia</span>
+                    <del>@i.giagiam</del>
+                </div>
+                <div class="btn_buy">
+                    <button> Mua</button>
+                    <button> +Giỏ Hàng </button>
+                </div>
+                <div class="number_sale">
+                    <span>-6%</span>
+                </div>
+                <div class="star">
+                    @*<i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>*@
+                    <p>@i.danhgia đánh giá</p>
+                </div>
+            </div>
+        }
+
