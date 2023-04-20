@@ -1,0 +1,66 @@
+﻿@using demoDACNPMNC.Models
+@model List<MatHangMua>
+@{
+    ViewBag.Title = "HienThiGioHang";
+    Layout = "~/Views/Shared/_LayoutHeaderFooter.cshtml";
+}
+
+<h2 style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tên điện thoại</th>
+            <th>Ảnh</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Thành tiền</th>
+            <th>Chi tiết</th>
+            <th>Cập nhật</th>
+            <th>Xóa</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TenDT</td>
+                <td><img style="width:70px;" src="~/images/@item.HinhMinhHoa" /></td>
+                @using (Html.BeginForm("CapNhatMatHang", "Cart", new { MaDT = @item.MaDT }))
+                {
+                    <td>
+                        <input type="number" min="1" value="@item.SoLuong" name="SoLuong" />
+                    </td>
+
+                    <td>@string.Format("{0:N0} đ", Double.Parse(@item.DonGia.ToString()))</td>
+                    <td>@string.Format("{0:N0} đ", Double.Parse(@item.ThanhTien().ToString())) </td>
+                    <td>
+                        @Html.ActionLink("Chi tiết", "Product_Detail", "Home", new { idProduct = item.MaDT }, new { @class = "btn btn-success" })
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                    </td>
+                }
+                <td>
+                    @Html.ActionLink("Xóa hàng", "XoaMatHang", "Cart", new
+                    {
+                        MaDT = item.MaDT
+                    }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+        <tr style="font-weight:bold; text-align:right; color:red;">
+            <td colspan="4">Tổng số lượng:  @ViewBag.TongSL</td>
+            <td colspan="5">Tổng tiền:@string.Format("{0:N0} đ", Double.Parse(@ViewBag.TongTien.ToString())) </td>
+        </tr>
+    </tbody>
+</table>
+<a href="@Url.Action("CreatePayment", "Payment" )">Thanh Toán</a>
+
+@if (Model == null) { <h2>Hiện Tại Quý Khách Chưa Thêm Giỏ Hàng</h2>
+}
+else if (Model.Count < 3)
+{
+    <div style="min-height:200px"></div>
+}
+
+

@@ -1,0 +1,90 @@
+﻿@model demoDACNPMNC.Models.order
+@{
+    ViewBag.Title = "SearchOrder";
+    Layout = "~/Views/Shared/_LayoutHeaderFooter.cshtml";
+}
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        margin-bottom: 30px;
+        margin-top: 20px;
+
+    }
+
+    h1, h2 {
+        color: #333;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+</style>
+
+<h2>Tra Cứu Đơn Hàng</h2>
+
+@using (Html.BeginForm("SearchOrder", "Home", FormMethod.Post))
+{
+    <div>
+        <label for="numberphone">Số Điện Thoại:</label>
+        @Html.TextBox("numberphone")
+    </div>
+    <div>
+        <label for="idOrder">Mã Đơn Hàng:</label>
+        @Html.TextBox("idOrder")
+    </div>
+    <button type="submit">Kiểm Tra</button>
+}
+
+@if (Model != null)
+            {
+ <div class="container">
+      <h3>Tên Khách Hàng: @ViewBag.Profile.names </h3>
+      <p>Mã hóa đơn: @Model.id_order</p>
+      <p>Số điện thoại: @ViewBag.Profile.phone</p>
+      <p>Địa chỉ nhận: @ViewBag.Profile.addres</p>
+      <p>Hình thức thanh toán: @ViewBag.paymentType </p>
+      <p>Tổng Số Tiền: @string.Format("{0:N0} đ", Double.Parse(Model.total_price.ToString()))</p>
+      <p>Ngày mua: @Model.created_at</p>
+      <h4>Danh sách mua:</h4>
+      <table class="table table-bordered">
+          <thead>
+              <tr>
+                  <th>Tên điện thoại</th>
+                  <th>Ảnh</th>
+                  <th>Số lượng</th>
+                  <th>Đơn giá</th>
+              </tr>
+          </thead>
+          <tbody>
+              @foreach (var i in ViewBag.ListOrderItem as List<demoDACNPMNC.Models.MatHangMua>)
+                {
+                  <tr>
+                      <td>@i.TenDT</td>
+                      <td><img style="width:70px;" src="~/images/@i.HinhMinhHoa" /></td>
+                      <td>@i.SoLuong</td>
+                      <td>@string.Format("{0:N0} đ", Double.Parse(@i.DonGia.ToString()))</td>
+                  </tr>
+                }
+              </tbody>
+      </table>
+     
+      
+    </div>
+            }
+else
+            {
+                <h3 style="height:300px">Xin Lỗi Quý Khách, Hiện tại không có đơn hàng này!!</h3>
+            }
+

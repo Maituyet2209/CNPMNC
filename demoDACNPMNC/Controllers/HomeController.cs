@@ -1,4 +1,5 @@
-﻿using System;
+﻿using demoDACNPMNC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,41 +10,119 @@ namespace demoDACNPMNC.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        QLBANDIENTHOAIEntities db = new QLBANDIENTHOAIEntities();
+
         public ActionResult Index()
         {
-            List<Phone> list = new List<Phone>();
-            list.Add(
-            new Phone("https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_burgundy_211119.jpg",
-                "SamSung galaxy s23","23.000.000","25.000.000",12));
-            list.Add(
-            new Phone("https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/8/0/800x800-1-640x640-5_2.png",
-                "Xiaomi Redmi Note 11", "13.000.000", "17.000.000", 22));
-            list.Add(
-            new Phone("https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/1/_/1_250_1.jpg",
-                "Nokia C31 4GB", "3.000.000", "6.000.000", 10));
-            list.Add(
-            new Phone("https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/1/4/14_1_9_2_9.jpg",
-                "Iphone 13 128GB", "17.560.000", "19.000.000", 2));
-            list.Add(
-            new Phone("https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/i/p/iphone-14-storage-select-202209-6-1inch-y889.jpg",
-                "Iphone 13 | chính hãng VN/A", "17.560.000d", "19.000.000", 2));
-            list.Add(
-           new Phone("https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_burgundy_211119.jpg",
-               "SamSung galaxy s23", "23.000.000", "25.000.000", 12));
-            list.Add(
-            new Phone("https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/8/0/800x800-1-640x640-5_2.png",
-                "Xiaomi Redmi Note 11", "13.000.000", "17.000.000", 22));
-            list.Add(
-            new Phone("https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/1/_/1_250_1.jpg",
-                "Nokia C31 4GB", "3.000.000", "6.000.000", 10));
-            list.Add(
-            new Phone("https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/1/4/14_1_9_2_9.jpg",
-                "Iphone 13 128GB", "17.560.000", "19.000.000", 2));
-            list.Add(
-            new Phone("https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/i/p/iphone-14-storage-select-202209-6-1inch-y889.jpg",
-                "Iphone 13 | chính hãng VN/A", "17.560.000d", "19.000.000", 2));
+            //var temp = new user{ id_user = 1,email = "abc@gmail.com",pass = "123"};
+            //db.users.Add(temp);
+            //db.SaveChanges();
+            //var crProfile = new profile()
+            //{
+            //    id_user = 1,
+            //    names = "Le Tien thanh",
+            //    phone = "0904962412",
+            //    addres = "QL 22A HUFLIT Hoc Mon"
+            //};
+            //db.profiles.Add(crProfile);
+            //db.SaveChanges();
+            var lstBrand = db.SANPHAMs.ToList();
+            if (lstBrand.Count % 4 == 1)
+            {
+                lstBrand.RemoveAt(lstBrand.Count - 1);
+            }
+            var listProApple = LaySPTheoBrand("Apple");
+            if (listProApple.Count % 4 == 1)
+            {
+                listProApple.RemoveAt(listProApple.Count -1);
+            }
+            ViewBag.listProApple = listProApple;
 
-            return View(list);
+            //Session["totalCart"] = 0;
+            if (Session["GioHang"]as List<MatHangMua> != null)
+            {
+                Session["totalCart"] = (Session["GioHang"] as List<MatHangMua>).Count;
+            }
+            return View(lstBrand);
+        }
+
+        public ActionResult Brand(String brand)
+        {
+            var lstBrand =LaySPTheoBrand(brand);
+            ViewBag.quantity = lstBrand.Count;
+            ViewBag.namebrand = brand;
+            return View(lstBrand);
+        }
+
+        public ActionResult Product_Detail(int idProduct)
+        {
+            var itemProduct = getProductFromId(idProduct);
+            return View(itemProduct);
+        }
+        public ActionResult Search(String search)
+        {
+
+            if (string.IsNullOrEmpty(search))
+            {
+                ViewBag.MessageSeach = "Vui lòng nhập từ khóa tìm kiếm.";
+                ViewBag.inputSearch = search;
+                return View();
+            }
+            ViewBag.inputSearch = search;
+            var products = db.SANPHAMs
+                .Where(p => p.TenDT.Contains(search))
+                .ToList();
+
+            if (products.Count == 0)
+            {
+                ViewBag.MessageSearch = "Shop hiện nay không có sản phẩm này.";
+            }
+            return View(products);
+        }
+
+        public ActionResult SearchOrder(FormCollection form)
+        {
+            string numberphone = form["numberphone"];
+            string idOrder = form["idOrder"];
+            int tranIdOrder = -1;
+            if (numberphone != null)
+            {
+                tranIdOrder = Convert.ToInt32(idOrder);
+            }
+            var getorder = db.orders.Where(x => x.id_order == tranIdOrder).FirstOrDefault();
+            if (getorder != null)
+            {
+                var getProFile = db.profiles.FirstOrDefault(x => x.id_user == getorder.id_user);
+                ViewBag.Profile = getProFile;
+                var getListOrderItem = db.order_item.Where(x => x.id_order == getorder.id_order).ToList();
+                if (getorder.payment_type == true)
+                    ViewBag.paymentType = "Thanh toán qua PayPal";
+                else
+                    ViewBag.paymentType = "Thanh toán khi nhận hàng";
+
+                List<MatHangMua> tranListOderItem = new List<MatHangMua>();
+                foreach(var i in getListOrderItem)
+                {
+                    var newPro = new MatHangMua(Convert.ToInt32(i.MaDT));
+                    tranListOderItem.Add(newPro);
+                }
+                ViewBag.ListOrderItem = tranListOderItem;
+            }
+            return View(getorder);
+        }
+
+        public ActionResult Profile()
+        {
+            return View();
+        }
+
+        private List<SANPHAM> LaySPTheoBrand(string brandName)
+        {
+            return db.SANPHAMs.Where(sp => sp.BRAND.TenBrand == brandName).ToList();
+        }
+        private SANPHAM getProductFromId(int id)
+        {
+            return db.SANPHAMs.Where(x => x.MaDT == id).FirstOrDefault();
         }
     }
 }

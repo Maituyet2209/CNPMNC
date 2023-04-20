@@ -1,0 +1,123 @@
+﻿
+#filter {
+    min-width: 1282px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.header_filter {
+}
+
+    .header_filter > ul {
+        display: flex;
+    }
+
+        .header_filter > ul > li {
+            list-style-type: none;
+            position: relative;
+            margin-right: 10px;
+        }
+
+    .header_filter .priceandicon {
+        padding: 5px 10px;
+        border: 1px solid gray;
+        border-radius: 10px;
+    }
+
+    .header_filter .subfilter_right::before {
+        content: "\21F5 \A0\A0\A0\A0";
+        position: absolute;
+        width: 250px;
+        height: 20px;
+        top: -22px;
+        text-align: right;
+        font-weight: 800;
+    }
+
+    .header_filter .sub_filter::before {
+        content: "\21F5";
+        position: absolute;
+        width: 250px;
+        height: 20px;
+        top: -22px;
+        font-weight: 800;
+    }
+
+
+    .header_filter .priceandicon a {
+        text-decoration: none;
+        color: black;
+        margin-right: 3px;
+    }
+
+    .header_filter .priceandicon i {
+        font-size: 10px;
+    }
+
+    .header_filter > ul > li:hover {
+        border-radius: 10px;
+        background-color: rgb(69, 125, 230);
+    }
+
+        .header_filter > ul > li:hover .priceandicon a {
+            color: white;
+        }
+
+    .header_filter .sub_filter {
+        position: absolute;
+        padding: 10px;
+        top: 150%;
+        left: 0;
+        width: 250px;
+        border-radius: 10px;
+        box-shadow: 0 0 5px 5px gray;
+        background-color: white;
+        z-index: 2;
+        display: none;
+    }
+
+        .header_filter .subfilter_right li,
+        .header_filter .sub_filter li {
+            display: inline-block;
+            padding: 5px;
+            list-style-type: none;
+            line-height: 25px;
+        }
+
+
+            .header_filter .sub_filter li:hover a,
+            .header_filter .subfilter_right li:hover a {
+                border-radius: 10px;
+                color: blue;
+                background-color: white;
+                border-color: blue;
+                border-width: 1px;
+            }
+
+        .header_filter .subfilter_right a,
+        .header_filter .sub_filter a {
+            text-decoration: none;
+            padding: 5px;
+            color: black;
+            border: 1px solid gray;
+            border-radius: 10px;
+        }
+
+    .header_filter > ul > li:hover .subfilter_right,
+    .header_filter > ul > li:hover .sub_filter {
+        display: block;
+    }
+
+.subfilter_right {
+    position: absolute;
+    padding: 10px;
+    top: 150%;
+    right: 0;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 5px gray;
+    background-color: white;
+    z-index: 2;
+    display: none;
+}

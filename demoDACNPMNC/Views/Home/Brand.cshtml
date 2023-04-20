@@ -1,0 +1,187 @@
+﻿@model IEnumerable<demoDACNPMNC.Models.SANPHAM>
+@{
+    ViewBag.Title = "Brand";
+    Layout = "~/Views/Shared/_LayoutHeaderFooter.cshtml";
+}
+
+<div class="slide_show">
+    <div class="img_slideshow">
+        @*<img src="~/images/sileAppletemp.png" />*@
+        <img src="~/images/iphone13_slideshow_act.png" />
+    </div>
+    <div class="right_slideshow">
+        <img src="~/images/a52sRight_banner_3_11zon.png" />
+        <img src="~/images/a52sRight_banner_3_11zon.png" />
+    </div>
+</div>
+
+
+<div id="filter">
+    <div class="header_filter">
+        <ul>
+            <li>
+                <div class="priceandicon">
+                    <a href="">Giá</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+
+                <ul class="sub_filter">
+                    <li><a href="">Dưới 2 triệu</a></li>
+                    <li><a href="">2 - 4 triệu</a></li>
+                    <li><a href="">4 - 6 triệu</a></li>
+                    <li><a href="">6 - 10 triệu</a></li>
+                    <li><a href="">Trên 10 triệu</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="priceandicon">
+                    <a href=""> Loại Điện Thoại</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="sub_filter">
+                    <li><a href="">IOS Apple</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="priceandicon">
+                    <a href="">Hiệu Năng, Pin</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="sub_filter">
+                    <li><a href="">Chơi game</a></li>
+                    <li><a href="">Cấu hình cao</a></li>
+                    <li><a href="">Pin khủng trên 5000mAh</a></li>
+                    <li><a href="">Sạc pin nhanh</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="priceandicon">
+                    <a href="">RAM</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="sub_filter">
+                    <li><a href="">1 GB</a></li>
+                    <li><a href="">2 GB</a></li>
+                    <li><a href="">3 GB</a></li>
+                    <li><a href="">4 GB</a></li>
+                    <li><a href="">6 GB</a></li>
+                    <li><a href="">8 GB</a></li>
+                    <li><a href="">10 GB</a></li>
+                    <li><a href="">12 GB</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="priceandicon">
+                    <a href="">Bộ nhớ trong</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="sub_filter">
+                    <li><a href="">8 GB</a></li>
+                    <li><a href="">16 GB</a></li>
+                    <li><a href="">32 GB</a></li>
+                    <li><a href="">64 GB</a></li>
+                    <li><a href="">128 GB</a></li>
+                    <li><a href="">256 GB</a></li>
+                    <li><a href="">512 GB</a></li>
+                    <li><a href="">1 TB</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="priceandicon">
+                    <a href="">Camera</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="sub_filter">
+                    <li><a href="">Chụp cận cảnh</a></li>
+                    <li><a href="">Chụp góc rộng</a></li>
+                    <li><a href="">Chụp xóa phong</a></li>
+                    <li><a href="">Chụp zoom xa</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="priceandicon">
+                    <a href="">Tính năng đặc biệt</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="sub_filter">
+                    <li><a href="">Hỗ trợ 5G</a></li>
+                    <li><a href="">Bảo mật vân tay</a></li>
+                    <li><a href="">Bảo mật khuôn mặt</a></li>
+                    <li><a href="">Sạc không dây</a></li>
+                    <li><a href="">Kháng nước, bụi</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="priceandicon">
+                    <a href="">Thiết kế </a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="subfilter_right">
+                    <li><a href="">Tràn viền</a></li>
+                    <li><a href="">Mỏng nhẹ</a></li>
+                    <li><a href="">Mặt lưng kính</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="priceandicon">
+                    <a href="">Màn Hình</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="subfilter_right">
+                    <li><a href="">Nhỏ gọn</a></li>
+                    <li><a href="">Từ 6 inch trở lên</a></li>
+                    <li><a href="">Màn hình gập</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+@if (Convert.ToInt32(ViewBag.qunatity) !=0 ) 
+{ 
+    <div class="name_title">
+        <span>@ViewBag.nameBrand</span>
+    </div>
+}
+else
+            {
+                <div class="alert-box" >
+                    <p class="error-message">"Hiện tại Shop không có sản phẩm này"</p>
+                 </div>
+            }
+
+<div class="rowstyle">
+    @foreach (var i in Model)
+    {
+        <div class="box">
+            @*, new { id = Model.Id }*@
+            <a href="@Url.Action("Product_Detail", "Home", new { idProduct = i.MaDT})">
+                <div class="box_img">
+                    <img src="~/images/@i.Hinhminhhoa" alt="">
+                </div>
+            </a>
+            <div class="name_sp">
+                <span>@i.TenDT</span>
+            </div>
+            <div class="price">
+                <span>@string.Format("{0:N0} đ", Double.Parse(@i.Dongia.ToString()))</span>
+                <del>@string.Format("{0:N0} đ", Double.Parse(@i.Dongia.ToString()) * 1.2)</del>
+            </div>
+            <div class="btn_buy">
+                <button> Mua</button>
+                <button> +Giỏ Hàng </button>
+            </div>
+            <div class="number_sale">
+                <span>-6%</span>
+            </div>
+            <div class="star">
+                @*<i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>*@
+                <p>@i.solanxem đánh giá</p>
+            </div>
+        </div>
+    }
+</div>
