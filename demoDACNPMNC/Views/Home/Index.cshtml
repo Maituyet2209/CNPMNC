@@ -67,7 +67,7 @@
 }
 
 <div class="rowstyle">
-    @foreach(var i in @ViewBag.listProApple)
+    @foreach (var i in @ViewBag.listProApple)
     {
         <div class="box">
             @*, new { id = Model.Id }*@
@@ -83,19 +83,23 @@
                 <span>@string.Format("{0:N0} đ", Double.Parse(@i.Dongia.ToString()))</span>
                 <del>@string.Format("{0:N0} đ", Double.Parse(@i.Dongia.ToString()) * 1.2)</del>
             </div>
-            <div class="btn_buy">
+            <div class="btn_buy" style="display: flex;">
                 <button> Mua</button>
-                <button> +Giỏ Hàng </button>
+                @*<button><a href="@Url.Action("ThemSanPhamVaoGio", "Cart", new {MaDT = i.MaDT })">+Giỏ Hàng </a> </button>*@
+                @using (Html.BeginForm("ThemSanPhamVaoGio", "Cart", new { MaDT = i.MaDT }))
+                {
+                    <button>+Giỏ Hàng</button>
+                }
             </div>
             <div class="number_sale">
                 <span>-6%</span>
             </div>
             <div class="star">
                 @*<i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>*@
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>*@
                 <p>@i.solanxem đánh giá</p>
             </div>
         </div>

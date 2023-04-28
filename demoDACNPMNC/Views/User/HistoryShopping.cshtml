@@ -1,0 +1,98 @@
+﻿@model List<demoDACNPMNC.Models.order>
+@{
+    ViewBag.Title = "ShoppingOrder";
+    Layout = "~/Views/Shared/_LayoutHeaderFooter.cshtml";
+}
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        margin-bottom: 30px;
+        margin-top: 20px;
+    }
+
+    h1, h2 {
+        color: #333;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+</style>
+
+<h2>Đơn Hàng Đã Hoàn Tất </h2>
+@if (Model != null)
+{
+    foreach (var i in Model)
+    {
+        <div class="container">
+            <h3>Tên Khách Hàng: @i.name </h3>
+            <p>Mã hóa đơn: @i.id_order</p>
+             <p>Tình Trạng Đơn Hàng: Đã Hoàn Tất Đơn Hàng </p>
+            <p>Số điện thoại: @i.phone</p>
+            <p>Địa chỉ nhận: @i.delireryAddress</p>
+            @if (i.payment_type == true)
+            {
+                <p>Hình thức thanh toán: Thanh Toán quan PayPal </p>
+
+            }
+            else
+            {
+                <p>Hình thức thanh toán: Thanh Toán Khi Nhận Hàng </p>
+
+            }
+            <p>Tổng Số Tiền: @string.Format("{0:N0} đ", Double.Parse(i.total_price.ToString()))</p>
+            <p>Ngày mua: @i.created_at</p>
+            <h4>Danh sách mua:</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Tên điện thoại</th>
+                        <th>Ảnh</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        demoDACNPMNC.Models.QLBANDIENTHOAIEntities db = new demoDACNPMNC.Models.QLBANDIENTHOAIEntities();
+                        var allOrderItem = db.order_item.ToList() as List<demoDACNPMNC.Models.order_item>;
+                        List<demoDACNPMNC.Models.order_item> ListOrderItem = allOrderItem.Where(x => x.id_order == i.id_order).ToList();
+                        List<demoDACNPMNC.Models.MatHangMua> tranListOderItem = new List<demoDACNPMNC.Models.MatHangMua>();
+                        foreach (var j in ListOrderItem)
+                        {
+                            var newPro = new demoDACNPMNC.Models.MatHangMua(Convert.ToInt32(j.MaDT));
+                            tranListOderItem.Add(newPro);
+                        }
+                    }
+                    @foreach (var k in tranListOderItem as List<demoDACNPMNC.Models.MatHangMua>)
+                    {
+                        <tr>
+                            <td>@k.TenDT</td>
+                            <td><img style="width:70px;" src="~/images/@k.HinhMinhHoa" /></td>
+                            <td>@k.SoLuong</td>
+                            <td>@string.Format("{0:N0} đ", Double.Parse(@k.DonGia.ToString()))</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+    }
+} 
+else
+            {
+                <h2> Hiện Tại Khách Hàng Chưa Mua Đơn Hàng !!</h2>
+            }
+

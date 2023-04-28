@@ -29,6 +29,11 @@ namespace demoDACNPMNC.Models
         public Nullable<decimal> total_price { get; set; }
         public Nullable<bool> pending { get; set; }
         public Nullable<bool> successed { get; set; }
+        public Nullable<bool> delivering { get; set; }
+        public string delireryAddress { get; set; }
+        public string phone { get; set; }
+        public string name { get; set; }
+        public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<order_item> order_item { get; set; }

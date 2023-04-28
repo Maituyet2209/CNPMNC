@@ -106,7 +106,7 @@ namespace demoDACNPMNC.Controllers
             if (gioHang == null || gioHang.Count == 0)
             {
                 Session["totalCart"] = 0;
-                return RedirectToAction("Index", "Home");
+                return View("CartNoProduct");
             }
             ViewBag.TongSL = TinhTongSL();
             ViewBag.TongTien = TinhTongTien();

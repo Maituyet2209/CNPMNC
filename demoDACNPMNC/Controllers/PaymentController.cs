@@ -32,27 +32,33 @@ namespace demoDACNPMNC.Controllers
 
             List<MatHangMua> cart = Session["GioHang"] as List<MatHangMua>;
 
+            if (cart == null || cart.Count == 0)
+                return View("Error");
             double totalMoney = 0;
             decimal totalM = 0;
             foreach (var i in cart)
             {
-                totalMoney += (int)i.SoLuong * (double)i.DonGia;
-                totalM += (decimal)i.SoLuong * (decimal)i.DonGia;
+                int tranUSDtoVND =(int)(i.DonGia / 23000);
+                totalMoney += i.SoLuong * tranUSDtoVND;
+                totalM += i.SoLuong * (decimal)i.DonGia;
+                
                 itemList.items.Add(new Item()
                 {
                     name = i.TenDT.ToString(),
                     currency = "USD",
-                    price = i.DonGia.ToString(),
+                    price = tranUSDtoVND.ToString(),
                     quantity = i.SoLuong.ToString(),
                     sku = "sku"
                 });
             }
+
             Session["total"] = totalM;
+            //return View("Error");
             //itemList.items.Add(new Item()
             //{
             //    name = "Samsung galaxy s22 untral",
             //    currency = "USD",
-            //    price = "1000",
+            //    price = "30999",
             //    quantity = "1",
             //    sku = "sku"
             //});
@@ -130,30 +136,42 @@ namespace demoDACNPMNC.Controllers
                 {
                     // Lưu thông tin thanh toán vào cơ sở dữ liệu
                     var getUser = Session["user"] as user;
-                    var orderTemp = new order()
-                    {
-                        id_user = getUser.id_user,
-                        payment_type = true,
-                        total_price = Session["total"] as decimal?,
-                        pending = true,
-                    };
-                    db.orders.Add(orderTemp);
-                    db.SaveChanges();
-                    List<MatHangMua> cart = Session["GioHang"] as List<MatHangMua>;
-                    foreach(var i in cart)
-                    {
-                        var orderItemTemp = new order_item()
+                    var getShoppingInf = Session["ShoppingInfo"] as ShoppingInfo;
+                    
+                        var orderTemp = new order()
                         {
-                            id_order = orderTemp.id_order,
-                            MaDT = i.MaDT,
-                            quantity = i.SoLuong,
+                            id_user = getUser.id_user,
+                            payment_type = true,
+                            total_price = Session["total"] as decimal?,
+                            pending = true,
+                            created_at = DateTime.Now,
+                            name = getShoppingInf.name,
+                            email = getShoppingInf.email,
+                            delireryAddress = getShoppingInf.address,
+                            phone = getShoppingInf.phone,
                         };
-                        db.order_item.Add(orderItemTemp);
-                        var getCart = db.carts.Where(x => x.MaDT == i.MaDT).FirstOrDefault();
-                        db.carts.Remove(getCart);
+                        db.orders.Add(orderTemp);
                         db.SaveChanges();
-                    }
-                    db.SaveChanges();
+                        List<MatHangMua> cart = Session["GioHang"] as List<MatHangMua>;
+                        ViewBag.Order = orderTemp;
+                        ViewBag.ListOrderItem = cart;
+                        ViewBag.paymentType = "Thanh Toán qua PayPal";
+                        foreach (var i in cart)
+                        {
+                            var orderItemTemp = new order_item()
+                            {
+                                id_order = orderTemp.id_order,
+                                MaDT = i.MaDT,
+                                quantity = i.SoLuong,
+                            };
+                            db.order_item.Add(orderItemTemp);
+                            var getCart = db.carts.Where(x => x.MaDT == i.MaDT).FirstOrDefault();
+                            db.carts.Remove(getCart);
+                            db.SaveChanges();
+                        }
+                        db.SaveChanges();
+                    Session["totalCart"] = 0;
+
 
                     // Hoặc hiển thị thông báo thành công cho khách hàng
                     return View("Success");
@@ -180,6 +198,65 @@ namespace demoDACNPMNC.Controllers
             var apiContext = new APIContext(accessToken);
 
             return apiContext;
+        }
+
+        public ActionResult PayCOD()
+        {
+            var getUser = Session["user"] as user;
+            var getShoppingInf = Session["ShoppingInfo"] as ShoppingInfo;
+            if (getShoppingInf == null)
+            {
+                return View("Error");
+            }
+            else
+            {
+                List<MatHangMua> cart = Session["GioHang"] as List<MatHangMua>;
+
+                decimal totalM = 0;
+
+                foreach (var i in cart)
+                {
+                    totalM += i.SoLuong * (decimal)i.DonGia;
+                }
+                Session["total"] = totalM;
+                var orderTemp = new order()
+                {
+                    id_user = getUser.id_user,
+                    payment_type = false,
+                    total_price = Session["total"] as decimal?,
+                    pending = true,
+                    created_at = DateTime.Now,
+                    name = getShoppingInf.name,
+                    email = getShoppingInf.email,
+                    delireryAddress = getShoppingInf.address,
+                    phone = getShoppingInf.phone,
+                };
+                db.orders.Add(orderTemp);
+                db.SaveChanges();
+                ViewBag.Order = orderTemp;
+                ViewBag.ListOrderItem = cart;
+                ViewBag.paymentType = "Thanh Toán khi Nhận Hàng";
+
+                foreach (var i in cart)
+                {
+                    totalM += i.SoLuong * (decimal)i.DonGia;
+                    var orderItemTemp = new order_item()
+                    {
+                        id_order = orderTemp.id_order,
+                        MaDT = i.MaDT,
+                        quantity = i.SoLuong,
+                    };
+                    db.order_item.Add(orderItemTemp);
+                    var getCart = db.carts.Where(x => x.MaDT == i.MaDT).FirstOrDefault();
+                    db.carts.Remove(getCart);
+                    db.SaveChanges();
+                }
+                Session["total"] = totalM;
+                db.SaveChanges();
+
+                Session["totalCart"] = 0;
+            }
+            return View();
         }
     }
 }

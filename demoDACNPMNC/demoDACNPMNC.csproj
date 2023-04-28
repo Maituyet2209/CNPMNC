@@ -124,6 +124,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,6 +189,7 @@
     <Compile Include="Models\SANPHAM.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ShoppingInfo.cs" />
     <Compile Include="Models\TRANGTHAIDONHANG.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -219,6 +221,15 @@
     <Content Include="Views\Payment\Error.cshtml" />
     <Content Include="Views\Home\SearchOrder.cshtml" />
     <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Home\ShoppingInfo.cshtml" />
+    <Content Include="Views\Cart\CartNoProduct.cshtml" />
+    <Content Include="Views\User\ShoppingOrder.cshtml" />
+    <Content Include="Views\Payment\PayCOD.cshtml" />
+    <Content Include="Views\User\ManagementPending.cshtml" />
+    <Content Include="Views\User\DetailOrder.cshtml" />
+    <Content Include="Views\User\DeliveryOrder.cshtml" />
+    <Content Include="Views\User\CompletedOrder.cshtml" />
+    <Content Include="Views\User\HistoryShopping.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -50,10 +50,11 @@
 @if (Model != null)
             {
  <div class="container">
-      <h3>Tên Khách Hàng: @ViewBag.Profile.names </h3>
+      <h3>Tên Khách Hàng: @Model.name </h3>
       <p>Mã hóa đơn: @Model.id_order</p>
-      <p>Số điện thoại: @ViewBag.Profile.phone</p>
-      <p>Địa chỉ nhận: @ViewBag.Profile.addres</p>
+      <p>Tình Trạng Đơn Hàng: @ViewBag.Status</p>
+      <p>Số điện thoại: @Model.phone</p>
+      <p>Địa chỉ nhận: @Model.delireryAddress</p>
       <p>Hình thức thanh toán: @ViewBag.paymentType </p>
       <p>Tổng Số Tiền: @string.Format("{0:N0} đ", Double.Parse(Model.total_price.ToString()))</p>
       <p>Ngày mua: @Model.created_at</p>

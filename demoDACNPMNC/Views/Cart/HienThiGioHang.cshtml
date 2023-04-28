@@ -4,6 +4,9 @@
     ViewBag.Title = "HienThiGioHang";
     Layout = "~/Views/Shared/_LayoutHeaderFooter.cshtml";
 }
+<style>
+
+</style>
 
 <h2 style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
 <table class="table table-bordered">
@@ -54,7 +57,11 @@
         </tr>
     </tbody>
 </table>
-<a href="@Url.Action("CreatePayment", "Payment" )">Thanh Toán</a>
+@*<a href="@Url.Action("CreatePayment", "Payment" )">Thanh Toán</a>*@
+<a href="@Url.Action("ShoppingInfo","Home")" style="display: inline-block; border-radius: 5px; padding: 10px 20px; font-size: 16px; font-weight: bold; 
+     text-align: center; text-decoration: none; color: #fff; 
+     background-color: #007bff; border: none; cursor: pointer; 
+     transition: background-color 0.3s ease;">Thanh Toán</a>
 
 @if (Model == null) { <h2>Hiện Tại Quý Khách Chưa Thêm Giỏ Hàng</h2>
 }
