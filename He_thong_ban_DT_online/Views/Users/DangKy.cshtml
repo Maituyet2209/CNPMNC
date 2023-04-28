@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_Layoutforlogin.cshtml";
+    <link href="~/Content/Stylelogin.css" rel="stylesheet" />
+}
+<div id="main_login">
+    <div class="container_main">
+        <div class="header_main">
+            <h1>Đăng Ký</h1>
+        </div>
+        <div class="content_main">
+            @using (Html.BeginForm("DangKy", "Users"))
+            {
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    <label for="name1" class="form-label">Họ và Tên:</label>
+                    <div class="container_input">
+                        @Html.TextBox("HoTenKH", null, new { @class = "input-field", @id = "name1", required = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name1" class="form-label">Username:</label>
+                    <div class="container_input">
+                        @Html.TextBox("TenDN", null, new { @class = "input-field", @id = "dangnhap", required = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="matkhau" class="form-label">Password:</label>
+                    <div class="container_input">
+                        @Html.Password("Matkhau", null, new { @class = "input-field", @id = "matkhau", required = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email:</label>
+                    <div class="container_input">
+                        @Html.TextBox("Email", null, new { @class = "input-field", @id = "email", type = "email", required = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dienthoai" class="form-label">Điện thoại:</label>
+                    <div class="container_input">
+                        @Html.TextBox("DienthoaiKH", null, new { @class = "input-field", @id = "dienthoai", required = "required" })
+                    </div>
+                </div>
+                <div style="text-align:center">
+                    <button type="submit" class="btn_DK">ĐĂNG KÝ</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

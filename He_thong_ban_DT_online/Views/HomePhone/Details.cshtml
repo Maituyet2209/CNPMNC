@@ -1,0 +1,287 @@
+﻿@model He_thong_ban_DT_online.Models.SANPHAM
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/StyleDetail.css" rel="stylesheet" />
+}
+<div id="main_sp">
+    <div class="header_main">
+        <div class="content_sp">
+            @Model.TenDT
+        </div>
+        <div class="star_sp">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+        </div>
+        <div class="rate_sp">
+            <a href="">11 Đánh giá</a>
+        </div>
+    </div>
+
+    <div class="content_sanpham">
+        <div class="slideshow_sp">
+            <div class="slide_sp_container">
+                <div class="myslides_sp ">
+                    <img src="~/images/@Html.DisplayFor(model => model.HinhMinhHoa)" />
+                </div>
+            </div>
+            <!--<div class="slide_sp_container">-->
+            <!-- Full-width images with number and caption text -->
+            <!--<div class="myslides_sp ">
+                <img src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/1/4/14_1_9_2_9.jpg" alt="">
+            </div>
+
+            <div class="myslides_sp ">
+                <img src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/6/_/6_130.jpg" alt="">
+            </div>
+
+            <div class="myslides_sp ">
+                <img src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/3/_/3_225.jpg" alt="">
+            </div>
+            <div class="myslides_sp ">
+                <img src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/6/_/6_130.jpg" alt="">
+            </div>
+            <div class="myslides_sp ">
+                <img src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/3/_/3_225.jpg" alt="">
+            </div>-->
+            <!-- Next and previous buttons -->
+            <!--<a class="prev_sp" onclick="plusSlides(1)">&#10094;</a>
+            <a class="next_sp" onclick="plusSlides(-1)">&#10095;</a>-->
+            <!-- The dots/circles -->
+            <!--<div style="text-align:center">
+                    <span class="dot_sp" onclick="currentSlide(0)"></span>
+                    <span class="dot_sp" onclick="currentSlide(1)"></span>
+                    <span class="dot_sp" onclick="currentSlide(2)"></span>
+                    <span class="dot_sp" onclick="currentSlide(3)"></span>
+                    <span class="dot_sp" onclick="currentSlide(4)"></span>
+                </div>
+            </div>-->
+
+            <div class="baivietdanhgia">
+                <h3>Bài viết đánh giá</h3>
+                <p>
+                    Trong khi sức hút đến từ bộ 4 phiên bản iPhone 12 vẫn chưa nguội đi,
+                    thì Apple đã mang đến cho người dùng một siêu phẩm mới được tạm gọi với cái tên iPhone 13 –
+                    điện thoại có nhiều cải tiến sẽ mang lại những trải nghiệm hấp dẫn nhất cho người dùng.
+                </p>
+                <h4>Hiệu năng đầy mạnh mẽ với A15 Bionic</h4>
+                <p>
+                    Apple trang bị cho iPhone 13 bộ vi xử lý A15 Bionic thế hệ mới được
+                    sản xuất trên tiến trình 5 nm hiện đại, giúp nâng cao hiệu suất và hứa hẹn đem
+                    đến cho người dùng trải nghiệm trọn vẹn hơn.
+                </p>
+                <div id="showmore1">
+                    <p>
+                        iPhone 13 trang bị bộ nhớ trong 128 GB dung lượng lý tưởng cho phép bạn thỏa thích lưu trữ mọi nội dung theo ý muốn mà không lo nhanh đầy bộ nhớ.
+
+                        Thiết bị sẽ được hỗ trợ mạng 5G, nhờ vậy người dùng sẽ trải nghiệm tốc độ kết nối mạng ấn tượng, tận hưởng những gì tinh túy nhất với thời gian phản hồi cực nhanh.
+                    </p>
+                    <img src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/1/4/14_1_9_2_9.jpg" alt="">
+                    <h4>Cụm camera kép nhiều tính năng</h4>
+                    <p>
+                        iPhone 13 vẫn được trang bị camera kép 12 MP với nhiều cải tiến giúp cho ảnh chụp tốt hơn. Hỗ trợ nhiều tính năng như: Chế độ chân dung (Portrait Mode), quay video ProRe, chụp góc siêu rộng và hỗ trợ quay video với định dạng lên đến 4K.
+                        <br>
+                        Camera selfie 12 MP ở mặt trước sẵn sàng giúp bạn trở nên rạng rỡ hơn hoặc lưu lại những khoảnh khắc vui vẻ cùng với bạn bè trong những bức ảnh “tự sướng” sống động và đầy màu sắc.
+                    </p>
+                    <h4>Ngoại hình sang trọng, đẳng cấp</h4>
+                    <p>
+                        iPhone 13 mang cho mình một phong cách hiện đại, tối giản với khung nhôm chắc chắn cùng mặt lưng làm bằng kính cường lực cao cấp. Cho dù bạn là người khó tính cũng sẽ bị thiết kế của smartphone này thu hút từ cái nhìn đầu tiên. <br>
+                        Thiết bị có phần khuyết trên màn hình được rút gọn hơn so với tiền nhiệm, mang lại sự hài hòa so với các chi tiết trên máy. Từ đó người dùng sẽ có không gian trải nghiệm nhiều hơn khi xem phim, lướt web, chơi game,… <br>
+                        iPhone 13 sử dụng tấm nền OLED với kích thước 6.1 inch giúp cung cấp màu sắc chân thực và hình ảnh phong phú hơn, khám phá màn hình mà bạn có thể xem rõ ràng ở hầu hết mọi góc độ. <br>
+                        Bên cạnh đó, bạn cũng có thể đăng nhập một cách dễ dàng mà vẫn đảm bảo tính bảo mật cao bằng cách sử dụng xác thực yếu tố bảo mật khuôn mặt Face ID.
+                    </p>
+                </div>
+
+                <span id="bv_more1" onclick="showmore(1)"> Xem thêm bài viết</span>
+            </div>
+
+        </div>
+
+        <div class="buy_sp">
+            <div class="box_info">
+                <a href="">Trả Góp 0%</a>
+                <p>
+                    @string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()))
+                    <del>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()) * 1.2)</del>
+                </p>
+            </div>
+            @*                <div class="option_memori">
+                    <a href="">
+                        <strong>1TB</strong>
+                        <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()) * 1.4)</span>
+                    </a>
+                    <a href="">
+                        <strong>512GB</strong>
+                        <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()) * 1.35)</span>
+                    </a>
+                    <a href="">
+                        <strong>256GB</strong>
+                        <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()) * 1.2)</span>
+                    </a>
+                    <a href="">
+                        <strong>128GB</strong>
+                        <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()) * 1.1)</span>
+                    </a>
+                </div>
+                <div class="option_color">
+                    <p>
+                        <strong>Vàng</strong>
+                        <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()))</span>
+                    </p>
+                    <p>
+                        <strong>Bạc</strong>
+                        <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()))</span>
+                    </p>
+                    <p>
+                        <strong>Đen</strong>
+                        <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()))</span>
+                    </p>
+                    <p>
+                        <strong>Xanh</strong>
+                        <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()))</span>
+                    </p>
+                </div>*@
+            <div class="khuyenmai">
+                <ul>
+                    <p>Khuyến Mãi:</p>
+                    <li>
+                        <p>
+                            Giảm 1 triệu khi thanh toán qua ví Moca,
+                            thẻ tín dụng ACB, BIDV, Sacombank, mPOS, Shinhan,
+                            Standard Charter (số lượng có hạn) <a href="">(Xem chi tiết)</a>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Thu cũ lên đời- Phụ giá lên đến
+                            2 triệu đồng <a href="">(Xem chi tiết)</a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn_buy_sp">
+                <div class="btn_mua">
+                    <a href="">
+                        <strong>Mua Ngay</strong>
+                        <span>(Giao tận nơi hoặc lấy tại cửa hàng)</span>
+                    </a>
+                </div>
+                <div class="btn_tragop">
+                    <div class="tragop1">
+                        <a href="">
+                            <strong>Trả Góp 0%</strong>
+                            <span>(Xét Duyệt qua điện thoại)</span>
+                        </a>
+                    </div>
+                    <div class="tragop2">
+                        <a href="">
+                            <strong>Trả Góp qua thẻ</strong>
+                            <span>(Vía, thẻ tín dụng, VCB...)</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="box_details">
+                <ul>
+                    <p>Thông Tin Chi Tiết:</p>
+                    <li class="bg1">
+                        <strong>Màn hình:</strong>
+                        <span>@Model.ManHinh</span>
+                    </li>
+                    <li class="bg2">
+                        <strong>Cấu Hình:</strong>
+                        <span>@Model.CauHinh</span>
+                    </li>
+                    <li class="bg1">
+                        <strong>Bộ nhớ trong:</strong>
+                        <span>@Model.BoNhoTrong</span>
+                    </li>
+                    <li class="bg2">
+                        <strong>Camera chính:</strong>
+                        <span>
+                            @Model.Camera_main
+                      
+                        </span>
+                    </li>
+                    <li class="bg1">
+                        <strong>Hệ điều hành:</strong>
+                        <span>@Model.HeDieuHanh</span>
+                    </li>
+                    <li class="bg2">
+                        <strong>Thẻ sim:</strong>
+                        <span>@Model.TheSim</span>
+                    </li>
+                    <li class="bg1">
+                        <strong>Dung lượng pin:</strong>
+                        <span>@Model.DungLuongPin</span>
+                    </li>
+                    <div id="showmore2">
+                    <li class="bg2">
+                        <strong>Dung lượng RAM:</strong>
+                        <span>@Model.DungLuongRam</span>
+                    </li>
+                    <li class="bg1">
+                        <strong>Công nghệ sạc:</strong>
+                        <span>
+                            @Model.CongNgheSac
+                        </span>
+                    </li>
+                    <li class="bg2">
+                        <strong>Độ phân giải màn hình:</strong>
+                        <span>@Model.DoPhanGiai</span>
+                    </li>
+                    <li class="bg1">
+                        <strong>Cổng sạc:</strong>
+                        <span>@Model.CongSac</span>
+                    </li>
+                    <li class="bg2">
+                        <strong>
+                            Các loại cảm biến:
+                        </strong>
+                        <span>	Cảm biến ánh sáng, Cảm biến áp kế, Cảm biến gia tốc, Cảm biến tiệm cận, Con quay hồi chuyển</span>
+                    </li>
+                    <li class="bg1">
+                        <strong>Tính năng đặc biệt:</strong>
+                        <span>	Hỗ trợ 5G, Kháng nước, kháng bụi, Sạc không dây, Nhận diện khuôn mặt</span>
+                    </li>
+            </div>
+
+            <li class="btn_more">
+                <p id="bv_more2" onclick="showmore(2)">Xem Thêm Chi Tiết <i class="fas fa-caret-down"></i> </p>
+            </li>
+        </div>
+    </div>
+</div>
+
+<div class="comment">
+    <div class="header_cmt">
+        <h3>Đánh giá và Nhận xét:</h3>
+        <p>Gửi đánh giá</p>
+    </div>
+    <div class="content_cmt">
+        <div class="name_user">
+            <img src="~/images/30.jpg" alt="">
+            <strong>Username</strong>
+        </div>
+        <div class="cmt">
+            <p>
+                <strong>
+                    Đánh giá:
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </strong>
+            </p>
+            <p><strong>Nhận xét:</strong>Sản phẩm so good.</p>
+        </div>
+    </div>
+    <div class="cmt_more">
+        <p>Xem Thêm</p>
+    </div>
+</div>

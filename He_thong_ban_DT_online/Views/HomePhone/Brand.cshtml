@@ -1,0 +1,16 @@
+﻿@using He_thong_ban_DT_online.Models
+@model IEnumerable<BRAND>
+<ul>
+    <div>
+        @foreach (var brand in Model)
+        {
+            <li style="border-radius: 0 6px 6px 0;">
+                <a href="@Url.Action("SPTheoChuDe", "HomePhone", new { id=brand.BrandId })" class="ti-mobile">
+                    <span>@brand.TenBrand</span>
+                </a>
+                <i class="fa-solid fa-chevron-right"></i>
+            </li>
+        }
+    </div>
+</ul>
+

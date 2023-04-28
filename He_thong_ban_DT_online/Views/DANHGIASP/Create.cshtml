@@ -1,0 +1,59 @@
+﻿@model He_thong_ban_DT_online.Models.DANHGIASP
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .fa-star {
+        color: #f1c40f;
+    }
+</style>
+<h2>Đánh giá sản phẩm: @Html.DisplayFor(model => model.SANPHAM.TenDT)</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Nhập thông tin đánh giá:</h4>
+    <hr />
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.BinhLuan, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.BinhLuan, new { @class = "form-control", rows = 5 })
+            @Html.ValidationMessageFor(model => model.BinhLuan, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @for (int i = 1; i <= 5; i++)
+            {
+                <label class="radio-inline">
+                    <input type="radio" name="Rating" value="@i">
+                    @for (int j = 0; j < i; j++)
+                    {
+                        <i class="fas fa-star"></i>
+                    }
+                </label>
+            }
+            @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lưu" class="btn btn-primary" />
+            @Html.ActionLink("Quay lại", "Details", "HomePhone", new { id = Model.MaSP }, new { @class = "btn btn-default" })
+        </div>
+    </div>
+</div>
+}
+
+

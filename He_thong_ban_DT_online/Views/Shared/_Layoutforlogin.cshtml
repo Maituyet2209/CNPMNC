@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://kit.fontawesome.com/fdd5f8d904.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="~/Content/StyleHeaderFooter.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div id="header">
+        <div id="nav">
+            <!-- logo header -->
+            <div class="logo">
+                <a href="~/HomePhone/Index" class="nameshopnone">
+                    <p class="marrl5 name_shop curs ">TOBITO</p>
+                </a>
+                <a href="./index.html"><img src="~/images/logo_chu_T.png" alt="" class="logo_img marrl5 curs "> </a>
+            </div>
+            <!-- search header -->
+            <form method="get" class="search_btn_try" action="@Url.Action("TimKiem", "HomePhone")">
+                <input type="text" name="q" placeholder="Tìm kiếm sản phẩm...">
+                <i typeof="submit" class="fa-solid fa-magnifying-glass"></i>
+            </form>
+            @*        <form method="get" action="@Url.Action("TimKiem","HomePhone")" class="search_btn_try">
+                    <input type="text" name="key" placeholder=" Bạn cần tìm gì ?">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </form>*@
+            <!--begin last header -->
+            <div class="last_header">
+                <div class="call block2 curs ">
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <div class="Khoi ">
+                        <div>Gọi mua hàng</div>
+                        <div> 0904962412</div>
+                    </div>
+                </div>
+                <div class="findstore block2 curs ">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>Tìm Cửa Hàng</p>
+                </div>
+                <div class="cart block2 curs ">
+                    @Html.Action("GioHangPartial", "GioHang")
+                </div>
+                <!-- login user -->
+                <div class="login">
+                    <img src="~/images/login_icon_full.png" alt="" id="logo_login" class="img_login">
+                    <ul class="sublogin">
+                        <li>
+                            @Html.ActionLink("Đăng nhập", "DangNhap", "Users", null, new { @class = "text-black" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Đăng ký", "DangKy", "Users", null, new { @class = "text-black" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Đăng xuất", "DangXuat", "Users", null, new { @class = "text-black" })
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--end last header  -->
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

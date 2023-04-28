@@ -1,0 +1,33 @@
+﻿@model IEnumerable<He_thong_ban_DT_online.Models.SANPHAM>
+
+@{
+    ViewBag.Title = "QuanLyGia";
+    Layout = "~/Views/Shared/ADLayout.cshtml";
+    <link href="~/Content/StyleHeaderFooter.css" rel="stylesheet" />
+}
+<div class="container-fluid">
+    <div class="row align-items-center flex-wrap">
+        @foreach (var sanpham in Model)
+        {
+            <div class="col-sm-12 col-md-4 col-lg-3 box mr-0">
+                <div class="box_img">
+                    <a href="@Url.Action("Details", "HomePhone", new { id = sanpham.MaSP })">
+                        <img src="~/images/@sanpham.HinhMinhHoa" alt="">
+                    </a>
+                </div>
+                <div class="name_sp">
+                    <span>@sanpham.TenDT</span>
+                </div>
+                <div class="price">
+                    <span>@string.Format("{0:N0} VNĐ", Double.Parse(sanpham.Dongia.ToString()))</span>
+                </div>
+                <div class="btn_buy">
+                    <a href="@Url.Action("EditPrice", new { id = sanpham.MaSP })" class="btn btn-danger"><i class="fa fa-edit"></i></a>
+                    <a href="@Url.Action("Details", new { id = sanpham.MaSP })" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+

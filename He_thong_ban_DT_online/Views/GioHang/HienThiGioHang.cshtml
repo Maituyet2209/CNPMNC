@@ -1,0 +1,216 @@
+﻿@using He_thong_ban_DT_online.Models
+@model List<MatHangMua>
+@{
+    ViewBag.Title = "HienThiGioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .cart-items {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin:auto;
+    }
+
+    .cart-item {
+        width: 600px;
+        display: flex;
+        gap: 10px;
+        border: 2px solid #b2bec3;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 10px;
+    }
+
+    .cart-item-image {
+        width: 150px;
+    }
+
+        .cart-item-image img {
+            width: 150px;
+        }
+
+    .cart-item-details {
+        width:200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+    }
+
+    .cart-item-title {
+        margin: 0;
+    }
+
+    .cart-item-price {
+        margin: 0;
+        color: #888;
+    }
+
+    .cart-item-quantity {
+        width:300px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+    }
+
+        .cart-item-quantity label {
+            margin: 0;
+        }
+
+        .cart-item-quantity input {
+            width: 4rem;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+        }
+
+    .cart-item-buttons {
+        width:180px;
+        margin-top:10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btn-update {
+        background-color: transparent;
+        border: 1px solid #74b9ff;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #74b9ff;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+    .btn-remove {
+        background-color: transparent;
+        border: 1px solid #ff7675;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #ff7675;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+    .btn-update:hover {
+        background-color: #74b9ff;
+        color: #fff;
+    }
+        .btn-remove:hover {
+            background-color: #ff7675;
+            color: #fff;
+        }
+
+
+
+    .cart-item-subtotal {
+        display: flex;
+        justify-content: space-between;
+        width: fit-content;
+        margin-bottom: 0;
+    }
+
+    .cart-item-subtotal-label {
+        margin-right:3px;
+        margin-bottom: 0;
+        color: #808080;
+
+    }
+
+    .cart-item-subtotal-value {
+        margin-bottom: 0;
+        font-weight: bold;
+    }
+
+    .cart-total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+        font-size: 18px;
+        font-weight: bold;
+        border: 1px solid #d94931;
+        border-radius: 10px 10px 0 0;
+        border-bottom: none;
+        box-shadow: 0 0 10px rgba( 220, 20, 60, 0.2);
+    }
+
+    .cart-total-label {
+        font-size: 20px;
+        font-weight: bold;
+        color: #e17055;
+        text-transform: uppercase;
+        margin-right: 10px;
+    }
+
+
+    .cart-total-value {
+        color: #c0392b;
+    }
+    .btn_dathang{
+        width:100%;
+        display:flex;
+        justify-content:center;
+    }
+    .container_button_dat {
+        width: fit-content;
+        border: 1px solid red;
+        text-align:center;
+        border-radius:5px;
+    }
+    .btn-outline-danger a {
+        text-decoration: none;
+        color: darkred;
+    }
+    .btn-outline-danger:hover a {
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+</style>
+<div class="cart-items">
+    @foreach (var item in Model)
+    {
+        <div class="cart-item">
+            <div class="cart-item-image">
+                <img src="~/images/@item.HinhMinhHoa" alt="@item.TenDT">
+            </div>
+            <div class="cart-item-details">
+                <h4 class="cart-item-title">@item.TenDT</h4>
+                <p class="cart-item-price">Giá: @string.Format("{0:N0} VNĐ", Double.Parse(item.DonGia.ToString()))</p>
+
+                <form action="@Url.Action("CapNhatMatHang", "GioHang", new { MaDT = item.MaDT })" method="post">
+                    <div class="cart-item-quantity">
+                        <label for="quantity">Số lượng:</label>
+                        <input type="number" min="1" value="@item.SoLuong" name="SoLuong" id="quantity">
+                    </div>
+                    <div class="cart-item-buttons">
+                        <button class="btn btn-update" type="submit">Cập nhật</button>
+                        <a class="btn btn-remove" href="@Url.Action("XoaMatHang", "GioHang", new { MaDT = item.MaDT })">Xóa</a>
+                    </div>
+                </form>
+            </div>
+            <div class="cart-item-subtotal">
+                <p class="cart-item-subtotal-label">Thành tiền: </p>
+                <span class="cart-item-subtotal-value">@string.Format("{0:N0} VNĐ", Double.Parse(item.ThanhTien().ToString()))</span>
+            </div>
+        </div>
+    }
+    <div class="btn_dathang">
+        <div class="container_button_dat">
+            <button class="btn btn-outline-danger">@Html.ActionLink("ĐẶT HÀNG", "DatHang")</button>
+        </div>
+    </div>
+    <div class="cart-total">
+        <p class="cart-total-label">Tổng tiền:</p>
+        <p class="cart-total-value">@string.Format("{0:N0} VNĐ", Double.Parse(ViewBag.TongTien.ToString()))</p>
+    </div>
+</div>

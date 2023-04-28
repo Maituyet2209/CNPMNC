@@ -1,0 +1,95 @@
+﻿@using He_thong_ban_DT_online.Models
+@model IEnumerable<SANPHAM>
+
+@{
+    ViewBag.Title = "TimKiem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .title_timkiem {
+        background: linear-gradient(to right, #ff6600 0%, #ffcc00 100%);
+        margin-top: 30px;
+        height: 50px;
+        line-height: 50px;
+        padding:10px;
+    }
+    .chu {
+        color: white;
+        font-weight: 600;
+        margin:auto;
+    }
+</style>
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert-box">
+        <p class="error-message">@ViewBag.Message</p>
+    </div>
+}
+else
+{
+    <div class="title_timkiem"><h3 class="chu">Kết quả tìm kiếm</h3></div>
+
+    <div class="hang">
+        @foreach (var sanpham in Model)
+        {
+            <div class=" box">
+                <div class="box_img">
+                    <a href="@Url.Action("Details", "HomePhone", new { id = sanpham.MaSP })">
+                        <img src="~/images/@sanpham.HinhMinhHoa" alt="">
+                    </a>
+                </div>
+                <div class="name_sp">
+                    <span>@sanpham.TenDT</span>
+                </div>
+                <div class="price">
+                    <span>@string.Format("{0:N0} VNĐ", Double.Parse(sanpham.Dongia.ToString()))</span>
+                    <del>24.900.000đ</del>
+                </div>
+                <div class="btn_buy">
+                    <button> Mua</button>
+                    <button> +Giỏ Hàng </button>
+                </div>
+                <div class="star">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <p>11 đánh giá</p>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="flash_sale">
+        <div class="header_content">
+            <div class="text_content">
+                <span> Đề xuất dành cho bạn </span>
+                <i class="fa-regular fa-star"></i>
+            </div>
+            <div class="countdown">
+                <p class="title">kết thúc sau: </p>
+                <ul>
+                    <li>
+                        <span id="days">02</span>
+                        :
+                    </li>
+                    <li>
+                        <span id="hours">12</span>
+                        :
+                    </li>
+                    <li>
+                        <span id="minutes"> 30</span>
+                        :
+                    </li>
+                    <li>
+                        <span id="seconds">59</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="hang">
+        @Html.Action("HotSale", "HomePhone")
+    </div>
+}
+

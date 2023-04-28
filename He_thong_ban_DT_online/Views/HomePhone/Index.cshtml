@@ -1,0 +1,115 @@
+﻿@model IEnumerable<He_thong_ban_DT_online.Models.SANPHAM>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Flash sale điện thoại -->
+<!--<div class="flash_sale">
+    <div class="header_content">
+        <div class="text_content">
+            <span> Hot</span>
+            <i class="fa-solid fa-bolt"></i>
+            <span>Sale</span>
+        </div>
+        <div class="countdown">
+            <p class="title">kết thúc sau: </p>
+            <ul>
+                <li>
+                    <span id="days">02</span>
+                    :
+                </li>
+                <li>
+                    <span id="hours">12</span>
+                    :
+                </li>
+                <li>
+                    <span id="minutes"> 30</span>
+                    :
+                </li>
+                <li>
+                    <span id="seconds">59</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>-->
+<div class="row" style="margin:20px 0 20px 35px;">
+    @foreach (var sanpham in Model)
+    {
+        <div class="col-sm-12 col-md-4 col-lg-3 box mr-0">
+            <div class="box_img">
+                <a href="@Url.Action("Details", "HomePhone", new { id = sanpham.MaSP })">
+                    <img src="~/images/@sanpham.HinhMinhHoa" alt="">
+                </a>
+            </div>
+            <div class="name_sp">
+                <span>@sanpham.TenDT</span>
+            </div>
+            <div class="price">
+                <span>@string.Format("{0:N0} VNĐ", Double.Parse(sanpham.Dongia.ToString()))</span>
+                <del>24.900.000đ</del>
+            </div>
+            <div class="btn_buy">
+                <button> Mua</button>
+                <a href="@Url.Action("ThemSanPhamVaoGio", "GioHang", new{ MaDT = sanpham.MaSP })"><button> +Giỏ Hàng </button></a>
+            </div>
+            <div class="star">
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <p>11 đánh giá</p>
+            </div>
+        </div>
+    }
+
+</div>
+@*<div class="row">
+    @Html.Action("HotSale", "HomePhone")
+</div>*@
+<!--<div class="flash_sale">
+    <div class="header_content">
+        <div class="text_content">
+            <span>Apple</span>
+            <i class="fa-brands fa-apple"></i>
+        </div>
+    </div>-->
+    <!-- Điện Thoại -->
+    <!--<div class="row">
+        @Html.Action("Apple", "HomePhone")
+    </div>
+    <div class="more">
+        <a href="">Xem Thêm</a>
+    </div>
+</div>-->
+<!-- LapTop -->
+<!--<div class="flash_sale">
+    <div class="header_content">
+        <div class="text_content">
+            <span>SamSung</span>
+            <i class="fa-brands fa-android"></i>
+        </div>
+    </div>
+    <div class="row">
+        @Html.Action("SamSung", "HomePhone")
+    </div>
+    <div class="more">
+        <a href="">Xem Thêm</a>
+    </div>
+</div>-->
+
+<!-- TabLet -->
+<!--<div class="flash_sale">
+    <div class="header_content">
+        <div class="text_content">
+            <span>Xiaomi</span>
+        </div>
+    </div>
+    <div class="rowstyle">
+        @Html.Action("Xiaomi", "HomePhone")
+    </div>
+    <div class="more">
+        <a href="">Xem Thêm</a>
+    </div>
+</div>-->

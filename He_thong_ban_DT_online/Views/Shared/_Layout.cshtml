@@ -1,0 +1,429 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hepta+Slab:wght@1;100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;500;600;700;800;900&family=Playfair+Display:wght@600&family=Rubik:ital,wght@0,300;0,500;0,600;0,700;0,800;0,900;1,400;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/fdd5f8d904.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="~/Content/StyleHeaderFooter.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="header">
+        <div id="nav">
+            <!-- logo header -->
+            <div class="logo">
+            <a href="~/HomePhone/Index" class="nameshopnone">
+                <p class="marrl5 name_shop curs ">TOBITO</p>
+            </a>
+            @*<div class="marrl5 area_header curs ">
+                <span>Khu Vực</span>
+                <b class="nav-arrow-down ti-angle-down"></b>
+                <div id="khuvuc" style="margin-top: 2px; margin-left: 3px">TP HCM </div>
+                <ul class="subnav">
+                    <li onclick="change_kv(1)"><a href="#" class="ti-location-pin">TP Hồ Chí Minh</a></li>
+                    <li onclick="change_kv(2)"><a href="#" class="ti-location-pin">Hà Nội</a></li>
+                    <li onclick="change_kv(3)"><a href="#" class="ti-location-pin">TP Đà Nẵng</a></li>
+                    <li onclick="change_kv(4)"><a href="#" class="ti-location-pin">Bình Dương</a></li>
+                    <li onclick="change_kv(5)"><a href="#" class="ti-location-pin">Hải Phòng</a></li>
+                </ul>
+            </div>*@
+
+        </div>
+        <!-- search header -->
+        <form method="get" class="search_btn_try" action="@Url.Action("TimKiem", "HomePhone")">
+            <input type="text" name="q" placeholder="Tìm kiếm sản phẩm...">
+            <i typeof="submit" class="fa-solid fa-magnifying-glass"></i>
+        </form>
+@*        <form method="get" action="@Url.Action("TimKiem","HomePhone")" class="search_btn_try">
+            <input type="text" name="key" placeholder=" Bạn cần tìm gì ?">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </form>*@
+        <!--begin last header -->
+        <div class="last_header">
+            <div class="call block2 curs ">
+                <i class="fa-solid fa-phone-volume"></i>
+                <div class="Khoi ">
+                    <div>Gọi mua hàng</div>
+                    <div> 0904962412</div>
+                </div>
+            </div>
+            <div class="findstore block2 curs ">
+                <i class="fa-solid fa-location-dot"></i>
+                <p>Tìm Cửa Hàng</p>
+            </div>
+            <div class="cart block2 curs ">
+                @Html.Action("GioHangPartial","GioHang")
+            </div>
+            <!-- login user -->
+            <div class="login">
+                <img src="~/images/login_icon_full.png" alt="" id="logo_login" class="img_login">
+                <ul class="sublogin">
+                    <li>
+                        @Html.ActionLink("Đăng nhập", "DangNhap", "Users", null, new { @class = "text-black" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Đăng ký", "DangKy", "Users", null, new { @class = "text-black" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Đăng xuất", "DangXuat", "Users", null, new { @class = "text-black" })
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--end last header  -->
+    </div>
+    </div>
+
+    <div id="welcome_user"></div>
+    <div id="main">
+        <!--Main header  -->
+        <div id="main_header">
+            <!-- menu  -->
+            <div id="sidebar_left" style="border-radius:0 5px 5px 0;">
+                <!--menu các loại  -->
+                @Html.Action("Brand", "HomePhone")
+            </div>
+
+            <div id="slide_show">
+
+                <div class="img_slideshow">
+                    <div class="act_slideshow fade">
+                        <img src="~/images/z-flip-slide_show_9_11zon.png" alt="">
+                    </div>
+                    <div class="act_slideshow fade">
+                        <img src="~/images/11t-seriees-slideshow_act_4_11zon.png" alt="">
+                    </div>
+                    <div class="act_slideshow fade">
+                        <img src="~/images/iphone13_slideshow_act.png" alt="">
+                    </div>
+                    <div class="act_slideshow fade">
+                        <img src="~/images/laptop_slideshow.png" alt="">
+                    </div>
+                    <div class="act_slideshow fade">
+                        <img src="~/images/PhuKien_slideshow.png" alt="">
+                    </div>
+                    <a class="prev" onclick="plusSlides(1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(-1)">&#10095;</a>
+                    <div style="text-align:center">
+                        <span class="dot" onclick="currentSlide(0)"></span>
+                        <span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                        <span class="dot" onclick="currentSlide(4)"></span>
+                    </div>
+
+                    <img src="~/images/ipad_slideShow.png" alt="" class="under_slideshow">
+                </div>
+
+                <div class="img_leftslideshow">
+                    <img src="~/images/img-right-SlideShow_8_11zon.png" alt="">
+                    <img src="~/images/ip-12-right-slideshow_7_11zon.png" alt="">
+                    <img src="~/images/laptop-right-Slideshow_5_11zon.png" alt="">
+                </div>
+
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row justify-content-center align-items-center flex-wrap">
+            </div>
+        </div>
+        @RenderBody()
+        <!-- Âm Thanh -->
+        <div class="ab_footer">
+            <div class="footer">
+                <div class="coypyright">
+                    <p>
+                        &#169; © 2021. Công ty cổ phần TOBITO. GPDKKD: 01241231909
+                        Địa chỉ: 2.25 Phan Thúc Duyện, Phường 4, Quận Tân Bình, Thành Phố Hồ Chí Minh. Điện thoại: 028
+                        38125960.
+                        GPMXH: 238/GP-BTTTT do Bộ Thông Tin và Truyền Thông cấp ngày 11/2021.
+                        Email: ltthanh22112002@gmail.com. Chịu trách nhiệm nội dung:
+                        Lê Tiến Thành <a href="">Xem chính sách sử dụng</a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="modal js-modal">
+            <div class="modal-container js-modal-container">
+                <div>
+                    <i class="fa-solid fa-xmark modal-close js-modal-close"></i>
+                </div>
+
+                <header class="modal-header">
+                    <i class="modal-heading-icon ti-bag"></i>
+                    Buy
+                </header>
+                <div class="modal-body">
+                    <label for="tiket-quantity" class="modal-label">
+                        <div class="ti-shopping-cart"></div>
+                        <div id="name_buy"></div>
+                    </label>
+                    <input id="tiket-quantity" type="text" class="modal-input" placeholder="Số lượng?">
+
+                    <label for="buy-quantity" class="modal-label">
+                        <div class="ti-user"></div>
+                    </label>
+                    <input id="buy-quantity" type="tel" class="modal-input" placeholder="Số điện thoại của bạn...">
+
+                    <button id="buy-tickets">
+                        Thanh Toán <i class="ti-check"></i>
+                    </button>
+                </div>
+
+                <footer class="modal-footer">
+                    <p class="modal-help">Need <a href="">help?</a></p>
+                </footer>
+            </div>
+        </div>
+
+
+        <!-- show and hide buy -->
+        <script>
+            const buyBtns = document.querySelectorAll(".btn_buy button")
+            const modal = document.querySelector('.js-modal')
+            const modalClose1 = document.querySelector('.js-modal-close')
+            const modalContainer = document.querySelector('.js-modal-container')
+            // function Show/hide buy tickets
+            function showBuyTicket(event) {
+                var buton = event.target;
+                var box = buton.parentElement.parentElement;
+                document.getElementById("name_buy").innerText = box.querySelectorAll('.name_sp span')[0].innerText + "//"
+                    + box.querySelectorAll('.price span')[0].innerText;
+                modal.classList.add('open')
+            }
+            function hideBuyTicket() {
+                modal.classList.remove('open')
+            }
+            // lap tung button va ngh click
+            for (var i = 0; i < buyBtns.length; i++) {
+                if (i % 2 === 0) {
+                    var buton = buyBtns[i];
+                    buton.addEventListener('click', showBuyTicket);
+                }
+            }
+            // nghe hanh vi click vao button close
+            modalClose1.addEventListener('click', hideBuyTicket)
+            modal.addEventListener('click', hideBuyTicket)
+            // cham ngoai vung buy ticket de out ra
+            modalContainer.addEventListener('click', function (event) {
+                event.stopPropagation()
+            })
+        </script>
+
+        <!-- show and hide cart  -->
+        <script>
+            const container_cart = document.querySelector(".container_cart");
+            const modalClose = document.querySelector(".modal_close");
+            const btncart = document.querySelector(".cart")
+            const list_cart = document.querySelector(".list_cart");
+
+            function showcart() {
+                container_cart.classList.add('open');
+            }
+            function hidecart() {
+                container_cart.classList.remove('open');
+            }
+            btncart.addEventListener('click', showcart);
+
+            modalClose.addEventListener('click', hidecart);
+
+            container_cart.addEventListener('click', hidecart);
+            list_cart.addEventListener('click', function (event) {
+                event.stopPropagation()
+            })
+        </script>
+
+        <script src="./assets/cart.js"></script>
+
+        <!-- kits icon -->
+        <script src="https://kit.fontawesome.com/c0b1a641d5.js" crossorigin="anonymous"></script>
+
+        <!-- change khu vực -->
+        <script src="./assets/change_area.js"></script>
+
+        <!-- javascrip slide show auto and not auto -->
+        <script>
+            var slideIndex = 0;
+            var timer = null;
+            showSlides(slideIndex);
+
+            function plusSlides(n) {
+                clearTimeout(timer);
+                if (n == -1)
+                    n = 0;
+                showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+                clearTimeout(timer);
+                showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("act_slideshow");
+                var dots = document.getElementsByClassName("dot");
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1 }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+                timer = setTimeout(showSlides, 1000); // Change image every 2.5 seconds
+            }
+        </script>
+
+        <!-- count down dt -->
+        <script>
+            var d = 2;  // ngày
+            var h = 18; // Giờ
+            var m = 39; // Phút
+            var s = 10; // Giây
+            var timeout = null;
+
+            function countdown() {
+                if (s === -1) {
+                    m -= 1;
+                    s = 59;
+                }
+                if (m === -1) {
+                    h -= 1;
+                    m = 59;
+                }
+                if (h === -1) {
+                    d -= 1;
+                    h = 23;
+                }
+                if (d === -1) {
+                    clearTimeout();
+                    return false;
+                }
+                if (d < 10)
+                    document.getElementById("days").innerText = "0" + d.toString();
+                else document.getElementById("days").innerText = d.toString();
+                if (h < 10)
+                    document.getElementById("hours").innerText = "0" + h.toString();
+                else document.getElementById("hours").innerText = h.toString();
+                if (m < 10)
+                    document.getElementById("minutes").innerText = "0" + m.toString();
+                else document.getElementById("minutes").innerText = m.toString();
+                if (s < 10)
+                    document.getElementById("seconds").innerText = "0" + s.toString();
+                else document.getElementById("seconds").innerText = s.toString();
+
+                timeout = setTimeout(function () {
+                    s--;
+                    //countdown;
+                    window.onload = countdown();
+                }, 1000);
+            }
+            window.onload = countdown();
+        </script>
+
+        <!-- count down phu kien -->
+        <script>
+            var d1 = 2;  // ngày
+            var h1 = 18; // Giờ
+            var m1 = 39; // Phút
+            var s1 = 10; // Giây
+            var timeout = null;
+
+            function countdown1() {
+                //  d =parseInt( document.getElementById("days"));
+                //  h =parseInt( document.getElementById("hours"));
+                //  m =parseInt( document.getElementById("minutes"));
+                //  s =parseInt( document.getElementById("seconds"));
+                if (s1 === -1) {
+                    m1 -= 1;
+                    s1 = 59;
+                }
+                if (m1 === -1) {
+                    h1 -= 1;
+                    m1 = 59;
+                }
+                if (h1 === -1) {
+                    d1 -= 1;
+                    h1 = 23;
+                }
+                if (d1 === -1) {
+                    clearTimeout();
+                    return false;
+                }
+                if (d1 < 10)
+                    document.getElementById("days_pk").innerText = "0" + d1.toString();
+                else
+                    document.getElementById("days_pk").innerText = d1.toString();
+                if (h1 < 10)
+                    document.getElementById("hours_pk").innerText = "0" + h1.toString();
+                else
+                    document.getElementById("hours_pk").innerText = h1.toString();
+                if (m1 < 10)
+                    document.getElementById("minutes_pk").innerText = "0" + m1.toString();
+                else
+                    document.getElementById("minutes_pk").innerText = m1.toString();
+                if (s1 < 10)
+                    document.getElementById("seconds_pk").innerText = "0" + s1.toString();
+                else
+                    document.getElementById("seconds_pk").innerText = s1.toString();
+
+                timeout = setTimeout(function () {
+                    s1--;
+                    //countdown;
+                    window.onload = countdown1();
+                }, 1000);
+            }
+            window.onload = countdown1();
+        </script>
+
+        <!-- change logo user -->
+        <script>
+            document.getElementById("login_out").style.display = "none";
+            function change() {
+                if (typeof (Storage) !== "undefined")
+                    if (localStorage.clickcount1 > 0) {
+                        var logo = document.getElementById("logo_login");
+                        logo.src = "~/images/logo_tobito.png"
+                        // if (localStorage.clickcount1 > 1)
+                        //     localStorage.clickcount1=0;
+                        document.getElementById("login_out").style.display = "block";
+                        document.getElementById("login_on").style.display = "none";
+                        document.getElementById("welcome_user").innerHTML = "Chào Mừng " + localStorage.nameuser + " Đến Với Cửa Hàng Chúng Tôi !!!"
+                    }
+            }
+            window.onload = change();
+            function showDN() {
+                document.getElementById("login_on").style.display = "block";
+                var logo = document.getElementById("logo_login");
+                logo.src = "~/images/login_icon_full.png"
+                localStorage.clickcount1 = 0;
+                window.location.reload(true);
+            }
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/2.1.6/jquery.cycle2.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#slider-images').cycle();
+            });
+        </script>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>

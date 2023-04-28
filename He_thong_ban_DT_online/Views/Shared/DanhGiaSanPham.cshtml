@@ -1,0 +1,17 @@
+﻿@model IEnumerable<He_thong_ban_DT_online.Models.DANHGIASP>
+@if (Model.Count() == 0)
+{
+    <p>Chưa có đánh giá nào cho sản phẩm này.</p>
+}
+else
+{
+    foreach (var danhgia in Model)
+    {
+        <div>
+            <h4>@danhgia.KHACHHANG.HoTenKH</h4>
+            <p>@danhgia.BinhLuan</p>
+            <p>Điểm đánh giá: @danhgia.Rating</p>
+            <p>Ngày đánh giá: @danhgia.NgayDanhGia</p>
+        </div>
+    }
+}
