@@ -26,8 +26,8 @@ namespace demoDACNPMNC.Controllers
             //};
             //db.profiles.Add(crProfile);
             //db.SaveChanges();
-            var temp = new user { id_user = 1, email = "abc@gmail.com", pass = "123" };
-            Session["user"] = temp;
+            //var temp = new user { id_user = 1, email = "abc@gmail.com", pass = "123" };
+            //Session["user"] = temp;
             var getuser = Session["user"] as user;
             List<MatHangMua> gioHang = Session["GioHang"] as List<MatHangMua>;
             if (getuser != null)
@@ -147,6 +147,19 @@ namespace demoDACNPMNC.Controllers
 
         public ActionResult Profile(FormCollection form)
         {
+            ViewBag.name = "Nhập Họ Tên";
+            ViewBag.phone = "Nhập Số Điện Thoại";
+            ViewBag.address = "Nhập Địa chỉ nhận hàng";
+            ViewBag.email = "Nhập Email";
+            var getprofile = Session["Profile"] as profile;
+            var getUser = Session["user"] as user;
+            if (getprofile != null && getUser != null)
+            {
+                ViewBag.name = getprofile.names;
+                ViewBag.phone = getprofile.phone;
+                ViewBag.address = getprofile.addres;
+                ViewBag.email = getUser.email;
+            }
             return View();
         }
 
@@ -174,6 +187,13 @@ namespace demoDACNPMNC.Controllers
 
                      newUserInf = new ShoppingInfo(getProfile.names, getUser.email, getProfile.phone, getProfile.addres);
                     //Session["ShoppingInfo"] = newUserInf;
+                }
+                else
+                {
+                    ViewBag.inputName = "Nhập Tên Người Nhận";
+                    ViewBag.inputEmail = "Nhập Mail Người Nhận";
+                    ViewBag.inputPhone = "Nhập SĐT";
+                    ViewBag.inputAddress = "Nhập Địa Chỉ Người Nhận";
                 }
             }
 

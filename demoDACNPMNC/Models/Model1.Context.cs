@@ -29,8 +29,10 @@ namespace demoDACNPMNC.Models
         public virtual DbSet<cart> carts { get; set; }
         public virtual DbSet<CHITIETSANPHAM> CHITIETSANPHAMs { get; set; }
         public virtual DbSet<CTDATHANG> CTDATHANGs { get; set; }
+        public virtual DbSet<DANHGIASP> DANHGIASPs { get; set; }
         public virtual DbSet<DONDATHANG> DONDATHANGs { get; set; }
         public virtual DbSet<HINHANH> HINHANHs { get; set; }
+        public virtual DbSet<HINHTHUCTHANHTOAN> HINHTHUCTHANHTOANs { get; set; }
         public virtual DbSet<KHACHHANG> KHACHHANGs { get; set; }
         public virtual DbSet<LOAI> LOAIs { get; set; }
         public virtual DbSet<NGUOIDUNG> NGUOIDUNGs { get; set; }

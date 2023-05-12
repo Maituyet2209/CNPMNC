@@ -278,7 +278,7 @@
     width: 70%;
     margin-top: 20px;
 }
-.btn_buy_sp .btn_mua a{
+.btn_buy_sp .btn_mua a {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -287,6 +287,7 @@
     background-color: rgba(206, 143, 7, 0.699);
     border-radius: 5px;
     margin-bottom: 10px;
+    color: white;
 }
 
 .btn_buy_sp .btn_mua a strong {

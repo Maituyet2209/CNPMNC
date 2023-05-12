@@ -20,21 +20,22 @@ namespace demoDACNPMNC.Models
             this.CTDATHANGs = new HashSet<CTDATHANG>();
         }
     
-        public int SoDH { get; set; }
+        public int MaDH { get; set; }
         public Nullable<int> MaKH { get; set; }
         public Nullable<System.DateTime> NgayDH { get; set; }
-        public Nullable<decimal> Trigia { get; set; }
+        public Nullable<decimal> TongTien { get; set; }
         public Nullable<bool> Dagiao { get; set; }
         public Nullable<System.DateTime> Ngaygiaohang { get; set; }
         public string Tennguoinhan { get; set; }
         public string Diachinhan { get; set; }
         public string Dienthoainhan { get; set; }
-        public Nullable<bool> HTThanhtoan { get; set; }
+        public Nullable<int> HTThanhtoan { get; set; }
         public Nullable<bool> HTGiaohang { get; set; }
         public Nullable<int> MaTTDH { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDATHANG> CTDATHANGs { get; set; }
+        public virtual HINHTHUCTHANHTOAN HINHTHUCTHANHTOAN { get; set; }
         public virtual TRANGTHAIDONHANG TRANGTHAIDONHANG { get; set; }
         public virtual KHACHHANG KHACHHANG { get; set; }
     }

@@ -12,16 +12,16 @@ namespace demoDACNPMNC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TRANGTHAIDONHANG
+    public partial class HINHTHUCTHANHTOAN
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TRANGTHAIDONHANG()
+        public HINHTHUCTHANHTOAN()
         {
             this.DONDATHANGs = new HashSet<DONDATHANG>();
         }
     
-        public int MaTTDH { get; set; }
-        public string TenTrangThai { get; set; }
+        public int MaHTTT { get; set; }
+        public string TenHTTT { get; set; }
         public string MoTa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

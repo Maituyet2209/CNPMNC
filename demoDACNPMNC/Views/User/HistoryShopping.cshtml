@@ -30,15 +30,16 @@
     }
 </style>
 
-<h2>Đơn Hàng Đã Hoàn Tất </h2>
-@if (Model != null)
+@if (Model != null && Model.Count > 0)
 {
+    <h2>Đơn Hàng Đã Hoàn Tất </h2>
+
     foreach (var i in Model)
     {
         <div class="container">
             <h3>Tên Khách Hàng: @i.name </h3>
             <p>Mã hóa đơn: @i.id_order</p>
-             <p>Tình Trạng Đơn Hàng: Đã Hoàn Tất Đơn Hàng </p>
+            <p>Tình Trạng Đơn Hàng: Đã Hoàn Tất Đơn Hàng </p>
             <p>Số điện thoại: @i.phone</p>
             <p>Địa chỉ nhận: @i.delireryAddress</p>
             @if (i.payment_type == true)
@@ -90,9 +91,9 @@
 
         </div>
     }
-} 
+}
 else
-            {
-                <h2> Hiện Tại Khách Hàng Chưa Mua Đơn Hàng !!</h2>
-            }
+{
+    <h2 style="height: 350px;"> Hiện Tại Khách Hàng Chưa Mua Đơn Hàng !!</h2>
+}
 

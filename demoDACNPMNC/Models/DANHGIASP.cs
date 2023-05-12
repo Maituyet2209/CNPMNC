@@ -12,16 +12,16 @@ namespace demoDACNPMNC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CTDATHANG
+    public partial class DANHGIASP
     {
-        public int MaDH { get; set; }
-        public int MaDT { get; set; }
-        public Nullable<int> SoLuong { get; set; }
-        public Nullable<decimal> DonGia { get; set; }
-        public Nullable<decimal> GiamGia { get; set; }
-        public Nullable<decimal> ThanhTien { get; set; }
+        public int MaDG { get; set; }
+        public int MaSP { get; set; }
+        public int MaKH { get; set; }
+        public string BinhLuan { get; set; }
+        public int Rating { get; set; }
+        public System.DateTime NgayDanhGia { get; set; }
     
-        public virtual DONDATHANG DONDATHANG { get; set; }
+        public virtual KHACHHANG KHACHHANG { get; set; }
         public virtual SANPHAM SANPHAM { get; set; }
     }
 }

@@ -106,6 +106,7 @@
     <Content Include="Content\StyleBrand.css" />
     <Content Include="Content\StyleDetail.css" />
     <Content Include="Content\StyleHeaderFooter.css" />
+    <Content Include="Content\Stylelogin.css" />
     <Content Include="Global.asax" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -140,10 +141,16 @@
     <Compile Include="Models\CTDATHANG.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DANHGIASP.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DONDATHANG.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HINHANH.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HINHTHUCTHANHTOAN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KHACHHANG.cs">
@@ -230,6 +237,8 @@
     <Content Include="Views\User\DeliveryOrder.cshtml" />
     <Content Include="Views\User\CompletedOrder.cshtml" />
     <Content Include="Views\User\HistoryShopping.cshtml" />
+    <Content Include="Views\User\DangKy.cshtml" />
+    <Content Include="Views\User\DangNhap.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

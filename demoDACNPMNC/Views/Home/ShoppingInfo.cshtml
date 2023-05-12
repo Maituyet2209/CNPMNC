@@ -66,8 +66,8 @@
                 <div class="card mb-3">
                     @using (Html.BeginForm("ShoppingInfo", "Home", FormMethod.Post))
                     {
-                         if (Session["Profile"] != null)
-                        {
+                        // if (Session["Profile"] != null)
+                        //{
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-3">
@@ -110,7 +110,7 @@
 
                                 </div>
                             </div>
-                        }
+                        @*}
                         else
                         {
                             <div class="card-body">
@@ -154,7 +154,7 @@
                                     </div>
                                 </div>
                             </div>
-                        }
+                        }*@
 
                         <button type="submit">Xác Nhận Thông Tin</button>
 

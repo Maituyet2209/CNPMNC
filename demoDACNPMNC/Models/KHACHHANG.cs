@@ -17,19 +17,24 @@ namespace demoDACNPMNC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KHACHHANG()
         {
+            this.DANHGIASPs = new HashSet<DANHGIASP>();
             this.DONDATHANGs = new HashSet<DONDATHANG>();
         }
     
         public int MaKH { get; set; }
-        public Nullable<int> UserId { get; set; }
+        public string HoTenKH { get; set; }
+        public string DiachiKH { get; set; }
+        public string DienthoaiKH { get; set; }
+        public string TenDN { get; set; }
+        public string Matkhau { get; set; }
         public Nullable<System.DateTime> Ngaysinh { get; set; }
         public Nullable<bool> Gioitinh { get; set; }
+        public string Email { get; set; }
         public Nullable<bool> Daduyet { get; set; }
-        public Nullable<int> Role_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DANHGIASP> DANHGIASPs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DONDATHANG> DONDATHANGs { get; set; }
-        public virtual ROLE ROLE { get; set; }
-        public virtual NGUOIDUNG NGUOIDUNG { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace demoDACNPMNC.Models
             this.carts = new HashSet<cart>();
             this.CHITIETSANPHAMs = new HashSet<CHITIETSANPHAM>();
             this.CTDATHANGs = new HashSet<CTDATHANG>();
+            this.DANHGIASPs = new HashSet<DANHGIASP>();
             this.HINHANHs = new HashSet<HINHANH>();
             this.order_item = new HashSet<order_item>();
             this.BRANDs = new HashSet<BRAND>();
@@ -46,6 +47,8 @@ namespace demoDACNPMNC.Models
         public virtual ICollection<CHITIETSANPHAM> CHITIETSANPHAMs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDATHANG> CTDATHANGs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DANHGIASP> DANHGIASPs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HINHANH> HINHANHs { get; set; }
         public virtual LOAI LOAI { get; set; }

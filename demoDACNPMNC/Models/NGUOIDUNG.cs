@@ -14,12 +14,6 @@ namespace demoDACNPMNC.Models
     
     public partial class NGUOIDUNG
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public NGUOIDUNG()
-        {
-            this.KHACHHANGs = new HashSet<KHACHHANG>();
-        }
-    
         public int UserId { get; set; }
         public string HoTen { get; set; }
         public string Email { get; set; }
@@ -29,8 +23,6 @@ namespace demoDACNPMNC.Models
         public string DiaChi { get; set; }
         public Nullable<int> RoleId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KHACHHANG> KHACHHANGs { get; set; }
         public virtual ROLE ROLE { get; set; }
     }
 }

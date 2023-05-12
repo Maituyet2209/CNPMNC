@@ -14,10 +14,10 @@ namespace demoDACNPMNC.Controllers
         public List<MatHangMua> LayGioHang()
         {
            
-            var temp = new user{ id_user = 1,email = "abc@gmail.com",pass = "123"};
+            //var temp = new user{ id_user = 1,email = "abc@gmail.com",pass = "123"};
             //db.users.Add(temp);
             //db.SaveChanges();
-            Session["user"] = temp;
+            //Session["user"] = temp;
             var getuser = Session["user"] as user;
             List<MatHangMua> gioHang = Session["GioHang"] as List<MatHangMua>;
 
@@ -31,6 +31,7 @@ namespace demoDACNPMNC.Controllers
                     foreach (var i in getcart)
                     {
                         MatHangMua sp = new MatHangMua(Convert.ToInt32(i.MaDT));
+                        sp.SoLuong =(int)(i.quantity);
                         listCart.Add(sp);
                     }
                     Session["GioHang"] = listCart;
@@ -159,8 +160,22 @@ namespace demoDACNPMNC.Controllers
             if (sanpham != null)
             {
                 sanpham.SoLuong = SoLuong;
+                //db.carts.FirstOrDefault(x => x.MaDT == MaDT).quantity = SoLuong;
+
+                var getuser = Session["user"] as user;
+
+                if (getuser != null)
+                {
+                    //get cart of user when after login
+                    var getcart = db.carts.Where(x => x.id_user == getuser.id_user).ToList();
+                    db.carts.FirstOrDefault(x => x.id_user == getuser.id_user && x.MaDT == MaDT).quantity = SoLuong;
+                    getcart.FirstOrDefault(x => x.MaDT == MaDT).quantity = SoLuong;
+                    db.SaveChanges();
+                }
+
+                db.SaveChanges();
             }
-            return RedirectToAction("HienThiGioHang");
+            return RedirectToAction("HienThiGioHang"); ;
         }
         public ActionResult Index()
         {

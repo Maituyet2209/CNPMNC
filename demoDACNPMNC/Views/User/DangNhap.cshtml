@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_LayoutHeaderFooter.cshtml";
+    <link href="~/Content/Stylelogin.css" rel="stylesheet" />
+}
+
+<h2 style="color: red;">@ViewBag.ThongBao</h2>
+<div id="main_login">
+    <div class="container_main">
+        <div class="header_main">
+            <h1>Đăng Nhập</h1>
+            
+        </div>
+        <div class="content_main">
+            @using (Html.BeginForm("DangNhap", "User"))
+            {
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    <label for="name1" class="form-label">Username:</label>
+                    <div class="container_input">
+                        @Html.TextBox("TenDN", null, new { @class = "input-field", @id = "dangnhap", required = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="matkhau" class="form-label">Password:</label>
+                    <div class="container_input">
+                        @Html.Password("Matkhau", null, new { @class = "input-field", @id = "matkhau", required = "required" })
+                    </div>
+                </div>
+                <div style="text-align:center">
+                    <button type="submit" class="btn_DK">ĐĂNG NHẬP</button>
+                    <br />
+                    <span style="margin-top:20px ">hoặc</span>
+                    <br />
+                    <button class="btn btn-outline-danger" style="margin-bottom: 10px;"><i class="fa-brands fa-google-plus-g"></i> Đăng Nhập Bằng Tài Khoản Google</button>
+                    <br />
+                    <button class="btn btn-outline-info "><i class="fa-brands fa-square-facebook"></i> Đăng Nhập Bằng Tài Khoản FaceBook</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

@@ -213,6 +213,7 @@
     background-color: white;
     /*background-color: rgba(255, 235, 205, 0.4);*/
     list-style: none;
+    z-index: 100;
 }
 ul {
     list-style: none;
@@ -222,6 +223,8 @@ ul {
      color: black; 
 }
 login .sublogin li {
+    display: flex;
+    justify-content: center;
     list-style-type: none;
     color: black;
     font-size: 16px;
@@ -259,11 +262,15 @@ login .sublogin li {
     object-fit: cover;
 }
 
-.slide_show .right_slideshow{
-    display:flex;
-    flex-direction:column;
+.act_slideshow{
+    display: block;
+}
+
+.slide_show .right_slideshow {
+    display: flex;
+    flex-direction: column;
     width: 30%;
-    justify-content:space-between;
+    justify-content: space-between;
 }
 
 .slide_show .right_slideshow img{

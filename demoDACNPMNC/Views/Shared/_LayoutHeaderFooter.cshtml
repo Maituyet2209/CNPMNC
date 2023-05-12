@@ -84,11 +84,14 @@
                             <img src="~/images/login_icon_full.png" alt="" id="logo_login" class="img_login">
                         </a>
                         <div class="sublogin">
-                            <a href="./dangnhap.html" id="login_on" onclick="change_logo_user()">
-                                <li> Đăng Nhập</li>
+                            <a href="@Url.Action("DangNhap", "User")" id="login_on" onclick="change_logo_user()">
+                                <li style=" display: flex; justify-content: center;"> Đăng Nhập</li>
                             </a>
-                            <a href="./dangky.html">
-                                <li> Đăng Ký</li>
+                            <a href="@Url.Action("DangKy", "User")">
+                                <li style=" display: flex; justify-content: center;"> Đăng Ký</li>
+                            </a>
+                            <a href="@Url.Action("DangXuat", "User")">
+                                <li style=" display: flex; justify-content: center;"> Đăng Xuất</li>
                             </a>
                         </div>
                         

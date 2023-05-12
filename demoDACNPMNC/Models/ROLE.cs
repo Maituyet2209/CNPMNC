@@ -17,15 +17,12 @@ namespace demoDACNPMNC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ROLE()
         {
-            this.KHACHHANGs = new HashSet<KHACHHANG>();
             this.NGUOIDUNGs = new HashSet<NGUOIDUNG>();
         }
     
         public int RoleId { get; set; }
         public string RoleName { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KHACHHANG> KHACHHANGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NGUOIDUNG> NGUOIDUNGs { get; set; }
     }

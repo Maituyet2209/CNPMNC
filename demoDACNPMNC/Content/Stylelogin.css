@@ -1,0 +1,114 @@
+﻿﻿#main_login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 100px;
+    margin-bottom: 40px;
+}
+
+.container_main {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 800px !important;
+}
+
+.header_main {
+    border: 1px solid #eee;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: #00b894;
+    color: #ffffff;
+    height: 50px;
+    border-radius: 10px;
+    width:100%;
+}
+
+    .header_main h1 {
+        width: 100%;
+        font-size: 24px;
+        margin: 0;
+        padding: 0;
+        /*line-height: 50px;*/
+    }
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.container_input {
+    position: relative;
+}
+
+.input-field {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 10px 15px;
+    width: 100%;
+}
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .form-control:invalid {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    }
+
+        .form-control:invalid:focus {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+        }
+
+.btn_DK {
+    background-color: #74b9ff;
+    border: 1px solid #0984e3;
+    color: #0984e3;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+    .btn_DK:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+        color: #fff;
+    }

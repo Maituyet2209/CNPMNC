@@ -4,13 +4,20 @@
     Layout = "~/Views/Shared/_LayoutHeaderFooter.cshtml";
 }
 
+
+
 <div class="slide_show">
     <div class="img_slideshow">
-        <img src="~/images/11t-seriees-slideshow_act_4_11zon.png" />
+        <img class="act_slideshow" src="~/images/11t-seriees-slideshow_act_4_11zon.png" />
+        <img class="act_slideshow" src="~/images/z-flip-slide_show_9_11zon.png" alt="" />
+        <img class="act_slideshow" src="~/images/iphone13_slideshow_act.png" alt="" />
+        <img class="act_slideshow" src="~/images/laptop_slideshow.png" alt="" />
+        <img class="act_slideshow" src="~/images/PhuKien_slideshow.png" alt="" />
+
     </div>
     <div class="right_slideshow">
         <img src="~/images/a52sRight_banner_3_11zon.png" />
-        <img src="~/images/a52sRight_banner_3_11zon.png" />
+        <img src="~/images/ip-12-right-slideshow_7_11zon.png" />
     </div>
 </div>
 
@@ -38,7 +45,7 @@
             <div class="btn_buy" style="display: flex;">
                 <button> Mua</button>
                 @*<button><a href="@Url.Action("ThemSanPhamVaoGio", "Cart", new {MaDT = i.MaDT })">+Giỏ Hàng </a> </button>*@
-                @using (Html.BeginForm("ThemSanPhamVaoGio", "Cart", new {MaDT = i.MaDT }))
+                @using (Html.BeginForm("ThemSanPhamVaoGio", "Cart", new { MaDT = i.MaDT }))
                 {
                     <button>+Giỏ Hàng</button>
                 }
@@ -62,7 +69,7 @@
     {
         <div class="name_title">
             <span>Apple</span>
-        </div>       
+        </div>
     }
 }
 
@@ -105,3 +112,41 @@
         </div>
     }
 </div>
+
+<!-- javascrip slide show auto and not auto -->
+<script>
+    var slideIndex = 0;
+    var timer = null;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        clearTimeout(timer);
+        if (n == -1)
+            n = 0;
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        clearTimeout(timer);
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("act_slideshow");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        timer = setTimeout(showSlides, 2500); // Change image every 2.5 seconds
+    }
+</script>
