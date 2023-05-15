@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b979601b5bc84adcb3bbd54ae4a08e42" Name="Diagram1">
+      <Diagram DiagramId="b979601b5bc84adcb3bbd54ae4a08e42" Name="Diagram1" ZoomLevel="85">
         <EntityTypeShape EntityType="QLBANDIENTHOAIModel.BRAND" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBANDIENTHOAIModel.cart" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBANDIENTHOAIModel.CHITIETSANPHAM" Width="1.5" PointX="7.5" PointY="12.375" IsExpanded="true" />
@@ -46,6 +46,9 @@
         <AssociationConnector Association="QLBANDIENTHOAIModel.BrandCategory" ManuallyRouted="false" />
         <AssociationConnector Association="QLBANDIENTHOAIModel.SANPHAM_BRAND" ManuallyRouted="false" />
         <AssociationConnector Association="QLBANDIENTHOAIModel.SANPHAM_LOAI" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLBANDIENTHOAIModel.COMMENT" Width="1.5" PointX="13.5" PointY="9.625" />
+        <AssociationConnector Association="QLBANDIENTHOAIModel.FK__COMMENTS__id_use__2A164134" />
+        <AssociationConnector Association="QLBANDIENTHOAIModel.FK__COMMENTS__MaDT__2B0A656D" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

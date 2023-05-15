@@ -5,13 +5,14 @@
     <title>@ViewBag.Title</title>
 
     <link href="~/Content/StyleHeaderFooter.css" rel="stylesheet" />
-    <link  href="~/Content/StyleBrand.css" rel="stylesheet"/>
-    <link href="~/Content/StyleDetail.css" rel="stylesheet"/>
+    <link href="~/Content/StyleBrand.css" rel="stylesheet" />
+    <link href="~/Content/StyleDetail.css" rel="stylesheet" />
 
     <script src="https://kit.fontawesome.com/c0b1a641d5.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
@@ -20,18 +21,19 @@
             <div class="main_header">
                 <div class="nav ">
                     <i class="fa-solid fa-list-ul list_menu">
-                        <div class="sidebar_menu">
-                            <li>@Html.ActionLink("Trang chủ","Index","Home")</li>
-                            <li>
-                                @Html.ActionLink("Apple", "Brand", new { brand = "Apple" })
-                            </li>
-                            <li> @Html.ActionLink("SamSung", "Brand", new { brand = "SamSung" })</li>
-                            <li>Oppo</li>
-                            <li>Xiaomi</li>
-                            <li>Vsmart</li>
-                            <li>Realme</li>
-                            <li>Asus</li>
-                            <li>Nokia</li>
+                        <div class="sidebar_menu" style="height: 385px;">
+                            <li >@Html.ActionLink("Trang chủ","Index","Home", new { style = "color: black; text-decoration: none;" })</li>
+                            @{ 
+                                demoDACNPMNC.Models.QLBANDIENTHOAIEntities db = new demoDACNPMNC.Models.QLBANDIENTHOAIEntities();
+                                var getBrand = db.BRANDs.ToList() as List<demoDACNPMNC.Models.BRAND>;
+                                foreach(var item in getBrand)
+            {
+                                     <li>
+                                         @*@Html.ActionLink("Apple", "Brand", new { brand = "Apple", style = "color: black; text-decoration: none;" })*@
+                                         <a style="color: black; text-decoration: none;" href="@Url.Action("Brand", "Home", new {brand = @item.TenBrand })">@item.TenBrand</a>
+                                     </li>
+            }
+                            }
                         </div>
                     </i>
                     <p class="name-shop"> T0BiTo</p>
@@ -40,14 +42,15 @@
                         <span>TP Hồ Chí Minh</span>
                     </div>
                 </div>
-                <div class="search_btn w-25 ">
+                <div class="search_btn w-25 " >
                     @*<input type="search" placeholder="bạn cần tìm gì?" name="searchInput" />
                     <a href="@Url.Action("Search", "Home")">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </a>*@
-                    <form method="get" class="search_btn_try" action="/Home/Search">
+                    <form method="get" class="search_btn_try" action="/Home/Search" style="display: flex">
                         <input type="text" name="search" placeholder="Tìm kiếm sản phẩm...">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <button style="border: none; background-color: white;" type="submit" class="fa-solid fa-magnifying-glass"></button>
+                        @*<button type="submit" style="border: none"><i class="fa-solid fa-magnifying-glass"></i></button>*@ 
                     </form>
                 </div>
                 <div class="last_header">
@@ -281,6 +284,8 @@
             }
         }
     </script>
+
+    
 
 </body>
 </html>

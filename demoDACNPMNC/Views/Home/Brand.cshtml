@@ -5,7 +5,7 @@
 }
 
 <div class="slide_show">
-    <div class="img_slideshow">
+    <div class="img_slideshow" style="padding-right: 30px;">
         @*<img src="~/images/sileAppletemp.png" />*@
         <img src="~/images/iphone13_slideshow_act.png" />
     </div>
@@ -15,6 +15,63 @@
     </div>
 </div>
 
+<div style="margin-top: 20px; display: flex">
+
+
+    @* fliter price *@
+    @if (ViewBag.selectedFilter != null)
+    {
+
+        <h6 style="margin-right: 10px; text-decoration: none; padding: 10px; color: black; border: 1px solid gray; border-radius: 20px; ">Giá: @ViewBag.selectedFilter <a href="" id="remove_selected"><i class="fa-solid fa-xmark"></i></a></h6>
+    }
+
+    @* filter ram *@
+    @if (ViewBag.selectedFilter_ram != null)
+    {
+
+        <h6 style="margin-right: 10px; text-decoration: none; padding: 10px; color: black; border: 1px solid gray; border-radius: 20px; ">Ram: @ViewBag.selectedFilter_ram <a href="" id="remove_selected_ram"><i class="fa-solid fa-xmark"></i></a></h6>
+    }
+
+    @* filter rom *@
+    @if (ViewBag.selectedFilter_rom != null)
+    {
+        <h6 style="margin-right: 10px; text-decoration: none; padding: 10px; color: black; border: 1px solid gray; border-radius: 20px; ">Bộ nhớ trong : @ViewBag.selectedFilter_rom <a href="" id="remove_selected_rom"><i class="fa-solid fa-xmark"></i></a></h6>
+    }
+
+</div>
+<script>
+    const remove_selected = document.getElementById("remove_selected");
+    if (remove_selected != null)
+        document.getElementById("remove_selected").addEventListener("click", removeLocal);
+    function removeLocal() {
+        localStorage.setItem("selectedFilter", "Đã xóa filter");
+        document.cookie = "selectedFilter=" + localStorage.getItem("selectedFilter") + "; path=/"; // lưu vào Cookie
+        console.log("đay là price");
+        location.reload(); // nếu muốn reload trang khi xóa localStorage
+    }
+
+    //remove selected ram
+    const selected_ram = document.getElementById("remove_selected_ram");
+    if (selected_ram != null)
+        document.getElementById("remove_selected_ram").addEventListener("click", remove_selected_ram);
+    function remove_selected_ram() {
+        localStorage.setItem("filter_ram", "Đã xóa filter");
+        document.cookie = "filter_ram=" + localStorage.getItem("filter_ram") + "; path=/"; // lưu vào Cookie
+        console.log("hello");
+        location.reload(); // nếu muốn reload trang khi xóa localStorage
+    }
+
+
+    //remove selected rom
+    const selected_rom = document.getElementById("remove_selected_rom");
+    if (selected_rom != null)
+        document.getElementById("remove_selected_rom").addEventListener("click", remove_selected_rom);
+    function remove_selected_rom() {
+        document.cookie = "filter_rom=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        localStorage.removeItem("filter_rom");
+        location.reload(); // nếu muốn reload trang khi xóa localStorage
+    }
+</script>
 
 <div id="filter">
     <div class="header_filter">
@@ -25,33 +82,11 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
 
-                <ul class="sub_filter">
-                    <li><a href="">Dưới 2 triệu</a></li>
-                    <li><a href="">2 - 4 triệu</a></li>
-                    <li><a href="">4 - 6 triệu</a></li>
-                    <li><a href="">6 - 10 triệu</a></li>
+                <ul class="sub_filter filter_price">
+                    <li><a href="@Url.Action("Brand", "Home", new { brand = ViewBag.namebrand})">Dưới 2 triệu</a></li>
+                    <li><a href=""> Dưới 6 triệu</a></li>
+                    <li><a href="">Dưới 9 triệu</a></li>
                     <li><a href="">Trên 10 triệu</a></li>
-                </ul>   
-            </li>
-            <li>
-                <div class="priceandicon">
-                    <a href=""> Loại Điện Thoại</a>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <ul class="sub_filter">
-                    <li><a href="">IOS Apple</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="priceandicon">
-                    <a href="">Hiệu Năng, Pin</a>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <ul class="sub_filter">
-                    <li><a href="">Chơi game</a></li>
-                    <li><a href="">Cấu hình cao</a></li>
-                    <li><a href="">Pin khủng trên 5000mAh</a></li>
-                    <li><a href="">Sạc pin nhanh</a></li>
                 </ul>
             </li>
             <li>
@@ -59,14 +94,10 @@
                     <a href="">RAM</a>
                     <i class="fas fa-chevron-down"></i>
                 </div>
-                <ul class="sub_filter">
-                    <li><a href="">1 GB</a></li>
-                    <li><a href="">2 GB</a></li>
-                    <li><a href="">3 GB</a></li>
+                <ul class="sub_filter filter_ram">
                     <li><a href="">4 GB</a></li>
                     <li><a href="">6 GB</a></li>
                     <li><a href="">8 GB</a></li>
-                    <li><a href="">10 GB</a></li>
                     <li><a href="">12 GB</a></li>
                 </ul>
             </li>
@@ -75,9 +106,7 @@
                     <a href="">Bộ nhớ trong</a>
                     <i class="fas fa-chevron-down"></i>
                 </div>
-                <ul class="sub_filter">
-                    <li><a href="">8 GB</a></li>
-                    <li><a href="">16 GB</a></li>
+                <ul class="sub_filter filter_rom">
                     <li><a href="">32 GB</a></li>
                     <li><a href="">64 GB</a></li>
                     <li><a href="">128 GB</a></li>
@@ -92,34 +121,10 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <ul class="sub_filter">
-                    <li><a href="">Chụp cận cảnh</a></li>
-                    <li><a href="">Chụp góc rộng</a></li>
-                    <li><a href="">Chụp xóa phong</a></li>
-                    <li><a href="">Chụp zoom xa</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="priceandicon">
-                    <a href="">Tính năng đặc biệt</a>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <ul class="sub_filter">
-                    <li><a href="">Hỗ trợ 5G</a></li>
-                    <li><a href="">Bảo mật vân tay</a></li>
-                    <li><a href="">Bảo mật khuôn mặt</a></li>
-                    <li><a href="">Sạc không dây</a></li>
-                    <li><a href="">Kháng nước, bụi</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="priceandicon">
-                    <a href="">Thiết kế </a>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <ul class="subfilter_right">
-                    <li><a href="">Tràn viền</a></li>
-                    <li><a href="">Mỏng nhẹ</a></li>
-                    <li><a href="">Mặt lưng kính</a></li>
+                    <li><a href="">1 camera</a></li>
+                    <li><a href="">2 camera</a></li>
+                    <li><a href="">3 camera</a></li>
+                    <li><a href="">> 3 camera</a></li>
                 </ul>
             </li>
             <li>
@@ -128,60 +133,119 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <ul class="subfilter_right">
-                    <li><a href="">Nhỏ gọn</a></li>
-                    <li><a href="">Từ 6 inch trở lên</a></li>
-                    <li><a href="">Màn hình gập</a></li>
+                    <li><a href="">OLED</a></li>
+                    <li><a href="">AMOLED</a></li>
+                    <li><a href="">IPS LCD</a></li>
+                    <li><a href="">Retina</a></li>
                 </ul>
             </li>
+            <li>
+                <div class="priceandicon">
+                    <a href=""> Pin</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="sub_filter">
+                    <li><a href="">Dưới 5000 mAh</a></li>
+                    <li><a href="">Pin khủng trên 5000mAh</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="priceandicon">
+                    <a href=""> Công nghệ sạc</a>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="sub_filter">
+                    <li><a href="">Sạc không dây</a></li>
+                    <li><a href="">Sạc nhanh</a></li>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>
 
-@if (Model != null ) 
-{ 
+@if (Model != null)
+{
     <div class="name_title">
         <span>@ViewBag.nameBrand</span>
     </div>
 }
 else
-            {
-                <div class="alert-box" >
-                    <p class="error-message">"Hiện tại Shop không có sản phẩm này"</p>
-                 </div>
-            }
+{
+    <div class="alert-box">
+        <p class="error-message">"Hiện tại Shop không có sản phẩm này"</p>
+    </div>
+}
+@if (@ViewBag.quantity == 0)
+{
+    <p style="color: red; font-size: 25px;">Hiện tại Shop không có sản phẩm này</p>
+}
+else
+{
 
-<div class="rowstyle">
-    @foreach (var i in Model)
-    {
-        <div class="box">
-            @*, new { id = Model.Id }*@
-            <a href="@Url.Action("Product_Detail", "Home", new { idProduct = i.MaDT})">
-                <div class="box_img">
-                    <img src="~/images/@i.Hinhminhhoa" alt="">
+    <div class="rowstyle">
+        @foreach (var i in Model)
+        {
+            <div class="box">
+                @*, new { id = Model.Id }*@
+                <a href="@Url.Action("Product_Detail", "Home", new { idProduct = i.MaDT})">
+                    <div class="box_img">
+                        <img src="~/images/@i.Hinhminhhoa" alt="">
+                    </div>
+                </a>
+                <div class="name_sp">
+                    <span>@i.TenDT</span>
                 </div>
-            </a>
-            <div class="name_sp">
-                <span>@i.TenDT</span>
+                <div class="price">
+                    <span>@string.Format("{0:N0} đ", Double.Parse(@i.Dongia.ToString()))</span>
+                    <del>@string.Format("{0:N0} đ", Double.Parse(@i.Dongia.ToString()) * 1.2)</del>
+                </div>
+                <div class="btn_buy">
+                    <button> Mua</button>
+                    <button> +Giỏ Hàng </button>
+                </div>
+                <div class="number_sale">
+                    <span>-6%</span>
+                </div>
+                <div class="star">
+                    @*<i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>*@
+                    <p>@i.solanxem đánh giá</p>
+                </div>
             </div>
-            <div class="price">
-                <span>@string.Format("{0:N0} đ", Double.Parse(@i.Dongia.ToString()))</span>
-                <del>@string.Format("{0:N0} đ", Double.Parse(@i.Dongia.ToString()) * 1.2)</del>
-            </div>
-            <div class="btn_buy">
-                <button> Mua</button>
-                <button> +Giỏ Hàng </button>
-            </div>
-            <div class="number_sale">
-                <span>-6%</span>
-            </div>
-            <div class="star">
-                @*<i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>*@
-                <p>@i.solanxem đánh giá</p>
-            </div>
-        </div>
+        }
+    </div>
+}
+
+
+@* click filter *@
+@*<script>
+            $(document).ready(function () {
+                $(".sub_filter li a").click(function (event) {
+                    event.preventDefault();
+                    localStorage.setItem("selectedOption", $(this).text());
+                    // Thực hiện một số hành động khác nếu cần thiết, ví dụ như hiển thị thông tin đã chọn
+                    alert("Đã chọn: " + localStorage.getItem("selectedOption"));
+                });
+            });
+
+    </script>*@
+<script src="~/Content/selectedFilter.js"></script>
+<script>
+    // filter ram filter_rom
+    var filter_rom = document.querySelectorAll(".filter_rom li a");
+    for (var temp = 0; temp < filter_rom.length; temp++) {
+        filter_rom[temp].addEventListener("click", selectedFilter_rom);
     }
-</div>
+
+
+    function selectedFilter_rom(event) {
+        var getText = event.target;
+        localStorage.setItem("filter_rom", getText.textContent.trim());
+        document.cookie = "filter_rom=" + localStorage.getItem("filter_rom") + "; path=/"; // lưu vào Cookie
+    }
+
+</script>

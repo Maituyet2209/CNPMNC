@@ -76,6 +76,46 @@ namespace demoDACNPMNC.Controllers
         public ActionResult Brand(String brand)
         {
             var lstBrand =LaySPTheoBrand(brand);
+
+            //get filter price
+            //string myValue = HttpContext.Current.Request.Cookies["localStorage"]["selectedFilter"];
+            var selectedFilter = HttpContext.Request.Cookies["selectedFilter"]?.Value;
+            if (selectedFilter != null)
+            {
+                string digits = new String(selectedFilter.Where(Char.IsDigit).ToArray()); // Lấy chữ số từ chuỗi
+                if (digits != null && digits != "")
+                {
+                    int num = Int32.Parse(digits);
+
+                    ViewBag.selectedFilter = selectedFilter;
+                    if (num <10 )
+                        lstBrand = lstBrand.Where(x => x.Dongia <= (decimal)(num * 1000000)).ToList();
+                    else
+                        lstBrand = lstBrand.Where(x => x.Dongia >= (decimal)(num * 1000000)).ToList();
+                }
+            }
+
+            // get filter ram
+            var selectedFilter_ram = HttpContext.Request.Cookies["filter_ram"]?.Value;
+            if (selectedFilter_ram != null)
+            {
+                string digits_ram = new String(selectedFilter_ram.Where(Char.IsDigit).ToArray()); // Lấy chữ số từ chuỗi
+                if (digits_ram != null && digits_ram != "")
+                {
+                    int num_ram = Int32.Parse(digits_ram);
+                    ViewBag.selectedFilter_ram = selectedFilter_ram;
+                    lstBrand = lstBrand.Where(x => x.DungLuongRam == num_ram).ToList();
+                }
+            }
+
+            // get filter rom
+            var selectedFilter_rom = HttpContext.Request.Cookies["filter_rom"]?.Value;
+            if (selectedFilter_rom != null)
+            {
+                    ViewBag.selectedFilter_rom = selectedFilter_rom;
+                    lstBrand = lstBrand.Where(x => x.BoNhoTrong == selectedFilter_rom).ToList();
+            }
+
             ViewBag.quantity = lstBrand.Count;
             ViewBag.namebrand = brand;
             return View(lstBrand);
@@ -83,8 +123,48 @@ namespace demoDACNPMNC.Controllers
 
         public ActionResult Product_Detail(int idProduct)
         {
+            var getUser = Session["user"] as user;
+            if (getUser == null)
+            {
+                ViewBag.notifi_cmt = "Bạn cần phải đăng nhập để bình luận";
+            } else
+            {
+                ViewBag.notifi_cmt = null;
+                var getProfile = db.profiles.FirstOrDefault(x => x.id_user == idProduct) as profile;
+                //ViewBag.nameUser = getProfile.names;
+                //if (getProfile.avatar != null)
+                //    ViewBag.avatar = getProfile.avatar;
+            }
             var itemProduct = getProductFromId(idProduct);
+            Session["Product"] = itemProduct;
+
+            //get comment
+            var getCmt = db.COMMENTS.Where(x => x.MaDT == idProduct).ToList();
+            ViewBag.lstCmt = getCmt;
             return View(itemProduct);
+        }
+
+        [HttpPost]
+        public ActionResult AddComment(FormCollection form)
+        {
+            var getContent_Cmt = form["content_cmt"];
+            var getStars = form["stars"];
+            var getUser = Session["user"] as user;
+            var getProduct = Session["Product"] as SANPHAM;
+            if (getUser != null && getProduct != null)
+            {
+                COMMENT comment = new COMMENT()
+                {
+                    id_user = getUser.id_user,
+                    MaDT = getProduct.MaDT,
+                    content_cmt = getContent_Cmt,
+                    stars = int.Parse(getStars),
+                    time_cmt = DateTime.Now,
+                };
+                db.COMMENTS.Add(comment);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Product_Detail", new { id = getProduct.MaDT });
         }
         public ActionResult Search(String search)
         {
@@ -196,6 +276,10 @@ namespace demoDACNPMNC.Controllers
                     ViewBag.inputAddress = "Nhập Địa Chỉ Người Nhận";
                 }
             }
+            ViewBag.inputName = "Nhập Tên Người Nhận";
+            ViewBag.inputEmail = "Nhập Mail Người Nhận";
+            ViewBag.inputPhone = "Nhập SĐT";
+            ViewBag.inputAddress = "Nhập Địa Chỉ Người Nhận";
 
             var getName = form["getName"];
             var getEmail = form["getEmail"];

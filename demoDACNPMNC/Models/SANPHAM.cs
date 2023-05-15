@@ -25,6 +25,7 @@ namespace demoDACNPMNC.Models
             this.order_item = new HashSet<order_item>();
             this.BRANDs = new HashSet<BRAND>();
             this.LOAIs = new HashSet<LOAI>();
+            this.COMMENTS = new HashSet<COMMENT>();
         }
     
         public int MaDT { get; set; }
@@ -39,6 +40,22 @@ namespace demoDACNPMNC.Models
         public Nullable<System.DateTime> Ngaycapnhat { get; set; }
         public Nullable<int> Soluongban { get; set; }
         public Nullable<int> solanxem { get; set; }
+        public string MauSac { get; set; }
+        public string ManHinh { get; set; }
+        public string CauHinh { get; set; }
+        public string BoNhoTrong { get; set; }
+        public string Camera_main { get; set; }
+        public string HeDieuHanh { get; set; }
+        public string TheSim { get; set; }
+        public string DungLuongPin { get; set; }
+        public Nullable<int> DungLuongRam { get; set; }
+        public string CongNgheSac { get; set; }
+        public string DoPhanGiai { get; set; }
+        public string CongSac { get; set; }
+        public Nullable<int> BaoHanh { get; set; }
+        public string KichThuoc { get; set; }
+        public Nullable<decimal> KhoiLuong { get; set; }
+        public Nullable<System.DateTime> NgaySX { get; set; }
     
         public virtual BRAND BRAND { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -59,5 +76,7 @@ namespace demoDACNPMNC.Models
         public virtual ICollection<BRAND> BRANDs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LOAI> LOAIs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<COMMENT> COMMENTS { get; set; }
     }
 }

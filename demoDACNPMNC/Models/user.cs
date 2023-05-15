@@ -20,6 +20,7 @@ namespace demoDACNPMNC.Models
             this.carts = new HashSet<cart>();
             this.orders = new HashSet<order>();
             this.profiles = new HashSet<profile>();
+            this.COMMENTS = new HashSet<COMMENT>();
         }
     
         public int id_user { get; set; }
@@ -32,5 +33,7 @@ namespace demoDACNPMNC.Models
         public virtual ICollection<order> orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<profile> profiles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<COMMENT> COMMENTS { get; set; }
     }
 }

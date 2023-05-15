@@ -44,5 +44,6 @@ namespace demoDACNPMNC.Models
         public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
         public virtual DbSet<TRANGTHAIDONHANG> TRANGTHAIDONHANGs { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<COMMENT> COMMENTS { get; set; }
     }
 }

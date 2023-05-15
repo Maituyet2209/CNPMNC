@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLBANDIENTHOAIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLBANDIENTHOAIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BRAND">
           <Key>
             <PropertyRef Name="BrandId" />
@@ -41,6 +41,17 @@
           <Property Name="CauHinh" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="SoLuong" Type="int" Nullable="false" />
           <Property Name="GiaBan" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMMENTS">
+          <Key>
+            <PropertyRef Name="id_cmt" />
+          </Key>
+          <Property Name="id_cmt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="int" />
+          <Property Name="MaDT" Type="int" />
+          <Property Name="content_cmt" Type="nvarchar" MaxLength="200" />
+          <Property Name="stars" Type="int" />
+          <Property Name="time_cmt" Type="datetime" />
         </EntityType>
         <EntityType Name="CTDATHANG">
           <Key>
@@ -205,6 +216,22 @@
           <Property Name="Ngaycapnhat" Type="smalldatetime" />
           <Property Name="Soluongban" Type="int" />
           <Property Name="solanxem" Type="int" />
+          <Property Name="MauSac" Type="nvarchar" MaxLength="50" />
+          <Property Name="ManHinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="CauHinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="BoNhoTrong" Type="nvarchar" MaxLength="50" />
+          <Property Name="Camera_main" Type="nvarchar" MaxLength="100" />
+          <Property Name="HeDieuHanh" Type="nvarchar" MaxLength="50" />
+          <Property Name="TheSim" Type="nvarchar" MaxLength="50" />
+          <Property Name="DungLuongPin" Type="varchar" MaxLength="50" />
+          <Property Name="DungLuongRam" Type="int" />
+          <Property Name="CongNgheSac" Type="nvarchar" MaxLength="200" />
+          <Property Name="DoPhanGiai" Type="varchar" MaxLength="30" />
+          <Property Name="CongSac" Type="nvarchar" MaxLength="50" />
+          <Property Name="BaoHanh" Type="int" />
+          <Property Name="KichThuoc" Type="nvarchar" MaxLength="50" />
+          <Property Name="KhoiLuong" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="NgaySX" Type="date" />
         </EntityType>
         <EntityType Name="SANPHAM_BRAND">
           <Key>
@@ -238,6 +265,30 @@
           <Property Name="email" Type="varchar" MaxLength="100" />
           <Property Name="pass" Type="varchar" MaxLength="100" />
         </EntityType>
+        <Association Name="FK__COMMENTS__id_use__2A164134">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="COMMENTS" Type="Self.COMMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="COMMENTS">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__COMMENTS__MaDT__2B0A656D">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="0..1" />
+          <End Role="COMMENTS" Type="Self.COMMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaDT" />
+            </Principal>
+            <Dependent Role="COMMENTS">
+              <PropertyRef Name="MaDT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__CTDATHANG__MaDH__1F98B2C1">
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="1" />
           <End Role="CTDATHANG" Type="Self.CTDATHANG" Multiplicity="*" />
@@ -543,6 +594,7 @@
           <EntitySet Name="BrandCategory" EntityType="Self.BrandCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="carts" EntityType="Self.carts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHITIETSANPHAM" EntityType="Self.CHITIETSANPHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMMENTS" EntityType="Self.COMMENTS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTDATHANG" EntityType="Self.CTDATHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DANHGIASP" EntityType="Self.DANHGIASP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DONDATHANG" EntityType="Self.DONDATHANG" Schema="dbo" store:Type="Tables" />
@@ -561,6 +613,14 @@
           <EntitySet Name="SANPHAM_LOAI" EntityType="Self.SANPHAM_LOAI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRANGTHAIDONHANG" EntityType="Self.TRANGTHAIDONHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__COMMENTS__id_use__2A164134" Association="Self.FK__COMMENTS__id_use__2A164134">
+            <End Role="users" EntitySet="users" />
+            <End Role="COMMENTS" EntitySet="COMMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__COMMENTS__MaDT__2B0A656D" Association="Self.FK__COMMENTS__MaDT__2B0A656D">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="COMMENTS" EntitySet="COMMENTS" />
+          </AssociationSet>
           <AssociationSet Name="FK__CTDATHANG__MaDH__1F98B2C1" Association="Self.FK__CTDATHANG__MaDH__1F98B2C1">
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
             <End Role="CTDATHANG" EntitySet="CTDATHANG" />
@@ -662,8 +722,7 @@
             <End Role="profile" EntitySet="profile" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLBANDIENTHOAIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -899,6 +958,23 @@
           <NavigationProperty Name="order_item" Relationship="Self.FK_MaDT_orderitem" FromRole="SANPHAM" ToRole="order_item" />
           <NavigationProperty Name="BRANDs" Relationship="Self.SANPHAM_BRAND" FromRole="SANPHAM" ToRole="BRAND" />
           <NavigationProperty Name="LOAIs" Relationship="Self.SANPHAM_LOAI" FromRole="SANPHAM" ToRole="LOAI" />
+          <Property Name="MauSac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ManHinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CauHinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BoNhoTrong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Camera_main" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HeDieuHanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TheSim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DungLuongPin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DungLuongRam" Type="Int32" />
+          <Property Name="CongNgheSac" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DoPhanGiai" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CongSac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BaoHanh" Type="Int32" />
+          <Property Name="KichThuoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KhoiLuong" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="NgaySX" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="COMMENTS" Relationship="QLBANDIENTHOAIModel.FK__COMMENTS__MaDT__2B0A656D" FromRole="SANPHAM" ToRole="COMMENT" />
         </EntityType>
         <EntityType Name="TRANGTHAIDONHANG">
           <Key>
@@ -919,6 +995,7 @@
           <NavigationProperty Name="carts" Relationship="Self.FK_id_user_cart" FromRole="users" ToRole="carts" />
           <NavigationProperty Name="orders" Relationship="Self.PK_id_user_orders" FromRole="users" ToRole="orders" />
           <NavigationProperty Name="profiles" Relationship="Self.PK_id_user_profile" FromRole="users" ToRole="profile" />
+          <NavigationProperty Name="COMMENTS" Relationship="QLBANDIENTHOAIModel.FK__COMMENTS__id_use__2A164134" FromRole="user" ToRole="COMMENT" />
         </EntityType>
         <Association Name="FK__SANPHAM__MaBrand__4D94879B">
           <End Role="BRAND" Type="Self.BRAND" Multiplicity="0..1" />
@@ -1268,7 +1345,53 @@
             <End Role="LOAI" EntitySet="LOAIs" />
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
           </AssociationSet>
+          <EntitySet Name="COMMENTS" EntityType="QLBANDIENTHOAIModel.COMMENT" />
+          <AssociationSet Name="FK__COMMENTS__id_use__2A164134" Association="QLBANDIENTHOAIModel.FK__COMMENTS__id_use__2A164134">
+            <End Role="user" EntitySet="users" />
+            <End Role="COMMENT" EntitySet="COMMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__COMMENTS__MaDT__2B0A656D" Association="QLBANDIENTHOAIModel.FK__COMMENTS__MaDT__2B0A656D">
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+            <End Role="COMMENT" EntitySet="COMMENTS" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="COMMENT">
+          <Key>
+            <PropertyRef Name="id_cmt" />
+          </Key>
+          <Property Name="id_cmt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" />
+          <Property Name="MaDT" Type="Int32" />
+          <Property Name="content_cmt" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="stars" Type="Int32" />
+          <Property Name="time_cmt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="user" Relationship="QLBANDIENTHOAIModel.FK__COMMENTS__id_use__2A164134" FromRole="COMMENT" ToRole="user" />
+          <NavigationProperty Name="SANPHAM" Relationship="QLBANDIENTHOAIModel.FK__COMMENTS__MaDT__2B0A656D" FromRole="COMMENT" ToRole="SANPHAM" />
+        </EntityType>
+        <Association Name="FK__COMMENTS__id_use__2A164134">
+          <End Type="QLBANDIENTHOAIModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="QLBANDIENTHOAIModel.COMMENT" Role="COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="COMMENT">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__COMMENTS__MaDT__2B0A656D">
+          <End Type="QLBANDIENTHOAIModel.SANPHAM" Role="SANPHAM" Multiplicity="0..1" />
+          <End Type="QLBANDIENTHOAIModel.COMMENT" Role="COMMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaDT" />
+            </Principal>
+            <Dependent Role="COMMENT">
+              <PropertyRef Name="MaDT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1469,6 +1592,22 @@
           <EntitySetMapping Name="SANPHAMs">
             <EntityTypeMapping TypeName="QLBANDIENTHOAIModel.SANPHAM">
               <MappingFragment StoreEntitySet="SANPHAM">
+                <ScalarProperty Name="NgaySX" ColumnName="NgaySX" />
+                <ScalarProperty Name="KhoiLuong" ColumnName="KhoiLuong" />
+                <ScalarProperty Name="KichThuoc" ColumnName="KichThuoc" />
+                <ScalarProperty Name="BaoHanh" ColumnName="BaoHanh" />
+                <ScalarProperty Name="CongSac" ColumnName="CongSac" />
+                <ScalarProperty Name="DoPhanGiai" ColumnName="DoPhanGiai" />
+                <ScalarProperty Name="CongNgheSac" ColumnName="CongNgheSac" />
+                <ScalarProperty Name="DungLuongRam" ColumnName="DungLuongRam" />
+                <ScalarProperty Name="DungLuongPin" ColumnName="DungLuongPin" />
+                <ScalarProperty Name="TheSim" ColumnName="TheSim" />
+                <ScalarProperty Name="HeDieuHanh" ColumnName="HeDieuHanh" />
+                <ScalarProperty Name="Camera_main" ColumnName="Camera_main" />
+                <ScalarProperty Name="BoNhoTrong" ColumnName="BoNhoTrong" />
+                <ScalarProperty Name="CauHinh" ColumnName="CauHinh" />
+                <ScalarProperty Name="ManHinh" ColumnName="ManHinh" />
+                <ScalarProperty Name="MauSac" ColumnName="MauSac" />
                 <ScalarProperty Name="MaDT" ColumnName="MaDT" />
                 <ScalarProperty Name="TenDT" ColumnName="TenDT" />
                 <ScalarProperty Name="Donvitinh" ColumnName="Donvitinh" />
@@ -1526,6 +1665,18 @@
               <ScalarProperty Name="MaDT" ColumnName="MaDT" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="COMMENTS">
+            <EntityTypeMapping TypeName="QLBANDIENTHOAIModel.COMMENT">
+              <MappingFragment StoreEntitySet="COMMENTS">
+                <ScalarProperty Name="time_cmt" ColumnName="time_cmt" />
+                <ScalarProperty Name="stars" ColumnName="stars" />
+                <ScalarProperty Name="content_cmt" ColumnName="content_cmt" />
+                <ScalarProperty Name="MaDT" ColumnName="MaDT" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_cmt" ColumnName="id_cmt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
