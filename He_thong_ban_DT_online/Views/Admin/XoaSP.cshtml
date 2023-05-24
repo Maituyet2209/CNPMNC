@@ -4,15 +4,116 @@
     ViewBag.Title = "XoaSP";
     Layout = "~/Views/Shared/ADLayout.cshtml";
 }
+<style>
+    .confirm-delete {
+        margin: 10px auto;
+        width: 70%;
+    }
 
-<h2>Xác nhận xóa sản phẩm</h2>
-<p>Bạn có chắc chắn muốn xóa sản phẩm "@Model.TenDT"?</p>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <input type="submit" value="Xóa" class="btn btn-danger" />
-    @Html.ActionLink("Quay lại danh sách", "Index")
-}
+        .confirm-delete h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .confirm-delete hr {
+            border-color: #ccc;
+            margin: 20px 0;
+        }
+
+        .confirm-delete dl dt {
+            font-weight: bold;
+        }
+
+        .confirm-delete dl dd {
+            margin-left: 0;
+        }
+
+        .confirm-delete img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            background-color: #fff;
+        }
+
+        .confirm-delete .form-actions {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .confirm-delete .btn {
+            margin-right: 10px;
+        }
+
+        .confirm-delete .btn-secondary {
+            background-color: #ccc;
+            color: #fff;
+            border-color: #ccc;
+        }
+
+            .confirm-delete .btn-secondary:hover {
+                background-color: #bbb;
+                border-color: #bbb;
+            }
+
+        .confirm-delete .btn-danger {
+            background-color: #d9534f;
+            border-color: #d43f3a;
+        }
+
+            .confirm-delete .btn-danger:hover {
+                background-color: #c9302c;
+                border-color: #c12e2a;
+            }
+</style>
+<div class="container confirm-delete">
+    <div class="row">
+        <div class="col-12">
+            <h3>BẠN CÓ CHẮC CHẮN MUỐN XÓA PRODUCT NÀY?</h3>
+            <hr>
+        </div>
+        <div class="col-md-6">
+            <img src="~/Images/@Model.HinhMinhHoa" alt="@Model.TenDT" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+            <dl>
+                <dt>TÊN SẢN PHẨM</dt>
+                <dd>@Html.DisplayFor(model => model.TenDT)</dd>
+
+                <dt>MÔ TẢ</dt>
+                <dd>@Html.DisplayFor(model => model.MoTa)</dd>
+
+                <dt>GIÁ</dt>
+                <dd>
+                    @{
+                        double price;
+                        if (double.TryParse(Model.Dongia.ToString(), out price))
+                        {
+                            <text>@string.Format("{0:N0} đ", price)</text>
+                        }
+                        else
+                        {
+                            @Model.Dongia
+                        }
+                    }
+                </dd>
+
+                <dt>NHÓM SẢN PHẨM</dt>
+                <dd>@Html.DisplayFor(model => model.BRAND.TenBrand)</dd>
+            </dl>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-actions no-color">
+                    <input type="submit" value="Xóa" class="btn btn-danger">
+                    <a href="@Url.Action("SanPham")" class="btn btn-secondary">Trở lại</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
 <script>
     $(function () {
         $('form').submit(function () {

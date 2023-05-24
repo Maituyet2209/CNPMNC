@@ -1,0 +1,18 @@
+﻿@model He_thong_ban_DT_online.Models.DONDATHANG
+
+@{
+    ViewBag.Title = "XoaDH";
+    Layout = "~/Views/Shared/ADLayout.cshtml";
+}
+
+<h2>Xác nhận xóa đơn hàng</h2>
+
+<div>
+    <p>Bạn có chắc chắn muốn xóa đơn hàng có mã: <strong>@Model.MaDH</strong>?</p>
+    <p>Các chi tiết đặt hàng liên quan cũng sẽ bị xóa.</p>
+    <form action="@Url.Action("XoaDH", new { id = Model.MaDH })" method="post">
+        @Html.AntiForgeryToken()
+        <input type="submit" value="Xóa" class="btn btn-danger" />
+        @Html.ActionLink("Hủy", "DonHangHuy", null, new { @class = "btn btn-secondary" })
+    </form>
+</div>

@@ -1,0 +1,108 @@
+﻿@model He_thong_ban_DT_online.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "SuaThongTinCaNhan";
+    Layout = "~/Views/Shared/LayoutTrangCaNhan.cshtml";
+}
+<style>
+    .container_suainfo {
+        width:80%;
+        margin: 0 auto;
+        height: 500px;
+        overflow-y: scroll;
+    }
+        .container_suainfo h3 {
+        }
+</style>
+
+<div class="container_suainfo">
+    <h3>SỬA THÔNG TIN CÁ NHÂN</h3>
+    @using (Html.BeginForm("SuaThongTinCaNhan", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.MaKH)
+
+    <div class="form-group">
+        @*        <label>Ảnh đại diện:</label>*@
+        <div class="col-md-10">
+            <img src="~/images/@Model.avatar" style="width:150px;" /><br /><p style="width:150px;text-align:center;">(Ảnh hiện tại)</p>
+            Chọn ảnh mới
+            <input type="file" name="HinhMinhHoa" style="padding-bottom:20px;" /><br />
+            @Html.ValidationMessageFor(model => model.avatar, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Họ tên:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HoTenKH, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.HoTenKH, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Địa chỉ:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DiachiKH, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DiachiKH, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Điện thoại:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DienthoaiKH, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DienthoaiKH, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Ngày sinh:</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Ngaysinh, new { @class = "form-control", @type = "date" })
+            @Html.ValidationMessageFor(model => model.Ngaysinh, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Giới tính:</label>
+        <div class="col-md-10">
+            <div class="checkbox">
+                <label>
+                    @Html.RadioButtonFor(model => model.Gioitinh, true)
+                    Nam
+                </label>
+                <label>
+                    @Html.RadioButtonFor(model => model.Gioitinh, false)
+                    Nữ
+                </label>
+                @Html.ValidationMessageFor(model => model.Gioitinh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label>Email:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+    }
+    <div>
+        @Html.ActionLink("Back to List", "XemTrangCaNhan")
+    </div>
+</div>
+
+

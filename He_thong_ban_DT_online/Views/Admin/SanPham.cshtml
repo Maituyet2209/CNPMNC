@@ -11,13 +11,54 @@
     img {
         width: 50px;
     }
+
     .MenuTrang li {
         display: inline;
     }
-</style>
+    .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+    }
 
+        .pagination ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            color: #7f8c8d;
+            text-decoration: none;
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+            .pagination a:hover,
+            .pagination a.active {
+                background-color: #333;
+                color: #fff !important;
+            }
+
+</style>
 <div style="margin: 10px auto; width: 90%;">
     <h2 style="text-align: center">THÔNG TIN SẢN PHẨM</h2>
+    @using (Html.BeginForm())
+    {
+        <nav class="navbar navbar-light" style="justify-content:right">
+            <div class="form-group form-inline" style="display:flex">
+                @Html.TextBox("Search", "", new { @class = "form-control mr-sm-2" })
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </div>
+        </nav>
+    }
     <p>
         @Html.ActionLink("THÊM MỚI", "ThemSP", null, new { @class = "btn btn-outline-info" })
     </p>
@@ -56,8 +97,20 @@
             <img src="~/images/@Html.DisplayFor(modelItem => item.HinhMinhHoa)" />
         </td>
         <td>
-            @string.Format("{0:N0} đ", Double.Parse(@item.Dongia.ToString()))
+            @{
+                double price;
+                if (double.TryParse(item.Dongia.ToString(), out price))
+                {
+                    <text>@string.Format("{0:N0} đ", price)</text>
+                }
+                else
+                {
+                    @item.Dongia
+                }
+            }
+
         </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.BRAND.TenBrand)
         </td>
@@ -78,10 +131,19 @@
     </tr>
         }
     </table>
-    <br />
-    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-    <div class="MenuTrang">
-        @Html.PagedListPager(Model, page => Url.Action("SanPham", new { page }))
+    <div class="pagination">
+        <span>Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</span>
+        <ul>
+            @Html.PagedListPager(Model, page => Url.Action("SanPham", new { page }), new PagedListRenderOptions { LinkToFirstPageFormat = "<<", LinkToPreviousPageFormat = "<", LinkToNextPageFormat = ">", LinkToLastPageFormat = ">>" })
+        </ul>
     </div>
+
+    @if (!string.IsNullOrEmpty(ViewBag.Search))
+    {
+        <p>
+            <a href="@Url.Action("SanPham", "Admin")" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Quay lại</a>
+        </p>
+    }
 </div>
+
 

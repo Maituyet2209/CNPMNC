@@ -16,7 +16,7 @@ namespace He_thong_ban_DT_online
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "HomePhone", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Admin", action = "SanPham", id = UrlParameter.Optional }
             );
         }
     }

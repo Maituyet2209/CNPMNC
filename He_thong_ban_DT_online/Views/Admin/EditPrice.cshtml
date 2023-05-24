@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/ADLayout.cshtml";
     <link href="~/Content/StyleHeaderFooter.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-JpCe93wF1GLMz8/+OVG2HIsZ0nnvWK2mhbKa0YFIm47RyJPvlK5vo5jo0p5iZa0LZj3qE55qxJjKXz3J/Zn3oA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 }
 <style>
     .form_css {
@@ -26,13 +25,14 @@
     .form_center {
         text-align: center;
     }
-        .form_center p{
-            color:#bd0909;
+
+        .form_center p {
+            color: #bd0909;
         }
 
-        .input_price_for_edit {
-            margin-top: 10px;
-        }
+    .input_price_for_edit {
+        margin-top: 10px;
+    }
 
     button[type="submit"] {
         margin-top: 20px;
@@ -56,7 +56,7 @@
             </div>
             <div class="price">
                 <p class="title_black">Giá sản phẩm hiện tại</p>
-                <span>@string.Format("{0:N0} đ", Double.Parse(ViewBag.DonGiaHienTai.ToString())) VNĐ</span>
+                @ViewBag.Dongia
             </div>
         </div>
     </div>

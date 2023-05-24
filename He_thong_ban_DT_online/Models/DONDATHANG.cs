@@ -32,6 +32,7 @@ namespace He_thong_ban_DT_online.Models
         public Nullable<int> HTThanhtoan { get; set; }
         public Nullable<bool> HTGiaohang { get; set; }
         public Nullable<int> MaTTDH { get; set; }
+        public Nullable<bool> DaTraTien { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDATHANG> CTDATHANGs { get; set; }

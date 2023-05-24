@@ -61,6 +61,9 @@
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -139,61 +142,63 @@
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomePhoneController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ADMIN.cs">
-      <DependentUpon>QLBANDIENTHOAI.tt</DependentUpon>
+      <DependentUpon>QLBanDienThoai.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BRAND.cs">
-      <DependentUpon>QLBANDIENTHOAI.tt</DependentUpon>
+      <DependentUpon>QLBanDienThoai.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CTDATHANG.cs">
-      <DependentUpon>QLBANDIENTHOAI.tt</DependentUpon>
+      <DependentUpon>QLBanDienThoai.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DANHGIASP.cs">
-      <DependentUpon>QLBANDIENTHOAI.tt</DependentUpon>
+      <DependentUpon>QLBanDienThoai.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DONDATHANG.cs">
-      <DependentUpon>QLBANDIENTHOAI.tt</DependentUpon>
+      <DependentUpon>QLBanDienThoai.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HINHANH.cs">
-      <DependentUpon>QLBANDIENTHOAI.tt</DependentUpon>
+      <DependentUpon>QLBanDienThoai.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HINHTHUCTHANHTOAN.cs">
-      <DependentUpon>QLBANDIENTHOAI.tt</DependentUpon>
+      <DependentUpon>QLBanDienThoai.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KHACHHANG.cs">
-      <DependentUpon>QLBANDIENTHOAI.tt</DependentUpon>
+      <DependentUpon>QLBanDienThoai.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOAI.cs">
-      <DependentUpon>QLBANDIENTHOAI.tt</DependentUpon>
+      <DependentUpon>QLBanDienThoai.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MatHangMua.cs" />
     <Compile Include="Models\NHASANXUAT.cs">
-      <DependentUpon>QLBANDIENTHOAI.tt</DependentUpon>
+      <DependentUpon>QLBanDienThoai.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QLBANDIENTHOAI.Context.cs">
+    <Compile Include="Models\QLBanDienThoai.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLBANDIENTHOAI.Context.tt</DependentUpon>
+      <DependentUpon>QLBanDienThoai.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QLBANDIENTHOAI.cs">
+    <Compile Include="Models\QLBanDienThoai.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLBANDIENTHOAI.tt</DependentUpon>
+      <DependentUpon>QLBanDienThoai.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QLBANDIENTHOAI.Designer.cs">
+    <Compile Include="Models\QLBanDienThoai.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLBANDIENTHOAI.edmx</DependentUpon>
+      <DependentUpon>QLBanDienThoai.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\SANPHAM.cs">
-      <DependentUpon>QLBANDIENTHOAI.tt</DependentUpon>
+      <DependentUpon>QLBanDienThoai.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ShoppingInfo.cs" />
     <Compile Include="Models\TRANGTHAIDONHANG.cs">
-      <DependentUpon>QLBANDIENTHOAI.tt</DependentUpon>
+      <DependentUpon>QLBanDienThoai.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -208,6 +213,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\StyleTrangCaNhan.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -380,15 +386,15 @@
     <Content Include="images\xiaomi11lite5Tintuc.jpg" />
     <Content Include="images\z-flip-slide_show_9_11zon.png" />
     <Content Include="images\zfold3.jpg" />
-    <Content Include="Models\QLBANDIENTHOAI.Context.tt">
+    <Content Include="Models\QLBanDienThoai.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLBANDIENTHOAI.edmx</DependentUpon>
-      <LastGenOutput>QLBANDIENTHOAI.Context.cs</LastGenOutput>
+      <DependentUpon>QLBanDienThoai.edmx</DependentUpon>
+      <LastGenOutput>QLBanDienThoai.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\QLBANDIENTHOAI.tt">
+    <Content Include="Models\QLBanDienThoai.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLBANDIENTHOAI.edmx</DependentUpon>
-      <LastGenOutput>QLBANDIENTHOAI.cs</LastGenOutput>
+      <DependentUpon>QLBanDienThoai.edmx</DependentUpon>
+      <LastGenOutput>QLBanDienThoai.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -933,12 +939,12 @@
     <Content Include="Scripts\highcharts\7.1.2\css\stocktools\gui.scss" />
     <Content Include="Scripts\highcharts\7.1.2\css\highcharts.scss" />
     <Content Include="Scripts\highcharts\7.1.2\css\annotations\popup.scss" />
-    <EntityDeploy Include="Models\QLBANDIENTHOAI.edmx">
+    <EntityDeploy Include="Models\QLBanDienThoai.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QLBANDIENTHOAI.Designer.cs</LastGenOutput>
+      <LastGenOutput>QLBanDienThoai.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\QLBANDIENTHOAI.edmx.diagram">
-      <DependentUpon>QLBANDIENTHOAI.edmx</DependentUpon>
+    <Content Include="Models\QLBanDienThoai.edmx.diagram">
+      <DependentUpon>QLBanDienThoai.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\highcharts\7.1.2\themes\sunset.src.js" />
@@ -995,12 +1001,31 @@
     <Content Include="Views\Admin\XoaSP.cshtml" />
     <Content Include="Views\Admin\EditPrice.cshtml" />
     <Content Include="Views\Admin\QuanLyGia.cshtml" />
-    <Content Include="Views\Admin\SuaSP.cshtml" />
     <Content Include="Views\GioHang\HoanThanhDonHang.cshtml" />
     <Content Include="Views\DANHGIASP\Create.cshtml" />
     <Content Include="Views\Shared\DanhGiaSanPham.cshtml" />
     <Content Include="Views\DANHGIASP\TaoDanhGia.cshtml" />
     <Content Include="Views\Admin\DonHangMoi.cshtml" />
+    <Content Include="Views\GioHang\_PartialForm.cshtml" />
+    <Content Include="Views\Admin\SuaSP.cshtml" />
+    <Content Include="Views\ShoppingCart\FailureView.cshtml" />
+    <Content Include="Views\ShoppingCart\SuccessView.cshtml" />
+    <Content Include="Views\Payment\Error.cshtml" />
+    <Content Include="Views\Payment\PayCOD.cshtml" />
+    <Content Include="Views\Payment\Success.cshtml" />
+    <Content Include="Views\HomePhone\ShoppingInfo.cshtml" />
+    <Content Include="Views\Shared\LayoutTrangCaNhan.cshtml" />
+    <Content Include="Views\Users\XemTrangCaNhan.cshtml" />
+    <Content Include="Views\Users\SuaThongTinCaNhan.cshtml" />
+    <Content Include="Views\Users\LichSuMuaHang.cshtml" />
+    <Content Include="Views\Users\ChiTietDonHang.cshtml" />
+    <Content Include="Views\Admin\CapNhatTTDH.cshtml" />
+    <Content Include="Views\Admin\XemChiTietDonHang.cshtml" />
+    <Content Include="Views\Admin\DonHangHuy.cshtml" />
+    <Content Include="Views\Admin\XoaDH.cshtml" />
+    <Content Include="Views\Admin\DonHangDangXuLy.cshtml" />
+    <Content Include="Views\Admin\DonHangDangVanChuyen.cshtml" />
+    <Content Include="Views\Admin\DonHangDangGiaoThanhCong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,7 +12,7 @@
         margin-top: 10px;
         flex-wrap: wrap;
         justify-content: center;
-        margin:auto;
+        margin: auto;
     }
 
     .cart-item {
@@ -34,7 +34,7 @@
         }
 
     .cart-item-details {
-        width:200px;
+        width: 200px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -51,11 +51,10 @@
     }
 
     .cart-item-quantity {
-        width:300px;
+        width: 300px;
         display: flex;
         align-items: center;
         gap: 10px;
-
     }
 
         .cart-item-quantity label {
@@ -69,8 +68,8 @@
         }
 
     .cart-item-buttons {
-        width:180px;
-        margin-top:10px;
+        width: 180px;
+        margin-top: 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -87,6 +86,7 @@
         transition: all 0.3s ease-in-out;
         cursor: pointer;
     }
+
     .btn-remove {
         background-color: transparent;
         border: 1px solid #ff7675;
@@ -103,10 +103,11 @@
         background-color: #74b9ff;
         color: #fff;
     }
-        .btn-remove:hover {
-            background-color: #ff7675;
-            color: #fff;
-        }
+
+    .btn-remove:hover {
+        background-color: #ff7675;
+        color: #fff;
+    }
 
 
 
@@ -118,10 +119,9 @@
     }
 
     .cart-item-subtotal-label {
-        margin-right:3px;
+        margin-right: 3px;
         margin-bottom: 0;
         color: #808080;
-
     }
 
     .cart-item-subtotal-value {
@@ -155,26 +155,29 @@
     .cart-total-value {
         color: #c0392b;
     }
-    .btn_dathang{
-        width:100%;
-        display:flex;
-        justify-content:center;
+
+    .btn_dathang {
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
+
     .container_button_dat {
         width: fit-content;
         border: 1px solid red;
-        text-align:center;
-        border-radius:5px;
+        text-align: center;
+        border-radius: 5px;
     }
+
     .btn-outline-danger a {
         text-decoration: none;
         color: darkred;
     }
+
     .btn-outline-danger:hover a {
         color: #ffffff;
         font-weight: 600;
     }
-
 </style>
 <div class="cart-items">
     @foreach (var item in Model)
@@ -209,8 +212,19 @@
             <button class="btn btn-outline-danger">@Html.ActionLink("ĐẶT HÀNG", "DatHang")</button>
         </div>
     </div>
+    <div class="btn_dathang">
+        <div class="container_button_dat">
+            <button class="btn btn-outline-danger">@Html.ActionLink("Thanh toán qua Paypal", "PaymentWithPaypal", "ShoppingCart")</button>
+        </div>
+    </div>
+    <a href="@Url.Action("ShoppingInfo","HomePhone")" style="display: inline-block; border-radius: 5px; padding: 10px 20px; font-size: 16px; font-weight: bold;
+     text-align: center; text-decoration: none; color: #fff;
+     background-color: #007bff; border: none; cursor: pointer;
+     transition: background-color 0.3s ease;">Thanh Toán</a>
+
     <div class="cart-total">
         <p class="cart-total-label">Tổng tiền:</p>
         <p class="cart-total-value">@string.Format("{0:N0} VNĐ", Double.Parse(ViewBag.TongTien.ToString()))</p>
     </div>
 </div>
+

@@ -1,0 +1,75 @@
+﻿@using He_thong_ban_DT_online.Models
+@model List<MatHangMua>
+@{ ViewBag.Title = "Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    DONDATHANG dh= Session["dh"] as DONDATHANG;
+
+}
+
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        margin-bottom: 30px;
+        margin-top: 20px;
+    }
+
+    h1, h2 {
+        color: #333;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+</style>
+
+<h1>Thanh Toán Thành Công</h1>
+@*
+@if (ViewBag.Order != null)
+{
+    <div class="container">
+        <h3>Tên Khách Hàng: @dh.Tennguoinhan </h3>
+        <p>Mã hóa đơn: @dh.MaDH</p>
+        <p>Số điện thoại: @dh.Dienthoainhan</p>
+        <p>Địa chỉ nhận: @dh.Diachinhan</p>
+        <p>Hình thức thanh toán: @dh.HINHTHUCTHANHTOAN.TenHTTT </p>
+        <p>Tổng Số Tiền: @string.Format("{0:N0} đ", Double.Parse(dh.TongTien.ToString()))</p>
+        <p>Ngày mua: @dh.NgayDH</p>
+        <h4>Danh sách mua:</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Tên điện thoại</th>
+                    <th>Ảnh</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in ViewBag.ListOrderItem as List<MatHangMua>)
+                {
+                    <tr>
+                        <td>@i.TenDT</td>
+                        <td><img style="width:70px;" src="~/images/@i.HinhMinhHoa" /></td>
+                        <td>@i.SoLuong</td>
+                        <td>@string.Format("{0:N0} đ", Double.Parse(@i.DonGia.ToString()))</td>
+                    </tr>
+}
+            </tbody>
+        </table>
+
+
+    </div>}*@
+
+@Html.ActionLink("back to home", "Index", "HomePhone")
+

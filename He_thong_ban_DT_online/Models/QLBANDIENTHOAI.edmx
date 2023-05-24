@@ -31,9 +31,9 @@
           <Property Name="MaDH" Type="int" Nullable="false" />
           <Property Name="MaSP" Type="int" Nullable="false" />
           <Property Name="SoLuong" Type="int" />
-          <Property Name="DonGia" Type="decimal" Precision="9" Scale="2" />
-          <Property Name="GiamGia" Type="decimal" Precision="9" Scale="2" />
-          <Property Name="ThanhTien" Type="decimal" Precision="21" Scale="2" StoreGeneratedPattern="Computed" />
+          <Property Name="DonGia" Type="money" />
+          <Property Name="GiamGia" Type="money" />
+          <Property Name="ThanhTien" Type="money" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="DANHGIASP">
           <Key>
@@ -62,6 +62,7 @@
           <Property Name="HTThanhtoan" Type="int" />
           <Property Name="HTGiaohang" Type="bit" />
           <Property Name="MaTTDH" Type="int" />
+          <Property Name="DaTraTien" Type="bit" />
         </EntityType>
         <EntityType Name="HINHANH">
           <Key>
@@ -93,6 +94,7 @@
           <Property Name="Gioitinh" Type="bit" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="Daduyet" Type="bit" />
+          <Property Name="avatar" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LOAI">
           <Key>
@@ -126,7 +128,7 @@
           <Property Name="SoluongBan" Type="int" />
           <Property Name="SolanXem" Type="int" />
           <Property Name="TrangThai" Type="bit" />
-          <Property Name="Dongia" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Dongia" Type="money" />
           <Property Name="MauSac" Type="nvarchar" MaxLength="50" />
           <Property Name="ManHinh" Type="nvarchar" MaxLength="50" />
           <Property Name="CauHinh" Type="nvarchar" MaxLength="50" />
@@ -176,7 +178,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DANHGIASP__MaKH__534D60F1">
+        <Association Name="FK__DANHGIASP__MaKH__52593CB8">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="1" />
           <End Role="DANHGIASP" Type="Self.DANHGIASP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -188,7 +190,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DANHGIASP__MaSP__52593CB8">
+        <Association Name="FK__DANHGIASP__MaSP__5165187F">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
           <End Role="DANHGIASP" Type="Self.DANHGIASP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -200,7 +202,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DONDATHAN__HTTha__5CD6CB2B">
+        <Association Name="FK__DONDATHAN__HTTha__5BE2A6F2">
           <End Role="HINHTHUCTHANHTOAN" Type="Self.HINHTHUCTHANHTOAN" Multiplicity="0..1" />
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -212,7 +214,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DONDATHAN__MaTTD__5EBF139D">
+        <Association Name="FK__DONDATHAN__MaTTD__5DCAEF64">
           <End Role="TRANGTHAIDONHANG" Type="Self.TRANGTHAIDONHANG" Multiplicity="0..1" />
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -224,7 +226,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DONDATHANG__MaKH__59FA5E80">
+        <Association Name="FK__DONDATHANG__MaKH__59063A47">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -236,7 +238,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LOAI__BrandId__3C69FB99">
+        <Association Name="FK__LOAI__BrandId__3A81B327">
           <End Role="BRAND" Type="Self.BRAND" Multiplicity="0..1" />
           <End Role="LOAI" Type="Self.LOAI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -305,27 +307,27 @@
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="CTDATHANG" EntitySet="CTDATHANG" />
           </AssociationSet>
-          <AssociationSet Name="FK__DANHGIASP__MaKH__534D60F1" Association="Self.FK__DANHGIASP__MaKH__534D60F1">
+          <AssociationSet Name="FK__DANHGIASP__MaKH__52593CB8" Association="Self.FK__DANHGIASP__MaKH__52593CB8">
             <End Role="KHACHHANG" EntitySet="KHACHHANG" />
             <End Role="DANHGIASP" EntitySet="DANHGIASP" />
           </AssociationSet>
-          <AssociationSet Name="FK__DANHGIASP__MaSP__52593CB8" Association="Self.FK__DANHGIASP__MaSP__52593CB8">
+          <AssociationSet Name="FK__DANHGIASP__MaSP__5165187F" Association="Self.FK__DANHGIASP__MaSP__5165187F">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="DANHGIASP" EntitySet="DANHGIASP" />
           </AssociationSet>
-          <AssociationSet Name="FK__DONDATHAN__HTTha__5CD6CB2B" Association="Self.FK__DONDATHAN__HTTha__5CD6CB2B">
+          <AssociationSet Name="FK__DONDATHAN__HTTha__5BE2A6F2" Association="Self.FK__DONDATHAN__HTTha__5BE2A6F2">
             <End Role="HINHTHUCTHANHTOAN" EntitySet="HINHTHUCTHANHTOAN" />
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
           </AssociationSet>
-          <AssociationSet Name="FK__DONDATHAN__MaTTD__5EBF139D" Association="Self.FK__DONDATHAN__MaTTD__5EBF139D">
+          <AssociationSet Name="FK__DONDATHAN__MaTTD__5DCAEF64" Association="Self.FK__DONDATHAN__MaTTD__5DCAEF64">
             <End Role="TRANGTHAIDONHANG" EntitySet="TRANGTHAIDONHANG" />
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
           </AssociationSet>
-          <AssociationSet Name="FK__DONDATHANG__MaKH__59FA5E80" Association="Self.FK__DONDATHANG__MaKH__59FA5E80">
+          <AssociationSet Name="FK__DONDATHANG__MaKH__59063A47" Association="Self.FK__DONDATHANG__MaKH__59063A47">
             <End Role="KHACHHANG" EntitySet="KHACHHANG" />
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
           </AssociationSet>
-          <AssociationSet Name="FK__LOAI__BrandId__3C69FB99" Association="Self.FK__LOAI__BrandId__3C69FB99">
+          <AssociationSet Name="FK__LOAI__BrandId__3A81B327" Association="Self.FK__LOAI__BrandId__3A81B327">
             <End Role="BRAND" EntitySet="BRAND" />
             <End Role="LOAI" EntitySet="LOAI" />
           </AssociationSet>
@@ -364,7 +366,7 @@
           <Property Name="TenBrand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HinhAnhBrand" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="LOAIs" Relationship="Self.FK__LOAI__BrandId__3C69FB99" FromRole="BRAND" ToRole="LOAI" />
+          <NavigationProperty Name="LOAIs" Relationship="Self.FK__LOAI__BrandId__3A81B327" FromRole="BRAND" ToRole="LOAI" />
           <NavigationProperty Name="SANPHAMs" Relationship="Self.FK_SANPHAM_BRAND" FromRole="BRAND" ToRole="SANPHAM" />
         </EntityType>
         <EntityType Name="CTDATHANG">
@@ -375,9 +377,9 @@
           <Property Name="MaDH" Type="Int32" Nullable="false" />
           <Property Name="MaSP" Type="Int32" Nullable="false" />
           <Property Name="SoLuong" Type="Int32" />
-          <Property Name="DonGia" Type="Decimal" Precision="9" Scale="2" />
-          <Property Name="GiamGia" Type="Decimal" Precision="9" Scale="2" />
-          <Property Name="ThanhTien" Type="Decimal" Precision="21" Scale="2" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="GiamGia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ThanhTien" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="DONDATHANG" Relationship="Self.FK__CTDATHANG__MaDH__619B8048" FromRole="CTDATHANG" ToRole="DONDATHANG" />
           <NavigationProperty Name="SANPHAM" Relationship="Self.FK__CTDATHANG__MaSP__628FA481" FromRole="CTDATHANG" ToRole="SANPHAM" />
         </EntityType>
@@ -391,8 +393,8 @@
           <Property Name="BinhLuan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Rating" Type="Int32" Nullable="false" />
           <Property Name="NgayDanhGia" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__DANHGIASP__MaKH__534D60F1" FromRole="DANHGIASP" ToRole="KHACHHANG" />
-          <NavigationProperty Name="SANPHAM" Relationship="Self.FK__DANHGIASP__MaSP__52593CB8" FromRole="DANHGIASP" ToRole="SANPHAM" />
+          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__DANHGIASP__MaKH__52593CB8" FromRole="DANHGIASP" ToRole="KHACHHANG" />
+          <NavigationProperty Name="SANPHAM" Relationship="Self.FK__DANHGIASP__MaSP__5165187F" FromRole="DANHGIASP" ToRole="SANPHAM" />
         </EntityType>
         <EntityType Name="DONDATHANG">
           <Key>
@@ -410,10 +412,11 @@
           <Property Name="HTThanhtoan" Type="Int32" />
           <Property Name="HTGiaohang" Type="Boolean" />
           <Property Name="MaTTDH" Type="Int32" />
+          <Property Name="DaTraTien" Type="Boolean" />
           <NavigationProperty Name="CTDATHANGs" Relationship="Self.FK__CTDATHANG__MaDH__619B8048" FromRole="DONDATHANG" ToRole="CTDATHANG" />
-          <NavigationProperty Name="HINHTHUCTHANHTOAN" Relationship="Self.FK__DONDATHAN__HTTha__5CD6CB2B" FromRole="DONDATHANG" ToRole="HINHTHUCTHANHTOAN" />
-          <NavigationProperty Name="TRANGTHAIDONHANG" Relationship="Self.FK__DONDATHAN__MaTTD__5EBF139D" FromRole="DONDATHANG" ToRole="TRANGTHAIDONHANG" />
-          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__DONDATHANG__MaKH__59FA5E80" FromRole="DONDATHANG" ToRole="KHACHHANG" />
+          <NavigationProperty Name="HINHTHUCTHANHTOAN" Relationship="Self.FK__DONDATHAN__HTTha__5BE2A6F2" FromRole="DONDATHANG" ToRole="HINHTHUCTHANHTOAN" />
+          <NavigationProperty Name="TRANGTHAIDONHANG" Relationship="Self.FK__DONDATHAN__MaTTD__5DCAEF64" FromRole="DONDATHANG" ToRole="TRANGTHAIDONHANG" />
+          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__DONDATHANG__MaKH__59063A47" FromRole="DONDATHANG" ToRole="KHACHHANG" />
         </EntityType>
         <EntityType Name="HINHANH">
           <Key>
@@ -431,7 +434,7 @@
           <Property Name="MaHTTT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenHTTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DONDATHANGs" Relationship="Self.FK__DONDATHAN__HTTha__5CD6CB2B" FromRole="HINHTHUCTHANHTOAN" ToRole="DONDATHANG" />
+          <NavigationProperty Name="DONDATHANGs" Relationship="Self.FK__DONDATHAN__HTTha__5BE2A6F2" FromRole="HINHTHUCTHANHTOAN" ToRole="DONDATHANG" />
         </EntityType>
         <EntityType Name="KHACHHANG">
           <Key>
@@ -447,8 +450,9 @@
           <Property Name="Gioitinh" Type="Boolean" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Daduyet" Type="Boolean" />
-          <NavigationProperty Name="DANHGIASPs" Relationship="Self.FK__DANHGIASP__MaKH__534D60F1" FromRole="KHACHHANG" ToRole="DANHGIASP" />
-          <NavigationProperty Name="DONDATHANGs" Relationship="Self.FK__DONDATHANG__MaKH__59FA5E80" FromRole="KHACHHANG" ToRole="DONDATHANG" />
+          <Property Name="avatar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DANHGIASPs" Relationship="Self.FK__DANHGIASP__MaKH__52593CB8" FromRole="KHACHHANG" ToRole="DANHGIASP" />
+          <NavigationProperty Name="DONDATHANGs" Relationship="Self.FK__DONDATHANG__MaKH__59063A47" FromRole="KHACHHANG" ToRole="DONDATHANG" />
         </EntityType>
         <EntityType Name="LOAI">
           <Key>
@@ -457,7 +461,7 @@
           <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="BrandId" Type="Int32" />
-          <NavigationProperty Name="BRAND" Relationship="Self.FK__LOAI__BrandId__3C69FB99" FromRole="LOAI" ToRole="BRAND" />
+          <NavigationProperty Name="BRAND" Relationship="Self.FK__LOAI__BrandId__3A81B327" FromRole="LOAI" ToRole="BRAND" />
         </EntityType>
         <EntityType Name="NHASANXUAT">
           <Key>
@@ -484,7 +488,7 @@
           <Property Name="SoluongBan" Type="Int32" />
           <Property Name="SolanXem" Type="Int32" />
           <Property Name="TrangThai" Type="Boolean" />
-          <Property Name="Dongia" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Dongia" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="MauSac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ManHinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CauHinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -503,7 +507,7 @@
           <Property Name="NgaySX" Type="DateTime" Precision="0" />
           <NavigationProperty Name="BRAND" Relationship="Self.FK_SANPHAM_BRAND" FromRole="SANPHAM" ToRole="BRAND" />
           <NavigationProperty Name="CTDATHANGs" Relationship="Self.FK__CTDATHANG__MaSP__628FA481" FromRole="SANPHAM" ToRole="CTDATHANG" />
-          <NavigationProperty Name="DANHGIASPs" Relationship="Self.FK__DANHGIASP__MaSP__52593CB8" FromRole="SANPHAM" ToRole="DANHGIASP" />
+          <NavigationProperty Name="DANHGIASPs" Relationship="Self.FK__DANHGIASP__MaSP__5165187F" FromRole="SANPHAM" ToRole="DANHGIASP" />
           <NavigationProperty Name="HINHANHs" Relationship="Self.FK_HINHANH_SANPHAM" FromRole="SANPHAM" ToRole="HINHANH" />
           <NavigationProperty Name="NHASANXUAT" Relationship="Self.FK_SANPHAM_NSX" FromRole="SANPHAM" ToRole="NHASANXUAT" />
         </EntityType>
@@ -514,9 +518,9 @@
           <Property Name="MaTTDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenTrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DONDATHANGs" Relationship="Self.FK__DONDATHAN__MaTTD__5EBF139D" FromRole="TRANGTHAIDONHANG" ToRole="DONDATHANG" />
+          <NavigationProperty Name="DONDATHANGs" Relationship="Self.FK__DONDATHAN__MaTTD__5DCAEF64" FromRole="TRANGTHAIDONHANG" ToRole="DONDATHANG" />
         </EntityType>
-        <Association Name="FK__LOAI__BrandId__3C69FB99">
+        <Association Name="FK__LOAI__BrandId__3A81B327">
           <End Role="BRAND" Type="Self.BRAND" Multiplicity="0..1" />
           <End Role="LOAI" Type="Self.LOAI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -564,7 +568,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DANHGIASP__MaKH__534D60F1">
+        <Association Name="FK__DANHGIASP__MaKH__52593CB8">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="1" />
           <End Role="DANHGIASP" Type="Self.DANHGIASP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -576,7 +580,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DANHGIASP__MaSP__52593CB8">
+        <Association Name="FK__DANHGIASP__MaSP__5165187F">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
           <End Role="DANHGIASP" Type="Self.DANHGIASP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -588,7 +592,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DONDATHAN__HTTha__5CD6CB2B">
+        <Association Name="FK__DONDATHAN__HTTha__5BE2A6F2">
           <End Role="HINHTHUCTHANHTOAN" Type="Self.HINHTHUCTHANHTOAN" Multiplicity="0..1" />
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -600,7 +604,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DONDATHAN__MaTTD__5EBF139D">
+        <Association Name="FK__DONDATHAN__MaTTD__5DCAEF64">
           <End Role="TRANGTHAIDONHANG" Type="Self.TRANGTHAIDONHANG" Multiplicity="0..1" />
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -612,7 +616,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DONDATHANG__MaKH__59FA5E80">
+        <Association Name="FK__DONDATHANG__MaKH__59063A47">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -661,7 +665,7 @@
           <EntitySet Name="NHASANXUATs" EntityType="Self.NHASANXUAT" />
           <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
           <EntitySet Name="TRANGTHAIDONHANGs" EntityType="Self.TRANGTHAIDONHANG" />
-          <AssociationSet Name="FK__LOAI__BrandId__3C69FB99" Association="Self.FK__LOAI__BrandId__3C69FB99">
+          <AssociationSet Name="FK__LOAI__BrandId__3A81B327" Association="Self.FK__LOAI__BrandId__3A81B327">
             <End Role="BRAND" EntitySet="BRANDs" />
             <End Role="LOAI" EntitySet="LOAIs" />
           </AssociationSet>
@@ -677,23 +681,23 @@
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
             <End Role="CTDATHANG" EntitySet="CTDATHANGs" />
           </AssociationSet>
-          <AssociationSet Name="FK__DANHGIASP__MaKH__534D60F1" Association="Self.FK__DANHGIASP__MaKH__534D60F1">
+          <AssociationSet Name="FK__DANHGIASP__MaKH__52593CB8" Association="Self.FK__DANHGIASP__MaKH__52593CB8">
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
             <End Role="DANHGIASP" EntitySet="DANHGIASPs" />
           </AssociationSet>
-          <AssociationSet Name="FK__DANHGIASP__MaSP__52593CB8" Association="Self.FK__DANHGIASP__MaSP__52593CB8">
+          <AssociationSet Name="FK__DANHGIASP__MaSP__5165187F" Association="Self.FK__DANHGIASP__MaSP__5165187F">
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
             <End Role="DANHGIASP" EntitySet="DANHGIASPs" />
           </AssociationSet>
-          <AssociationSet Name="FK__DONDATHAN__HTTha__5CD6CB2B" Association="Self.FK__DONDATHAN__HTTha__5CD6CB2B">
+          <AssociationSet Name="FK__DONDATHAN__HTTha__5BE2A6F2" Association="Self.FK__DONDATHAN__HTTha__5BE2A6F2">
             <End Role="HINHTHUCTHANHTOAN" EntitySet="HINHTHUCTHANHTOANs" />
             <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
           </AssociationSet>
-          <AssociationSet Name="FK__DONDATHAN__MaTTD__5EBF139D" Association="Self.FK__DONDATHAN__MaTTD__5EBF139D">
+          <AssociationSet Name="FK__DONDATHAN__MaTTD__5DCAEF64" Association="Self.FK__DONDATHAN__MaTTD__5DCAEF64">
             <End Role="TRANGTHAIDONHANG" EntitySet="TRANGTHAIDONHANGs" />
             <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
           </AssociationSet>
-          <AssociationSet Name="FK__DONDATHANG__MaKH__59FA5E80" Association="Self.FK__DONDATHANG__MaKH__59FA5E80">
+          <AssociationSet Name="FK__DONDATHANG__MaKH__59063A47" Association="Self.FK__DONDATHANG__MaKH__59063A47">
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
             <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
           </AssociationSet>
@@ -771,6 +775,7 @@
                 <ScalarProperty Name="HTThanhtoan" ColumnName="HTThanhtoan" />
                 <ScalarProperty Name="HTGiaohang" ColumnName="HTGiaohang" />
                 <ScalarProperty Name="MaTTDH" ColumnName="MaTTDH" />
+                <ScalarProperty Name="DaTraTien" ColumnName="DaTraTien" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -805,6 +810,7 @@
                 <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Daduyet" ColumnName="Daduyet" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

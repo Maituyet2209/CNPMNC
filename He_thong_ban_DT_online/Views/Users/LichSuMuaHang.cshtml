@@ -1,0 +1,107 @@
+﻿@model IEnumerable<He_thong_ban_DT_online.Models.DONDATHANG>
+
+@{
+    ViewBag.Title = "LichSuMuaHang";
+    Layout = "~/Views/Shared/LayoutTrangCaNhan.cshtml";
+
+}
+
+<style>
+    .container_DH {
+        margin: 20px;
+        height: 400px;
+        overflow: auto; 
+    }
+
+        .container_DH h2 {
+            text-align: center;
+        }
+
+    .order-item {
+        width: 600px;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f5f5f5;
+    }
+
+        .order-item .order-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+            .order-item .order-info span {
+                font-weight: bold;
+            }
+
+        .order-item .order-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+            .order-item .order-actions a {
+                margin-left: 10px;
+            }
+    /* CSS cho thông báo thành công */
+    .alert-success {
+        padding: 10px;
+        margin-bottom: 20px;
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        border-radius: 5px;
+    }
+
+    /* CSS cho thông báo lỗi */
+    .alert-danger {
+        padding: 10px;
+        margin-bottom: 20px;
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        border-radius: 5px;
+    }
+</style>
+
+<div class="container_DH">
+    <h2>Lịch sử mua hàng</h2>
+
+    @if (!String.IsNullOrEmpty(ViewBag.SuccessMessage))
+    {
+        <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+    }
+
+    @if (!String.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+    }
+
+    @foreach (var item in Model)
+    {
+        <div class="order-item">
+            <div class="order-info">
+                <span>Ngày đặt hàng:</span>
+                <span>@(((DateTime)item.NgayDH).ToString("dd/MM/yyyy"))</span>
+            </div>
+            <div class="order-info">
+                <span>Tổng tiền:</span>
+                <span>@string.Format("{0:N0} VNĐ", item.TongTien)</span>
+            </div>
+            <div class="order-info">
+                <span>Hình thức thanh toán:</span>
+                <span>@Html.DisplayFor(modelItem => item.HINHTHUCTHANHTOAN.TenHTTT)</span>
+            </div>
+            <div class="order-info">
+                <span>Trạng thái đơn hàng:</span>
+                <span>@Html.DisplayFor(modelItem => item.TRANGTHAIDONHANG.TenTrangThai)</span>
+            </div>
+            <div class="order-actions">
+                @Html.ActionLink("Xem chi tiết", "ChiTietDonHang", new { id = item.MaDH }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Hủy đơn", "HuyDH", new { id = item.MaDH }, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    }
+</div>

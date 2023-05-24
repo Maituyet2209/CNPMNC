@@ -1,0 +1,141 @@
+﻿@model He_thong_ban_DT_online.Models.DONDATHANG
+
+@{
+    ViewBag.Title = "CapNhatTTDH";
+    Layout = "~/Views/Shared/ADLayout.cshtml";
+}
+
+<style>
+    .row {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .col-md-6 {
+        width: 48%;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .card-header {
+        background-color: #f8f9fa;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .center-button {
+        display: flex;
+        justify-content: center;
+    }
+
+    h2, h5 {
+        text-align: center;
+    }
+
+    h5 {
+        font-weight: 600;
+    }
+    .back-to-list {
+        margin-top: 4px;
+        margin-left:45px;
+    }
+
+        .back-to-list a {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+            .back-to-list a:hover {
+                background-color: #0056b3;
+            }
+</style>
+
+<h2>Cập nhật trạng thái đơn hàng</h2>
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-header">
+                <h5>Thông tin đơn hàng</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Mã đơn hàng</th>
+                        <td>@Model.MaDH</td>
+                    </tr>
+                    <tr>
+                        <th>Khách hàng</th>
+                        <td>@Model.KHACHHANG.HoTenKH</td>
+                    </tr>
+                    <tr>
+                        <th>Ngày đặt hàng</th>
+                        <td>@Model.NgayDH</td>
+                    </tr>
+                    <tr>
+                        <th>Địa chỉ nhận</th>
+                        <td>@Model.Diachinhan</td>
+                    </tr>
+                    <tr>
+                        <th>Người nhận</th>
+                        <td>@Model.Tennguoinhan</td>
+                    </tr>
+                    <tr>
+                        <th>Số điện thoại nhận hàng</th>
+                        <td>@Model.Dienthoainhan</td>
+                    </tr>
+                    <tr>
+                        <th>Hình thức thanh toán</th>
+                        <td>@Model.HINHTHUCTHANHTOAN.TenHTTT</td>
+                    </tr>
+                    <tr>
+                        <th>Tổng tiền</th>
+                        <td>@string.Format("{0:N0} VNĐ", Model.TongTien)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Cập nhật trạng thái đơn hàng</h5>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("CapNhatTTDH", "Admin", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        @Html.Label("Trạng thái đơn hàng:")
+                        @Html.DropDownList("TrangThaiDonHang", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="form-group center-button">
+                        <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4 back-to-list">
+    @Html.ActionLink("Back to List", "DonHangMoi")
+</div>
+
+

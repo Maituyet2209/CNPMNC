@@ -58,14 +58,13 @@
 .slide_sp_container .myslides_sp{
     /*display: none;*/
 }
-.slide_sp_container .myslides_sp img {
+.myslides_sp img {
     /* width: 600px; */
     /* height: 350px; */
-    width: 500px;
-    height: 450px;
+    width: 400px;
     border-radius: 5px;
     display: block;
-    margin: auto;
+    margin: 0;
 }
 .prev_sp, .next_sp {
     cursor: pointer;

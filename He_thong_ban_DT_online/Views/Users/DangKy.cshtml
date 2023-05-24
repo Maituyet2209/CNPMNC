@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layoutforlogin.cshtml";
     <link href="~/Content/Stylelogin.css" rel="stylesheet" />
 }
-<div id="main_login">
+<div id="main_login" style="padding-top:150px;">
     <div class="container_main">
         <div class="header_main">
             <h1>Đăng Ký</h1>
@@ -43,6 +43,20 @@
                         @Html.TextBox("DienthoaiKH", null, new { @class = "input-field", @id = "dienthoai", required = "required" })
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="name1" class="form-label">Địa chỉ:</label>
+                    <div class="container_input">
+                        @Html.TextBox("DiachiKH", null, new { @class = "input-field", @id = "diachi", required = "required" })
+                    </div>
+                </div>
+                <div class="form-group gender-group" style="display:flex;">
+                    <label for="gioitinh">Giới tính:</label>
+                    <input type="radio" id="gioitinhNam" name="Gioitinh" value="true" checked>
+                    <label for="gioitinhNam">Nam</label>
+                    <input type="radio" id="gioitinhNu" name="Gioitinh" value="false">
+                    <label for="gioitinhNu">Nữ</label>
+                </div>
+
                 <div style="text-align:center">
                     <button type="submit" class="btn_DK">ĐĂNG KÝ</button>
                 </div>

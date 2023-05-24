@@ -31,6 +31,7 @@ namespace He_thong_ban_DT_online.Models
         public Nullable<bool> Gioitinh { get; set; }
         public string Email { get; set; }
         public Nullable<bool> Daduyet { get; set; }
+        public string avatar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DANHGIASP> DANHGIASPs { get; set; }

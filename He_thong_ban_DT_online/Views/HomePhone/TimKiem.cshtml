@@ -19,11 +19,20 @@
         margin:auto;
     }
 </style>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
 @if (!string.IsNullOrEmpty(ViewBag.Message))
 {
-    <div class="alert-box">
-        <p class="error-message">@ViewBag.Message</p>
+    <div class="cover-errormess" onclick="goBack()">
+        <div class="alert-box" >
+            <p class="error-message">@ViewBag.Message</p>
+        </div>
     </div>
+
 }
 else
 {

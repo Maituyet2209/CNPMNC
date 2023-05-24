@@ -67,6 +67,17 @@
                 <img src="~/images/login_icon_full.png" alt="" id="logo_login" class="img_login">
                 <ul class="sublogin">
                     <li>
+                        @{
+                            var userId = Session["UserID"] as int?;
+                        }
+
+                        @if (userId.HasValue)
+                        {
+                            <a href="@Url.Action("XemTrangCaNhan", "Users", new { id = userId.Value })">Xem trang cá nhân</a>
+                        }
+
+                    </li>
+                    <li>
                         @Html.ActionLink("Đăng nhập", "DangNhap", "Users", null, new { @class = "text-black" })
                     </li>
                     <li>

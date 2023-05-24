@@ -1,0 +1,72 @@
+﻿@model IEnumerable<He_thong_ban_DT_online.Models.CTDATHANG>
+
+@{
+    ViewBag.Title = "ChiTietDonHang";
+    Layout = "~/Views/Shared/LayoutTrangCaNhan.cshtml";
+}
+
+<style>
+    .order-details {
+        margin-top: 20px;
+    }
+        .order-details h3{
+            text-align:center;
+        }
+        .product {
+            width: 600px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+    .product-image {
+        width: 150px;
+        margin-right: 20px;
+    }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+        }
+
+    .product-info {
+        flex: 1;
+    }
+
+        .product-info h3 {
+            font-size: 24px;
+            margin: 0 0 10px;
+            color: #333;
+        }
+
+        .product-info p {
+            margin: 0;
+            font-size: 16px;
+            color: #555;
+        }
+</style>
+
+<div class="order-details">
+    <h3>Chi tiết đơn hàng</h3>
+
+    @foreach (var item in Model)
+    {
+        <div class="product">
+            <div class="product-image">
+                <img src="@Url.Content("~/images/" + item.SANPHAM.HinhMinhHoa)" alt="Hình ảnh" />
+            </div>
+            <div class="product-info">
+                <h3>@item.SANPHAM.TenDT</h3>
+                <p><strong>Số lượng:</strong> @item.SoLuong</p>
+                <p><strong>Đơn giá:</strong> @string.Format("{0:N0} VNĐ", item.DonGia)</p>
+                <p><strong>Thành tiền:</strong> @string.Format("{0:N0} VNĐ", item.ThanhTien)</p>
+
+            </div>
+        </div>
+    }
+</div>
+<div class="mt-4 back-to-list">
+    @Html.ActionLink("Back to List", "LichSuMuaHang")
+</div>

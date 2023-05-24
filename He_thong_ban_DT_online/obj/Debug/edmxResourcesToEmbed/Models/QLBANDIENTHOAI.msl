@@ -60,6 +60,7 @@
           <ScalarProperty Name="HTThanhtoan" ColumnName="HTThanhtoan" />
           <ScalarProperty Name="HTGiaohang" ColumnName="HTGiaohang" />
           <ScalarProperty Name="MaTTDH" ColumnName="MaTTDH" />
+          <ScalarProperty Name="DaTraTien" ColumnName="DaTraTien" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -94,6 +95,7 @@
           <ScalarProperty Name="Gioitinh" ColumnName="Gioitinh" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Daduyet" ColumnName="Daduyet" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

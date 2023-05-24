@@ -19,7 +19,18 @@
                     <span>@sanpham.TenDT</span>
                 </div>
                 <div class="price">
-                    <span>@string.Format("{0:N0} VNĐ", Double.Parse(sanpham.Dongia.ToString()))</span>
+                    @if (sanpham != null)
+                    {
+                        double dongia = 0;
+                        if (double.TryParse(sanpham.Dongia.ToString(), out dongia))
+                        {
+                            <span>@string.Format("{0:N0} VNĐ", dongia)</span>
+                        }
+                        else
+                        {
+                            <span>Dongia is not a valid double value.</span>
+                        }
+                    }
                 </div>
                 <div class="btn_buy">
                     <a href="@Url.Action("EditPrice", new { id = sanpham.MaSP })" class="btn btn-danger"><i class="fa fa-edit"></i></a>

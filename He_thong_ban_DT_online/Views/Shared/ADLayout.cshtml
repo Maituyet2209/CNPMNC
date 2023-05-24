@@ -63,8 +63,10 @@
                     <a class="menu-page" href="#"><i class="fa-solid fa-gifts"></i> Quản lý đơn hàng <i class="fa-solid fa-chevron-right"></i></a>
                     <ul class="dropdown-menu">
                         <li>@Html.ActionLink("Đơn hàng mới", "DonHangMoi", "Admin")</li>
-                        <li><a href="#">Quản lý giá cả</a></li>
-                        <li><a href="#">Product 3</a></li>
+                        <li>@Html.ActionLink("Đơn hàng đang xử lý", "DonHangDangXuLy", "Admin")</li>
+                        <li>@Html.ActionLink("Đơn hàng đang vận chuyển", "DonHangDangVanChuyen", "Admin")</li>
+                        <li>@Html.ActionLink("Đơn hàng giao thành công", "DonHangDangGiaoThanhCong", "Admin")</li>
+                        <li>@Html.ActionLink("Danh sách đơn hàng hủy", "DonHangHuy", "Admin")</li>
                     </ul>
                 </li>
                 <li>
@@ -80,14 +82,6 @@
                     <ul class="dropdown-menu">
                         <li>@Html.ActionLink("Thông tin sản phẩm", "SanPham", "Admin")</li>
                         <li>@Html.ActionLink("Quản lý giá cả", "QuanLyGia", "Admin")</li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="menu-page" href="#"><i class="fa-solid fa-table-list"></i> Quản lý danh mục</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Product 1</a></li>
-                        <li><a href="#">Product 2</a></li>
-                        <li><a href="#">Product 3</a></li>
                     </ul>
                 </li>
                 <li>

@@ -6,7 +6,7 @@
     <link href="~/Content/StyleDetail.css" rel="stylesheet" />
 }
 <div id="main_sp">
-    <div class="header_main">
+    <div class="header_main"style="padding-left:200px;">
         <div class="content_sp">
             @Model.TenDT
         </div>
@@ -22,11 +22,11 @@
         </div>
     </div>
 
-    <div class="content_sanpham">
+    <div class="content_sanpham" style="padding-left:200px;">
         <div class="slideshow_sp">
             <div class="slide_sp_container">
                 <div class="myslides_sp ">
-                    <img src="~/images/@Html.DisplayFor(model => model.HinhMinhHoa)" />
+                    <img src="~/images/@Html.DisplayFor(model => model.HinhMinhHoa)"  style="margin:0;"/>
                 </div>
             </div>
             <!--<div class="slide_sp_container">-->
@@ -96,7 +96,7 @@
                     </p>
                 </div>
 
-                <span id="bv_more1" onclick="showmore(1)"> Xem thêm bài viết</span>
+             <span id="bv_more1" onclick="showmore(1)"> Xem thêm bài viết</span>
             </div>
 
         </div>
@@ -170,7 +170,7 @@
                         <span>(Giao tận nơi hoặc lấy tại cửa hàng)</span>
                     </a>
                 </div>
-                <div class="btn_tragop">
+                @*<div class="btn_tragop">
                     <div class="tragop1">
                         <a href="">
                             <strong>Trả Góp 0%</strong>
@@ -183,9 +183,9 @@
                             <span>(Vía, thẻ tín dụng, VCB...)</span>
                         </a>
                     </div>
-                </div>
+                </div>*@
             </div>
-            <div class="box_details">
+            <div class="box_details" style="margin-top:40px;">
                 <ul>
                     <p>Thông Tin Chi Tiết:</p>
                     <li class="bg1">
@@ -249,10 +249,10 @@
                         <span>	Hỗ trợ 5G, Kháng nước, kháng bụi, Sạc không dây, Nhận diện khuôn mặt</span>
                     </li>
             </div>
-
+@*
             <li class="btn_more">
                 <p id="bv_more2" onclick="showmore(2)">Xem Thêm Chi Tiết <i class="fas fa-caret-down"></i> </p>
-            </li>
+            </li>*@
         </div>
     </div>
 </div>
@@ -262,26 +262,24 @@
         <h3>Đánh giá và Nhận xét:</h3>
         <p>Gửi đánh giá</p>
     </div>
-    <div class="content_cmt">
-        <div class="name_user">
-            <img src="~/images/30.jpg" alt="">
-            <strong>Username</strong>
+        <div class="content_cmt">
+            <div class="name_user">
+                <img src="~/images/30.jpg" alt="">
+                <strong></strong>
+            </div>
+            <div class="cmt">
+                <p>
+                    <strong>
+                        Đánh giá:
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </strong>
+                </p>
+                <p><strong>Nhận xét:</strong>Sản phẩm so good.</p>
+            </div>
         </div>
-        <div class="cmt">
-            <p>
-                <strong>
-                    Đánh giá:
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </strong>
-            </p>
-            <p><strong>Nhận xét:</strong>Sản phẩm so good.</p>
-        </div>
-    </div>
-    <div class="cmt_more">
-        <p>Xem Thêm</p>
-    </div>
+
 </div>

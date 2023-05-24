@@ -5,230 +5,113 @@
     Layout = "~/Views/Shared/ADLayout.cshtml";
 }
 
-<h2>THÔNG TIN CHI TIẾT SẢN PHẨM</h2>
+<style>
+    /* General styles */
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #333;
+    }
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Tên điện thoại
-        </dt>
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.TenDT)
-        </dd>
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+    }
 
-        <dt>
-            Mô tả
-        </dt>
+    .col {
+        flex-basis: calc(100% / 3 - 20px);
+        max-width: calc(100% / 3 - 20px);
+        margin: 10px;
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.MoTa)
-        </dd>
+    /* Product detail styles */
+    .product {
+        border: 1px solid #ccc;
+        padding: 20px;
+    }
 
-        <dt>
-            Hình ảnh
-        </dt>
+    .product__image {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.HinhMinhHoa)
-        </dd>
+        .product__image img {
+            max-width: 100%;
+            height: auto;
+        }
 
-        <dt>
-           Ngày cập nhật
-        </dt>
+    .product__title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayCapNhat)
-        </dd>
+    .product__price {
+        font-size: 18px;
+        font-weight: bold;
+        color: #f00;
+        margin-bottom: 10px;
+    }
 
-        <dt>
-            Số lượng tồn
-        </dt>
+    .product__description {
+        margin-bottom: 20px;
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.SoluongTon)
-        </dd>
+    .product__specifications dt {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
 
-        <dt>
-            Đã bán
-        </dt>
+    .product__specifications dd {
+        margin-bottom: 10px;
+    }
+</style>
+<div class="container">
+    <h3 class="text-center">THÔNG TIN CHI TIẾT SẢN PHẨM</h3>
+    <div class="row">
+        <div class="col product mx-auto">
+            <div class="product__image">
+                <img src="~/Images/@Model.HinhMinhHoa" style="width:150px;" />
+            </div>
+            <h2 class="product__title">Tên điện thoại:@Html.DisplayFor(model => model.TenDT)</h2>
+            <div class="product__price">Đơn giá @string.Format("{0:N0} VNĐ", Model.Dongia)</div>
+            <div class="product__description">Mô tả:@Html.DisplayFor(model => model.MoTa)</div>
+            <dl class="product__specifications">
+                <dt>Màu sắc:</dt>
+                <dd> @Html.DisplayFor(model => model.MauSac)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SoluongBan)
-        </dd>
+                <dt>Màn hình:</dt>
+                <dd>@Html.DisplayFor(model => model.ManHinh)</dd>
 
-        <dt>
-            Lượt xem
-        </dt>
+                <dt>Cấu hình:</dt>
+                <dd>@Html.DisplayFor(model => model.CauHinh)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SolanXem)
-        </dd>
+                <dt>Bộ nhớ trong:</dt>
+                <dd>@Html.DisplayFor(model => model.BoNhoTrong)</dd>
 
-        <dt>
-            Trạng thái
-        </dt>
+                <dt>Camera chính:</dt>
+                <dd>@Html.DisplayFor(model => model.Camera_main)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrangThai)
-        </dd>
+                <dt>Hệ điều hành:</dt>
+                <dd>@Html.DisplayFor(model => model.HeDieuHanh)</dd>
+                <dt>Thẻ SIM:</dt>
+                <dd> @Html.DisplayFor(model => model.TheSim)</dd>
+                <dt>Pin:</dt>
+                <dd> @Html.DisplayFor(model => model.DungLuongPin)</dd>
+            </dl>
+            <p>
+                @Html.ActionLink("Edit", "SuaSP", new { id = Model.MaSP }) |
+                @Html.ActionLink("Back to List", "SanPham")
+            </p>
+        </div>a
+    </div>
 
-        <dt>
-            Đơn giá
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Dongia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MauSac)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MauSac)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ManHinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ManHinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CauHinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CauHinh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BoNhoTrong)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BoNhoTrong)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Camera_main)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Camera_main)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HeDieuHanh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HeDieuHanh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TheSim)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TheSim)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DungLuongPin)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DungLuongPin)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DungLuongRam)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DungLuongRam)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CongNgheSac)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CongNgheSac)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DoPhanGiai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DoPhanGiai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CongSac)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CongSac)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BaoHanh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BaoHanh)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.KichThuoc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.KichThuoc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.KhoiLuong)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.KhoiLuong)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NgaySX)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgaySX)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BRAND.TenBrand)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BRAND.TenBrand)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NHASANXUAT.TenNSX)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NHASANXUAT.TenNSX)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSP }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

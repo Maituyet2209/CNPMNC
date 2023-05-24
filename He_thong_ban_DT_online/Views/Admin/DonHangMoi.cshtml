@@ -21,31 +21,36 @@
             background-color: #ddd;
         }
 
-
+    h2{
+        text-align:center;
+    }
 </style>
 <h2>Danh sách đơn hàng mới</h2>
 
 <table>
     <tr>
-        <th>ID</th>
+        <th>Mã đơn hàng</th>
         <th>Khách hàng</th>
         <th>Ngày đặt hàng</th>
         <th>Tổng tiền</th>
+        <th>Trạng thái đơn hàng</th>
+        <th>Hình thức thanh toán</th>
         <th>Thao tác</th>
     </tr>
     @foreach (var donhang in Model)
     {
-        <tr>
-            <td>@donhang.MaDH</td>
-            <td>@donhang.KHACHHANG.HoTenKH</td>
-            <td>@donhang.NgayDH</td>
-            <td>@donhang.TongTien</td>
-            <td>
-                <a href="@Url.Action("SuaDH", new { id = donhang.MaDH })" class="btn btn-success"><i class="fa fa-edit"></i></a>
-                <a href="@Url.Action("ChiTietDH", new { id = donhang.MaDH })" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
-                <a href="@Url.Action("XoaDH", new { id = donhang.MaDH })" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-            </td>
-        </tr>
+<tr>
+    <td>@donhang.MaDH</td>
+    <td>@donhang.KHACHHANG.HoTenKH</td>
+    <td>@donhang.NgayDH</td>
+    <td>@string.Format("{0:N0} VNĐ", donhang.TongTien)</td>
+    <td>@donhang.TRANGTHAIDONHANG.TenTrangThai</td>
+    <td>@donhang.HINHTHUCTHANHTOAN.TenHTTT</td>
+    <td>
+        <a href="@Url.Action("CapNhatTTDH","Admin", new { id = donhang.MaDH })" class="btn btn-danger"><i class="fa fa-edit"></i></a>
+        <a href="@Url.Action("XemChiTietDonHang","Admin", new { id = donhang.MaDH })" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
+    </td>
+</tr>
     }
 </table>
 

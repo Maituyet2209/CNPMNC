@@ -1,33 +1,44 @@
 ﻿@model IEnumerable<He_thong_ban_DT_online.Models.SANPHAM>
-@foreach (var sanpham in Model)
-{
-    <div class="col-sm-12 col-md-4 col-lg-3 box mr-0">
-        <div class="box_img">
-            <a href="@Url.Action("Details", "HomePhone", new { id = sanpham.MaSP })">
-                <img src="~/images/@sanpham.HinhMinhHoa" alt="">
-            </a>
+<div class="row" style="margin:20px 0 20px 35px;">
+    @foreach (var sanpham in Model)
+    {
+        <div class="col-sm-12 col-md-4 col-lg-3 box mr-0">
+            <div class="box_img">
+                <a href="@Url.Action("Details", "HomePhone", new { id = sanpham.MaSP })">
+                    <img src="~/images/@sanpham.HinhMinhHoa" alt="">
+                </a>
+            </div>
+            <div class="name_sp">
+                <span>@sanpham.TenDT</span>
+            </div>
+            <div class="price">
+                @if (sanpham != null)
+                {
+                    double dongia = 0;
+                    if (double.TryParse(sanpham.Dongia.ToString(), out dongia))
+                    {
+                        <span>@string.Format("{0:N0} VNĐ", dongia)</span>
+                    }
+                    else
+                    {
+                        <span>Dongia is not a valid double value.</span>
+                    }
+                }
+
+                <del>24.900.000đ</del>
+            </div>
+            <div class="btn_buy">
+                <button> Mua</button>
+                <a href="@Url.Action("ThemSanPhamVaoGio", "GioHang", new{ MaDT = sanpham.MaSP })"><button> +Giỏ Hàng </button></a>
+            </div>
+            <div class="star">
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <p>11 đánh giá</p>
+            </div>
         </div>
-        <div class="name_sp">
-            <span>@sanpham.TenDT</span>
-        </div>
-        <div class="price">
-            <span>@sanpham.Dongia</span>
-            <del>24.900.000đ</del>
-        </div>
-        <div class="btn_buy">
-            <button> Mua</button>
-            <button> +Giỏ Hàng </button>
-        </div>
-        <div class="number_sale">
-            <span>-6%</span>
-        </div>
-        <div class="star">
-            <i class="fas fa-star" aria-hidden="true"></i>
-            <i class="fas fa-star" aria-hidden="true"></i>
-            <i class="fas fa-star" aria-hidden="true"></i>
-            <i class="fas fa-star" aria-hidden="true"></i>
-            <i class="fas fa-star" aria-hidden="true"></i>
-            <p>11 đánh giá</p>
-        </div>
-    </div>
-}
+    }
+</div>

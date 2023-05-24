@@ -4,28 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="122160fabf8a428aa946bbedb39fca71" Name="Diagram1">
+      <Diagram DiagramId="a27ea9cc51e6468db3a621e403d681f5" Name="Diagram1">
         <EntityTypeShape EntityType="QLBANDIENTHOAIModel.ADMIN" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBANDIENTHOAIModel.BRAND" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBANDIENTHOAIModel.CTDATHANG" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBANDIENTHOAIModel.DANHGIASP" Width="1.5" PointX="11.25" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBANDIENTHOAIModel.DONDATHANG" Width="1.5" PointX="6" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBANDIENTHOAIModel.HINHANH" Width="1.5" PointX="8.25" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBANDIENTHOAIModel.HINHTHUCTHANHTOAN" Width="1.5" PointX="3.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANDIENTHOAIModel.HINHTHUCTHANHTOAN" Width="1.5" PointX="3.75" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBANDIENTHOAIModel.KHACHHANG" Width="1.5" PointX="3.75" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBANDIENTHOAIModel.LOAI" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBANDIENTHOAIModel.NHASANXUAT" Width="1.5" PointX="3.75" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBANDIENTHOAIModel.SANPHAM" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBANDIENTHOAIModel.TRANGTHAIDONHANG" Width="1.5" PointX="3.75" PointY="18.25" IsExpanded="true" />
-        <AssociationConnector Association="QLBANDIENTHOAIModel.FK__LOAI__BrandId__3C69FB99" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLBANDIENTHOAIModel.TRANGTHAIDONHANG" Width="1.5" PointX="3.75" PointY="18.375" IsExpanded="true" />
+        <AssociationConnector Association="QLBANDIENTHOAIModel.FK__LOAI__BrandId__3A81B327" ManuallyRouted="false" />
         <AssociationConnector Association="QLBANDIENTHOAIModel.FK_SANPHAM_BRAND" ManuallyRouted="false" />
         <AssociationConnector Association="QLBANDIENTHOAIModel.FK__CTDATHANG__MaDH__619B8048" ManuallyRouted="false" />
         <AssociationConnector Association="QLBANDIENTHOAIModel.FK__CTDATHANG__MaSP__628FA481" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBANDIENTHOAIModel.FK__DANHGIASP__MaKH__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBANDIENTHOAIModel.FK__DANHGIASP__MaSP__52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBANDIENTHOAIModel.FK__DONDATHAN__HTTha__5CD6CB2B" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBANDIENTHOAIModel.FK__DONDATHAN__MaTTD__5EBF139D" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBANDIENTHOAIModel.FK__DONDATHANG__MaKH__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANDIENTHOAIModel.FK__DANHGIASP__MaKH__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANDIENTHOAIModel.FK__DANHGIASP__MaSP__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANDIENTHOAIModel.FK__DONDATHAN__HTTha__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANDIENTHOAIModel.FK__DONDATHAN__MaTTD__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANDIENTHOAIModel.FK__DONDATHANG__MaKH__59063A47" ManuallyRouted="false" />
         <AssociationConnector Association="QLBANDIENTHOAIModel.FK_HINHANH_SANPHAM" ManuallyRouted="false" />
         <AssociationConnector Association="QLBANDIENTHOAIModel.FK_SANPHAM_NSX" ManuallyRouted="false" />
       </Diagram>

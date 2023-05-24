@@ -1,36 +1,80 @@
-﻿.custom-form label {
-    display: block;
-    margin-bottom: 10px;
+﻿h2 {
+    text-align: center;
 }
 
-.custom-form input[type=text],
-.custom-form textarea,
-.custom-form select {
-    display: block;
+.form-horizontal {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
+}
+
+.custom-form {
+    justify-content: center;
+    width: 100%;
+}
+
+.thongtinchung .form-group {
+    margin-bottom: 15px;
+}
+
+.thongtinchung .control-label {
+    font-weight: bold;
+}
+
+.thongtinchung .col-md-10 {
+    padding-left: 0;
+}
+
+.thongtinchung .form-control {
+    width: 100%;
+    padding: 6px 12px;
     font-size: 14px;
     line-height: 1.42857143;
-}
-
-.custom-form select {
-    height: 34px;
-}
-
-.custom-form input[type=submit] {
-    background-color: #337ab7;
-    color: #fff;
-    border: none;
-    padding: 10px 16px;
+    color: #555555;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
     border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
-    .custom-form input[type=submit]:hover {
-        background-color: #286090;
+.thongtinchung .form-group {
+    display: flex;
+}
+
+.thongtinchung .text-danger {
+    color: red;
+}
+
+.cotainer_ctspdt h5 {
+    text-align: center;
+}
+
+.table {
+    width: 100%;
+    margin: 0 auto;
+}
+
+    .table th,
+    .table td {
+        padding: 5px;
     }
+
+.form-control-unit {
+    display: flex;
+    align-items: center;
+}
+
+    .form-control-unit .form-control {
+        width: 70%;
+    }
+
+    .form-control-unit span {
+        margin-left: 10px;
+    }
+
+.form-area {
+    width: 100%;
+}

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using He_thong_ban_DT_online.Models;
+using PayPal.Api;
+
 namespace He_thong_ban_DT_online.Controllers
 {
     public class GioHangController : Controller
@@ -104,6 +106,7 @@ namespace He_thong_ban_DT_online.Controllers
             ViewBag.TongTien = TinhTongTien();
             return View(gioHang);
         }
+ 
         public ActionResult DongYDatHang()
         {
             KHACHHANG khach = Session["TaiKhoan"] as KHACHHANG;
@@ -116,6 +119,9 @@ namespace He_thong_ban_DT_online.Controllers
             DonHang.Dagiao = false;
             DonHang.Tennguoinhan = khach.HoTenKH;
             DonHang.Diachinhan = khach.DiachiKH;
+            DonHang.Dienthoainhan = khach.DienthoaiKH;
+            DonHang.HTThanhtoan = 1;
+            DonHang.HTGiaohang = false;
             DonHang.MaTTDH = 1;
 
             db.DONDATHANGs.Add(DonHang);
@@ -129,8 +135,8 @@ namespace He_thong_ban_DT_online.Controllers
                 chitiet.DonGia = (decimal)sanpham.DonGia;
                 db.CTDATHANGs.Add(chitiet);
             }
-            db.SaveChanges(); 
-            gioHang.Clear();
+            db.SaveChanges();
+            Session["GioHang"] = null;
             return RedirectToAction("Index", "HomePhone");
         }
 
@@ -138,5 +144,35 @@ namespace He_thong_ban_DT_online.Controllers
         {
             return View();
         }
+        public ActionResult DatHangNgay()
+        {
+            List<MatHangMua> gioHang = LayGioHang();
+            if (gioHang == null || gioHang.Count == 0)
+                return RedirectToAction("Index", "HomePhone");
+            ViewBag.TongSL = TinhTongSL();
+            ViewBag.TongTien = TinhTongTien();
+            return View(gioHang);
+        }
+        public ActionResult MuaHangNgay()
+        {
+            List<MatHangMua> gioHang = LayGioHang();
+
+            DONDATHANG DonHang = new DONDATHANG();
+            db.DONDATHANGs.Add(DonHang);
+            db.SaveChanges();
+            foreach (var sanpham in gioHang)
+            {
+                CTDATHANG chitiet = new CTDATHANG();
+                chitiet.MaDH = DonHang.MaDH;
+                chitiet.MaSP = sanpham.MaDT;
+                chitiet.SoLuong = sanpham.SoLuong;
+                chitiet.DonGia = (decimal)sanpham.DonGia;
+                db.CTDATHANGs.Add(chitiet);
+            }
+            db.SaveChanges();
+            gioHang.Clear();
+            return RedirectToAction("Index", "HomePhone");
+        }
+
     }
 }

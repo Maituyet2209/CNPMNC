@@ -1,0 +1,136 @@
+﻿@model He_thong_ban_DT_online.Models.DONDATHANG
+
+@{
+    ViewBag.Title = "XemChiTietDonHang";
+    Layout = "~/Views/Shared/ADLayout.cshtml";
+}
+
+<style>
+    .container {
+        display: flex;
+    }
+
+    .info-table {
+        flex-basis: 50%;
+        margin-right: 20px;
+    }
+
+    .detail-table {
+        flex-basis: 50%;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h6 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight:700;
+    }
+    table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .product-image {
+        max-width: 100px;
+        height: auto;
+    }
+
+    .back-to-list {
+        margin-top: 4px;
+        margin-left: 60px;
+    }
+
+        .back-to-list a {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+            .back-to-list a:hover {
+                background-color: #0056b3;
+            }
+</style>
+
+<h2>Thông tin đơn hàng</h2>
+
+<div class="container">
+    <div class="info-table">
+        <table class="table table-bordered">
+            <tr>
+                <th>Mã đơn hàng</th>
+                <td>@Model.MaDH</td>
+            </tr>
+            <tr>
+                <th>Khách hàng</th>
+                <td>@Model.KHACHHANG.HoTenKH</td>
+            </tr>
+            <tr>
+                <th>Ngày đặt hàng</th>
+                <td>@Model.NgayDH</td>
+            </tr>
+            <tr>
+                <th>Địa chỉ nhận</th>
+                <td>@Model.Diachinhan</td>
+            </tr>
+            <tr>
+                <th>Người nhận</th>
+                <td>@Model.Tennguoinhan</td>
+            </tr>
+            <tr>
+                <th>Số điện thoại nhận hàng</th>
+                <td>@Model.Dienthoainhan</td>
+            </tr>
+            <tr>
+                <th>Hình thức thanh toán</th>
+                <td>@Model.HINHTHUCTHANHTOAN.TenHTTT</td>
+            </tr>
+            <tr>
+                <th>Tổng tiền</th>
+                <td>@string.Format("{0:N0} VNĐ", Model.TongTien)</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="detail-table">
+        <h6>Chi tiết sản phẩm</h6>
+
+        <table class="table table-bordered">
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Hình minh họa</th>
+            </tr>
+            @foreach (var chiTiet in Model.CTDATHANGs)
+            {
+                <tr>
+                    <td>@chiTiet.SANPHAM.TenDT</td>
+                    <td>@chiTiet.SoLuong</td>
+                    <td>@string.Format("{0:N0} VNĐ", chiTiet.DonGia)</td>
+                    <td><img src="~/images/@chiTiet.SANPHAM.HinhMinhHoa" alt="Hình minh họa" class="product-image" /></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<div class="mt-4 back-to-list">
+    @Html.ActionLink("Back to List", "DonHangMoi")
+</div>

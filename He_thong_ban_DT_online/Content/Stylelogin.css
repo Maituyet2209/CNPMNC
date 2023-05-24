@@ -7,6 +7,7 @@
 
 }
 
+
 .container_main {
     background-color: #fff;
     border-radius: 5px;
@@ -90,9 +91,9 @@ label {
         }
 
 .btn_DK {
-    background-color: #74b9ff;
-    border: 1px solid #0984e3;
-    color: #0984e3;
+    background-color: #0984e3;
+    border: none;
+    color: #fff;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -100,11 +101,12 @@ label {
     font-size: 16px;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
-
-.btn_DK:hover {
-    background-color: #0069d9;
-    border-color: #0062cc;
-    color: #fff;
+    .btn_DK:hover {
+        background-color: #0069d9;
+    }
+.gender-group label {
+    margin-right: 10px;
 }

@@ -15,13 +15,28 @@ namespace He_thong_ban_DT_online.Controllers
     {
         QLBANDIENTHOAIEntities db = new QLBANDIENTHOAIEntities();
         // GET: Admin
-        public ActionResult SanPham(int ? page)
+        public ActionResult SanPham(int? page, string Search = "")
         {
             var dsSanPham = db.SANPHAMs.ToList();
+            if (!string.IsNullOrEmpty(Search))
+            {
+                dsSanPham = dsSanPham.Where(s => s.TenDT.ToUpper().Contains(Search.ToUpper())).ToList();
+                ViewBag.Search = Search;
+            }
             int pageSize = 7;
             int pageNum = (page ?? 1);
-            return View(dsSanPham.OrderBy(sp=>sp.MaSP).ToPagedList(pageNum,pageSize));
+            return View(dsSanPham.OrderBy(sp => sp.MaSP).ToPagedList(pageNum, pageSize));
         }
+
+
+        [HttpGet]
+        public ActionResult ThemSP()
+        {
+            ViewBag.MaBrand = new SelectList(db.BRANDs.ToList(), "BrandId", "TenBrand");
+            ViewBag.MaNSX = new SelectList(db.NHASANXUATs.ToList(), "MaNSX", "TenNSX");
+            return View();
+        }
+        [HttpPost]
         public ActionResult ThemSP(SANPHAM sp, HttpPostedFileBase Hinhminhhoa)
         {
             ViewBag.MaBrand = new SelectList(db.BRANDs.ToList(), "BrandId", "TenBrand");
@@ -64,24 +79,30 @@ namespace He_thong_ban_DT_online.Controllers
             return View(sanpham);
         }
         [HttpGet]
-        public ActionResult XoaSP(int id)
+        public ActionResult XoaSP(int? id)
         {
-            var sanpham = db.SANPHAMs.FirstOrDefault(sp => sp.MaSP == id);
-            if (sanpham == null)
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SANPHAM product = db.SANPHAMs.Find(id);
+            if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(sanpham);
+            return View(product);
         }
-        [HttpPost]
+
+        [HttpPost, ActionName("XoaSP")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int?id)
         {
             var sanpham = db.SANPHAMs.FirstOrDefault(sp => sp.MaSP == id);
             db.SANPHAMs.Remove(sanpham);
             db.SaveChanges();
             return RedirectToAction("SanPham");
         }
+        [HttpGet]
         public ActionResult SuaSP(int? id)
         {
             if (id == null)
@@ -101,30 +122,45 @@ namespace He_thong_ban_DT_online.Controllers
             return View(sanpham);
         }
 
-        [HttpPost]
+        [HttpPost, ActionName("SuaSP")]
         [ValidateAntiForgeryToken]
-        public ActionResult SuaSP(SANPHAM sanpham, HttpPostedFileBase Hinhminhhoa)
+        public ActionResult ConfirmSuaSP(SANPHAM sanpham, HttpPostedFileBase HinhMinhHoa)
         {
             if (ModelState.IsValid)
             {
-                if (Hinhminhhoa != null && Hinhminhhoa.ContentLength > 0)
+                var productDB = db.SANPHAMs.FirstOrDefault(p => p.MaSP == sanpham.MaSP);
+                if (productDB != null)
                 {
-                    var fileName = Path.GetFileName(Hinhminhhoa.FileName);
-                    var path = Path.Combine(Server.MapPath("~/images"), fileName);
+                    productDB.TenDT = sanpham.TenDT;
+                    productDB.MoTa = sanpham.MoTa;
+                    if (HinhMinhHoa != null)
+                    {
+                        var fileName = Path.GetFileName(HinhMinhHoa.FileName);
+                        var path = Path.Combine(Server.MapPath("~/images"), fileName);
 
-                    if (System.IO.File.Exists(path))
-                    {
-                        ViewBag.ThongBao = "Hình đã tồn tại";
+                        productDB.HinhMinhHoa = fileName;
+                        HinhMinhHoa.SaveAs(path);
                     }
-                    else
-                    {
-                        Hinhminhhoa.SaveAs(path);
-                        sanpham.HinhMinhHoa = fileName;
-                    }
+                    productDB.MaBrand = sanpham.MaBrand;
+                    productDB.MaNSX = sanpham.MaNSX;
+                    productDB.SoluongTon = sanpham.SoluongTon;
+                    productDB.BaoHanh = sanpham.BaoHanh;
+                    productDB.NgaySX = sanpham.NgaySX;
+                    productDB.MauSac = sanpham.MauSac;
+                    productDB.ManHinh = sanpham.ManHinh;
+                    productDB.CauHinh = sanpham.CauHinh;
+                    productDB.BoNhoTrong = sanpham.BoNhoTrong;
+                    productDB.Camera_main = sanpham.Camera_main;
+                    productDB.HeDieuHanh = sanpham.HeDieuHanh;
+                    productDB.TheSim = sanpham.TheSim;
+                    productDB.DungLuongPin = sanpham.DungLuongPin;
+                    productDB.DungLuongRam = sanpham.DungLuongRam;
+                    productDB.CongNgheSac = sanpham.CongNgheSac;
+                    productDB.DoPhanGiai = sanpham.DoPhanGiai;
+                    productDB.CongSac = sanpham.CongSac;
+                    productDB.KichThuoc = sanpham.KichThuoc;
+                    productDB.KhoiLuong = sanpham.KhoiLuong;
                 }
-
-                db.Entry(sanpham).State = EntityState.Modified;
-                db.Entry(sanpham).Property(p => p.Dongia).IsModified = false; // Không cho sửa đổi giá sản phẩm
 
                 db.SaveChanges();
                 return RedirectToAction("SanPham");
@@ -132,6 +168,7 @@ namespace He_thong_ban_DT_online.Controllers
 
             ViewBag.MaBrand = new SelectList(db.BRANDs, "BrandId", "TenBrand", sanpham.MaBrand);
             ViewBag.MaNSX = new SelectList(db.NHASANXUATs, "MaNSX", "TenNSX", sanpham.MaNSX);
+
 
             return View(sanpham);
         }
@@ -163,12 +200,13 @@ namespace He_thong_ban_DT_online.Controllers
             ViewBag.HinhMinhHoa = sanpham.HinhMinhHoa;
             ViewBag.DonGiaHienTai = sanpham.Dongia;
 
-            return View();
+            return View(sanpham);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPrice(int id, decimal Dongia)
+        public ActionResult EditPrice(int id, decimal? Dongia)
         {
             var sanpham = db.SANPHAMs.FirstOrDefault(sp => sp.MaSP == id);
 
@@ -183,10 +221,135 @@ namespace He_thong_ban_DT_online.Controllers
 
             return RedirectToAction("QuanLyGia");
         }
-          public ActionResult DonHangMoi()
+        public ActionResult DonHangMoi()
         {
             var dsDonHangMoi = db.DONDATHANGs.Where(dh => dh.MaTTDH == 1).ToList();
             return View(dsDonHangMoi);
         }
+        public ActionResult DonHangDangXuLy()
+        {
+            var dsDonHangDangXuLy = db.DONDATHANGs.Where(dh => dh.MaTTDH == 2).ToList();
+            return View(dsDonHangDangXuLy);
+        }
+        public ActionResult DonHangDangVanChuyen()
+        {
+            var dsDonHangDangVanChuyen = db.DONDATHANGs.Where(dh => dh.MaTTDH == 3).ToList();
+            return View(dsDonHangDangVanChuyen);
+        }
+        
+         public ActionResult DonHangDangGiaoThanhCong()
+        {
+            var dsDonHangDangVanChuyen = db.DONDATHANGs.Where(dh => dh.MaTTDH == 4).ToList();
+            return View(dsDonHangDangVanChuyen);
+        }
+        public ActionResult DonHangHuy()
+        {
+            var dsDonHangHuy = db.DONDATHANGs.Where(dh => dh.MaTTDH == 5).ToList();
+            return View(dsDonHangHuy);
+        }
+        [HttpGet]
+        public ActionResult CapNhatTTDH(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            DONDATHANG donHang = db.DONDATHANGs.Find(id);
+
+            if (donHang == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.TrangThaiDonHang = new SelectList(db.TRANGTHAIDONHANGs, "MaTTDH", "TenTrangThai");
+            return View(donHang);
+        }
+
+        [HttpPost]
+        public ActionResult CapNhatTTDH(int? id, int? maTrangThaiDonHang)
+        {
+            DONDATHANG donHang = db.DONDATHANGs.Find(id);
+            if (donHang == null)
+            {
+                return HttpNotFound();
+            }
+
+            donHang.MaTTDH = maTrangThaiDonHang;
+            db.Entry(donHang).State = EntityState.Modified;
+            db.SaveChanges();
+
+            TempData["SuccessMessage"] = "Cập nhật trạng thái đơn hàng thành công.";
+            return RedirectToAction("DonHangMoi");
+        }
+
+
+        public ActionResult XemChiTietDonHang(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DONDATHANG donHang = db.DONDATHANGs.Find(id);
+
+            if (donHang != null)
+            {
+
+                List<CTDATHANG> chiTietDonHang = db.CTDATHANGs.Where(ct => ct.MaDH == id).ToList();
+
+
+                List<string> hinhMinhHoaList = new List<string>();
+                List<string> hoTenKHList = new List<string>();
+
+
+                foreach (CTDATHANG chiTiet in chiTietDonHang)
+                {
+
+                    SANPHAM sanPham = db.SANPHAMs.Find(chiTiet.MaSP);
+
+                    if (sanPham != null)
+                    {
+
+                        hinhMinhHoaList.Add(sanPham.HinhMinhHoa);
+                    }
+
+                    KHACHHANG khachHang = db.KHACHHANGs.Find(donHang.MaKH);
+
+                    if (khachHang != null)
+                    {
+                        hoTenKHList.Add(khachHang.HoTenKH);
+                    }
+                }
+
+                ViewBag.HinhMinhHoaList = hinhMinhHoaList;
+                ViewBag.HoTenKHList = hoTenKHList;
+
+                return View(donHang);
+            }
+
+            return RedirectToAction("DonHangMoi");
+        }
+
+        public ActionResult XoaDH(int id)
+        {
+            var donHang = db.DONDATHANGs.Find(id);
+            if (donHang == null)
+            {
+                return HttpNotFound();
+            }
+
+            var chiTietDonHangs = db.CTDATHANGs.Where(ct => ct.MaDH == id);
+            foreach (var chiTiet in chiTietDonHangs)
+            {
+                db.CTDATHANGs.Remove(chiTiet);
+            }
+
+            db.DONDATHANGs.Remove(donHang);
+            db.SaveChanges();
+
+            return RedirectToAction("DonHangHuy");
+        }
+
+
     }
 }

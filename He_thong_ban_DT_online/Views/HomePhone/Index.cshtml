@@ -3,8 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!-- Flash sale điện thoại -->
-<!--<div class="flash_sale">
+<div class="flash_sale">
     <div class="header_content">
         <div class="text_content">
             <span> Hot</span>
@@ -32,7 +31,7 @@
             </ul>
         </div>
     </div>
-</div>-->
+</div>
 <div class="row" style="margin:20px 0 20px 35px;">
     @foreach (var sanpham in Model)
     {
@@ -46,7 +45,19 @@
                 <span>@sanpham.TenDT</span>
             </div>
             <div class="price">
-                <span>@string.Format("{0:N0} VNĐ", Double.Parse(sanpham.Dongia.ToString()))</span>
+                @if (sanpham != null)
+                {
+                    double dongia = 0;
+                    if (double.TryParse(sanpham.Dongia.ToString(), out dongia))
+                    {
+                        <span>@string.Format("{0:N0} VNĐ", dongia)</span>
+                    }
+                    else
+                    {
+                        <span>Dongia is not a valid double value.</span>
+                    }
+                }
+
                 <del>24.900.000đ</del>
             </div>
             <div class="btn_buy">
@@ -63,28 +74,9 @@
             </div>
         </div>
     }
-
 </div>
-@*<div class="row">
-    @Html.Action("HotSale", "HomePhone")
-</div>*@
-<!--<div class="flash_sale">
-    <div class="header_content">
-        <div class="text_content">
-            <span>Apple</span>
-            <i class="fa-brands fa-apple"></i>
-        </div>
-    </div>-->
-    <!-- Điện Thoại -->
-    <!--<div class="row">
-        @Html.Action("Apple", "HomePhone")
-    </div>
-    <div class="more">
-        <a href="">Xem Thêm</a>
-    </div>
-</div>-->
-<!-- LapTop -->
-<!--<div class="flash_sale">
+@Html.Action("Apple", "HomePhone")
+<div class="flash_sale">
     <div class="header_content">
         <div class="text_content">
             <span>SamSung</span>
@@ -94,13 +86,9 @@
     <div class="row">
         @Html.Action("SamSung", "HomePhone")
     </div>
-    <div class="more">
-        <a href="">Xem Thêm</a>
-    </div>
-</div>-->
 
-<!-- TabLet -->
-<!--<div class="flash_sale">
+</div>
+<div class="flash_sale">
     <div class="header_content">
         <div class="text_content">
             <span>Xiaomi</span>
@@ -109,7 +97,7 @@
     <div class="rowstyle">
         @Html.Action("Xiaomi", "HomePhone")
     </div>
-    <div class="more">
+@*    <div class="more">
         <a href="">Xem Thêm</a>
-    </div>
-</div>-->
+    </div>*@
+</div>

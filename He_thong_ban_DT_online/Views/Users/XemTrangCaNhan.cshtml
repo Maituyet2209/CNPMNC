@@ -1,0 +1,128 @@
+﻿@model He_thong_ban_DT_online.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "XemTrangCaNhan";
+    Layout = "~/Views/Shared/LayoutTrangCaNhan.cshtml";
+}
+<style>
+    .container {
+        max-width: 800px;
+        height: 380px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .profile-picture {
+        text-align: center;
+    }
+
+        .profile-picture img {
+            max-width: 100%;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+        }
+
+    .avatar-text {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 14px;
+        color: #888;
+    }
+    .user-info {
+        margin-top: 20px;
+    }
+
+        .user-info h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+    .info-item {
+        margin-bottom: 10px;
+    }
+
+        .info-item label {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+
+        .info-item span {
+            display: inline-block;
+        }
+    .edit-button {
+        padding: 8px 16px;
+        background-color: #ff0000;
+        color: #ffffff; 
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration:none;
+    }
+
+        .edit-button:hover {
+            background-color: #cc0000;
+            color: #ffffff;
+        }
+
+
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="profile-picture">
+                <img src="@Url.Content("~/images/" + ViewBag.Ava)" alt="Avatar" />
+                <p class="avatar-text">Ảnh đại diện</p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="user-info">
+                <h2>Thông tin cá nhân</h2>
+                <div class="info-item">
+                    <label>Tên đăng nhập:</label>
+                    <span>@ViewBag.TenDangNhap</span>
+                </div>
+                <div class="info-item">
+                    <label>Họ và tên:</label>
+                    <span>@ViewBag.HoTen</span>
+                </div>
+                <div class="info-item">
+                    <label>Địa chỉ:</label>
+                    <span>@ViewBag.DiaChi</span>
+                </div>
+                <div class="info-item">
+                    <label>Số điện thoại:</label>
+                    <span>@ViewBag.SDT</span>
+                </div>
+                <div class="info-item">
+                    <label>Ngày sinh:</label>
+                    <span>@ViewBag.NgaySinh</span>
+                </div>
+                <div class="info-item">
+                    <label>Giới tính:</label>
+                    <span>@(ViewBag.GioiTinh ? "Nam" : "Nữ")</span>
+                </div>
+                <div class="info-item">
+                    <label>Email:</label>
+                    <span>@ViewBag.Email</span>
+                </div>
+                <div class="info-item" style="margin-top:20px;">
+                    @{
+                        var userId = Session["UserID"] as int?;
+                    }
+
+                    @if (userId.HasValue)
+                    {
+                        <a href="@Url.Action("SuaThongTinCaNhan", "Users", new { id = userId.Value })"class="edit-button">Sửa thông tin cá nhân</a>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
