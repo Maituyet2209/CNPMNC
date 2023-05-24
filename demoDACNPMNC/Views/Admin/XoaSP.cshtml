@@ -1,0 +1,22 @@
+﻿﻿@model demoDACNPMNC.Models.SANPHAM
+
+@{
+    ViewBag.Title = "XoaSP";
+    Layout = "~/Views/Shared/ADLayout.cshtml";
+}
+
+<h2>Xác nhận xóa sản phẩm</h2>
+<p>Bạn có chắc chắn muốn xóa sản phẩm "@Model.TenDT"?</p>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Xóa" class="btn btn-danger" />
+    @Html.ActionLink("Quay lại danh sách", "Index")
+}
+<script>
+    $(function () {
+        $('form').submit(function () {
+            return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');
+        });
+    });
+</script>

@@ -1,0 +1,56 @@
+﻿﻿@model IEnumerable<demoDACNPMNC.Models.SANPHAM>
+
+@{
+    ViewBag.Title = "QuanLyGia";
+    Layout = "~/Views/Shared/ADLayout.cshtml";
+    <link href="~/Content/StyleHeaderFooter.css" rel="stylesheet" />
+}
+@*<div class="container-fluid">
+    <div class="row align-items-center flex-wrap">
+        @foreach (var sanpham in Model)
+        {
+            <div class="col-sm-12 col-md-4 col-lg-3 box mr-0">
+                <div class="box_img">
+                    <a href="@Url.Action("Details", "HomePhone", new { id = sanpham.MaDT })">
+                        <img src="~/images/@sanpham.Hinhminhhoa" alt="">
+                    </a>
+                </div>
+                <div class="name_sp">
+                    <span>@sanpham.TenDT</span>
+                </div>
+                <div class="price">
+                    <span>@string.Format("{0:N0} VNĐ", Double.Parse(sanpham.Dongia.ToString()))</span>
+                </div>
+                <div class="btn_buy">
+                    <a href="@Url.Action("EditPrice", new { id = sanpham.MaDT })" class="btn btn-danger"><i class="fa fa-edit"></i></a>
+                    <a href="@Url.Action("Details", new { id = sanpham.MaDT })" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>*@
+<div class="rowstyle">
+    @foreach (var i in Model)
+    {
+        <div class="box">
+            @*, new { id = Model.Id }*@
+            <a href="@Url.Action("Product_Detail", "Home", new { idProduct = i.MaDT})">
+                <div class="box_img">
+                    <img src="~/images/@i.Hinhminhhoa" alt="">
+                </div>
+            </a>
+            <div class="name_sp">
+                <span>@i.TenDT</span>
+            </div>
+            <div class="price">
+                <span>@string.Format("{0:N0} đ", Double.Parse(@i.Dongia.ToString()))</span>
+                <del>@string.Format("{0:N0} đ", Double.Parse(@i.Dongia.ToString()) * 1.2)</del>
+            </div>
+            <div class="btn_buy" style="display: flex;">
+                <a href="@Url.Action("EditPrice", new { id = i.MaDT })" class="btn btn-danger"><i class="fa fa-edit"></i></a>
+                <a href="@Url.Action("ChiTietSP", new { id = i.MaDT })" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
+            </div>
+        </div>
+    }
+</div>

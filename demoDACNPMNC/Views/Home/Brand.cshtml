@@ -37,6 +37,16 @@
     {
         <h6 style="margin-right: 10px; text-decoration: none; padding: 10px; color: black; border: 1px solid gray; border-radius: 20px; ">Bộ nhớ trong : @ViewBag.selectedFilter_rom <a href="" id="remove_selected_rom"><i class="fa-solid fa-xmark"></i></a></h6>
     }
+    @* filter camera *@
+    @if (ViewBag.selectedFilter_camera != null)
+    {
+        <h6 style="margin-right: 10px; text-decoration: none; padding: 10px; color: black; border: 1px solid gray; border-radius: 20px; ">Camera : @ViewBag.selectedFilter_camera <a href="" id="remove_selected_camera"><i class="fa-solid fa-xmark"></i></a></h6>
+    }
+    @* filter screen *@
+    @if (ViewBag.selectedFilter_screen != null)
+    {
+        <h6 style="margin-right: 10px; text-decoration: none; padding: 10px; color: black; border: 1px solid gray; border-radius: 20px; ">Màn hình : @ViewBag.selectedFilter_screen <a href="" id="remove_selected_screen"><i class="fa-solid fa-xmark"></i></a></h6>
+    }
 
 </div>
 <script>
@@ -69,6 +79,25 @@
     function remove_selected_rom() {
         document.cookie = "filter_rom=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         localStorage.removeItem("filter_rom");
+        location.reload(); // nếu muốn reload trang khi xóa localStorage
+    }
+
+    //remove selected camera
+    const selected_camera = document.getElementById("remove_selected_camera");
+    if (selected_camera!= null)
+        document.getElementById("remove_selected_camera").addEventListener("click", remove_selected_camera);
+    function remove_selected_camera() {
+        document.cookie = "filter_camera=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        localStorage.removeItem("filter_camera");
+        location.reload(); // nếu muốn reload trang khi xóa localStorage
+    }
+    //remove selected screen
+    const selected_screen = document.getElementById("remove_selected_screen");
+    if (selected_screen!= null)
+        document.getElementById("remove_selected_screen").addEventListener("click", remove_selected_screen);
+    function remove_selected_screen() {
+        document.cookie = "filter_screen=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        localStorage.removeItem("filter_screen");
         location.reload(); // nếu muốn reload trang khi xóa localStorage
     }
 </script>
@@ -120,19 +149,19 @@
                     <a href="">Camera</a>
                     <i class="fas fa-chevron-down"></i>
                 </div>
-                <ul class="sub_filter">
+                <ul class="sub_filter filter_camera">
                     <li><a href="">1 camera</a></li>
                     <li><a href="">2 camera</a></li>
                     <li><a href="">3 camera</a></li>
-                    <li><a href="">> 3 camera</a></li>
+                    <li><a href=""> 4 camera</a></li>
                 </ul>
             </li>
             <li>
-                <div class="priceandicon">
+                <div class="priceandicon ">
                     <a href="">Màn Hình</a>
                     <i class="fas fa-chevron-down"></i>
                 </div>
-                <ul class="subfilter_right">
+                <ul class="subfilter_right filter_screen">
                     <li><a href="">OLED</a></li>
                     <li><a href="">AMOLED</a></li>
                     <li><a href="">IPS LCD</a></li>
@@ -246,6 +275,31 @@ else
         var getText = event.target;
         localStorage.setItem("filter_rom", getText.textContent.trim());
         document.cookie = "filter_rom=" + localStorage.getItem("filter_rom") + "; path=/"; // lưu vào Cookie
+    }
+
+    // filter camera filter_camera
+    var filter_camera = document.querySelectorAll(".filter_camera li a");
+    for (var temp = 0; temp < filter_camera.length; temp++) {
+        filter_camera[temp].addEventListener("click", selectedFilter_camera);
+    }
+
+
+    function selectedFilter_camera(event) {
+        var getText = event.target;
+        localStorage.setItem("filter_camera", getText.textContent.trim());
+        document.cookie = "filter_camera=" + localStorage.getItem("filter_camera") + "; path=/"; // lưu vào Cookie
+    }
+
+    // filter screen filter_screen
+    var filter_screen = document.querySelectorAll(".filter_screen li a");
+    for (var temp = 0; temp < filter_screen.length; temp++) {
+        filter_screen[temp].addEventListener("click", selectedFilter_screen);
+    }
+
+    function selectedFilter_screen(event) {
+        var getText = event.target;
+        localStorage.setItem("filter_screen", getText.textContent.trim());
+        document.cookie = "filter_screen=" + localStorage.getItem("filter_screen") + "; path=/"; // lưu vào Cookie
     }
 
 </script>

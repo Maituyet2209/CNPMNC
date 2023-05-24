@@ -56,6 +56,8 @@ namespace demoDACNPMNC.Models
         public string KichThuoc { get; set; }
         public Nullable<decimal> KhoiLuong { get; set; }
         public Nullable<System.DateTime> NgaySX { get; set; }
+        public Nullable<int> SoluongTon { get; set; }
+        public Nullable<bool> TrangThai { get; set; }
     
         public virtual BRAND BRAND { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

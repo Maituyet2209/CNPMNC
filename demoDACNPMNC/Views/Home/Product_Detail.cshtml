@@ -72,14 +72,15 @@
                         sản xuất trên tiến trình 5 nm hiện đại, giúp nâng cao hiệu suất và hứa hẹn đem
                         đến cho người dùng trải nghiệm trọn vẹn hơn.
                     </p>
-                    <div id="showmore1">
-                        <p>
-                            iPhone 13 trang bị bộ nhớ trong 128 GB dung lượng lý tưởng cho phép bạn thỏa thích lưu trữ mọi nội dung theo ý muốn mà không lo nhanh đầy bộ nhớ.
+                    <p>
+                        iPhone 13 trang bị bộ nhớ trong 128 GB dung lượng lý tưởng cho phép bạn thỏa thích lưu trữ mọi nội dung theo ý muốn mà không lo nhanh đầy bộ nhớ.
 
-                            Thiết bị sẽ được hỗ trợ mạng 5G, nhờ vậy người dùng sẽ trải nghiệm tốc độ kết nối mạng ấn tượng, tận hưởng những gì tinh túy nhất với thời gian phản hồi cực nhanh.
-                        </p>
-                        <img src="https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/1/4/14_1_9_2_9.jpg" alt="">
-                        <h4>Cụm camera kép nhiều tính năng</h4>
+                        Thiết bị sẽ được hỗ trợ mạng 5G, nhờ vậy người dùng sẽ trải nghiệm tốc độ kết nối mạng ấn tượng, tận hưởng những gì tinh túy nhất với thời gian phản hồi cực nhanh.
+                    </p>
+
+                    <h4>Cụm camera kép nhiều tính năng</h4>
+                    <div id="showmore1">
+
                         <p>
                             iPhone 13 vẫn được trang bị camera kép 12 MP với nhiều cải tiến giúp cho ảnh chụp tốt hơn. Hỗ trợ nhiều tính năng như: Chế độ chân dung (Portrait Mode), quay video ProRe, chụp góc siêu rộng và hỗ trợ quay video với định dạng lên đến 4K.
                             <br>
@@ -107,23 +108,29 @@
                 </div>
                 <div class="option_memori">
                     <a href="">
-                        <strong>1TB</strong>
-                        <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()) * 1.4)</span>
+                        <strong> RAM:@Model.DungLuongRam GB</strong>
                     </a>
-                    <a href="">
-                        <strong>512GB</strong>
-                        <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()) * 1.35)</span>
+                    <a href="" style="background-color: rgba(206, 143, 7, 0.295); border: 1px solid rgb(206, 143, 7); ">
+                        <strong> Màu: @Model.MauSac</strong>
                     </a>
-                    <a href="">
-                        <strong>256GB</strong>
-                        <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()) * 1.2)</span>
-                    </a>
-                    <a href="">
-                        <strong>128GB</strong>
-                        <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()) * 1.1)</span>
-                    </a>
+                    @*<a href="">
+            <strong>1TB</strong>
+            <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()) * 1.4)</span>
+        </a>
+        <a href="">
+            <strong>512GB</strong>
+            <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()) * 1.35)</span>
+        </a>
+        <a href="">
+            <strong>256GB</strong>
+            <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()) * 1.2)</span>
+        </a>
+        <a href="">
+            <strong>128GB</strong>
+            <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()) * 1.1)</span>
+        </a>*@
                 </div>
-                <div class="option_color">
+                @*<div class="option_color">
                     <p>
                         <strong>Vàng</strong>
                         <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()))</span>
@@ -140,7 +147,7 @@
                         <strong>Xanh</strong>
                         <span>@string.Format("{0:N0} đ", Double.Parse(Model.Dongia.ToString()))</span>
                     </p>
-                </div>
+                </div>*@
                 <div class="khuyenmai">
                     <ul>
                         <p>Khuyến Mãi:</p>
@@ -161,7 +168,7 @@
                 </div>
                 <div class="btn_buy_sp">
                     <div class="btn_mua">
-                        <a href="">
+                        <a href="@Url.Action("ThemSanPhamVaoGio","Cart", new { MaDT= Model.MaDT})">
                             <strong>Mua Ngay</strong>
                             <span>(Giao tận nơi hoặc lấy tại cửa hàng)</span>
                         </a>
@@ -260,14 +267,14 @@
         <h6 style="color:red">@ViewBag.notifi_cmt</h6>
         @using (Html.BeginForm("AddComment", "Home", FormMethod.Post))
         {
-            <div>
-                <label for="content_cmt">Nội dung bình luận:</label>
-                <input name="content_cmt" placeholder="Nhập bình luận"/>
+            <div style="margin-bottom: 10px;">
+                <label for="content_cmt" style="border: 1px solid aqua;padding: 5px; font-size: 18px; border-radius: 20px;">Nội dung bình luận:</label>
+                <input name="content_cmt" placeholder="Nhập bình luận" style="font-size: 15px; width: 400px; height: 50px; border: none;"/>
             </div>
 
             <div>
-                <label for="stars">Số sao đánh giá:</label>
-                <input name="stars" />
+                <label for="stars" style="border: 1px solid aqua; padding: 5px; font-size: 18px; border-radius: 20px;">Số sao đánh giá:</label>
+                <input name="stars"type="number"  placeholder="Nhập số sao" style="font-size: 15px; width: 400px; height: 50px; border: none;"/>
             </div>
 
             <button type="submit" class="btn btn-primary">Gửi</button>

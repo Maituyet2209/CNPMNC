@@ -1,0 +1,36 @@
+﻿﻿.custom-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.custom-form input[type=text],
+.custom-form textarea,
+.custom-form select {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+
+.custom-form select {
+    height: 34px;
+}
+
+.custom-form input[type=submit] {
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+    .custom-form input[type=submit]:hover {
+        background-color: #286090;
+    }

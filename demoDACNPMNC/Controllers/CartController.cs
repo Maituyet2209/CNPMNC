@@ -44,7 +44,7 @@ namespace demoDACNPMNC.Controllers
                 gioHang = new List<MatHangMua>();
                 Session["GioHang"] = gioHang;
             }
-            Session["totalCart"] = gioHang.Count;
+            //Session["totalCart"] = gioHang.Count;
             return gioHang;
         }
         public ActionResult ThemSanPhamVaoGio(int MaDT)
@@ -67,6 +67,7 @@ namespace demoDACNPMNC.Controllers
                 else
                 {
                     checkProduct.quantity++;
+                    db.SaveChanges();
                 }
                 return RedirectToAction("HienThiGioHang", "Cart");
             }
@@ -111,7 +112,8 @@ namespace demoDACNPMNC.Controllers
             }
             ViewBag.TongSL = TinhTongSL();
             ViewBag.TongTien = TinhTongTien();
-            Session["totalCart"] = (Session["GioHang"] as List<MatHangMua>).Count;
+            //Session["totalCart"] = (Session["GioHang"] as List<MatHangMua>).Count;
+            Session["totalCart"] = gioHang.Count;
             return View(gioHang);
         }
         public ActionResult GioHangPartial()

@@ -13,6 +13,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .area-shop:hover .nav_sub_erea {
+            display: block;
+        }
+        .nav_sub_erea {
+            text-decoration: none;
+            display: none;
+            border-radius: 10px;
+            background-color: grey;
+        }
+        .nav_sub_erea p{
+            margin-bottom: 2px;
+            cursor: pointer;
+        }
+        .nav_sub_erea p:hover {
+            background-color: rgb(206, 143, 7);
+        }
+        
+    </style>
 
 </head>
 <body>
@@ -22,25 +41,45 @@
                 <div class="nav ">
                     <i class="fa-solid fa-list-ul list_menu">
                         <div class="sidebar_menu" style="height: 385px;">
-                            <li >@Html.ActionLink("Trang chủ","Index","Home", new { style = "color: black; text-decoration: none;" })</li>
-                            @{ 
+                            @*<li>@Html.ActionLink("Trang chủ", "Index", "Home", new { style = "color: black; text-decoration: none;" })</li>*@
+                            <li> <a style = "color: black; text-decoration: none;" href="@Url.Action("Index", "Home")"> Trang Chủ</a></li>
+
+                            @{
                                 demoDACNPMNC.Models.QLBANDIENTHOAIEntities db = new demoDACNPMNC.Models.QLBANDIENTHOAIEntities();
                                 var getBrand = db.BRANDs.ToList() as List<demoDACNPMNC.Models.BRAND>;
-                                foreach(var item in getBrand)
-            {
-                                     <li>
-                                         @*@Html.ActionLink("Apple", "Brand", new { brand = "Apple", style = "color: black; text-decoration: none;" })*@
-                                         <a style="color: black; text-decoration: none;" href="@Url.Action("Brand", "Home", new {brand = @item.TenBrand })">@item.TenBrand</a>
-                                     </li>
-            }
+                                foreach (var item in getBrand)
+                                {
+                                    <li>
+                                        @*@Html.ActionLink("Apple", "Brand", new { brand = "Apple", style = "color: black; text-decoration: none;" })*@
+                                        <a style="color: black; text-decoration: none;" href="@Url.Action("Brand", "Home", new {brand = @item.TenBrand })">@item.TenBrand</a>
+                                    </li>
+                                }
                             }
                         </div>
                     </i>
                     <p class="name-shop"> T0BiTo</p>
-                    <div class="area-shop">
-                        <span>Khu vực</span>
-                        <span>TP Hồ Chí Minh</span>
+                    <div class="area-shop" style="position: relative; min-width: 120px; cursor: pointer;">
+                        <span>Khu vực:</span>
+                        <span id="khuvuc" style="margin-left: 5px;">TP Hồ Chí Minh</span>
+                        <div class="nav_sub_erea" style="position: absolute; top: 100%; width: 150px; padding: 5px;">
+                            <p onclick="change_kv(1)">TP Hồ Chí Minh</p>
+                            <p onclick="change_kv(2)">TP Hà Nội</p>
+                            <p onclick="change_kv(3)">TP Đà Nẵng</p>
+                            <p onclick="change_kv(4)">TP Bình Dương</p>
+                        </div>
                     </div>
+                    @*<div class="marrl5 area_header curs area-shop ">
+                        <span>Khu Vực</span>
+                        <b class="nav-arrow-down ti-angle-down"></b>
+                        <div id="khuvuc" style="margin-top: 2px; margin-left: 3px">TP HCM </div>
+                        <ul class="subnav">
+                            <li onclick="change_kv(1)"><a href="#" class="ti-location-pin">TP Hồ Chí Minh</a></li>
+                            <li onclick="change_kv(2)"><a href="#" class="ti-location-pin">Hà Nội</a></li>
+                            <li onclick="change_kv(3)"><a href="#" class="ti-location-pin">TP Đà Nẵng</a></li>
+                            <li onclick="change_kv(4)"><a href="#" class="ti-location-pin">Bình Dương</a></li>
+                            <li onclick="change_kv(5)"><a href="#" class="ti-location-pin">Hải Phòng</a></li>
+                        </ul>
+                    </div>*@
                 </div>
                 <div class="search_btn w-25 " >
                     @*<input type="search" placeholder="bạn cần tìm gì?" name="searchInput" />
@@ -281,6 +320,32 @@
                 document.getElementById("showmore" + i).style.display = "none";
                 kt[i - 1] = false;
                 document.getElementById("bv_more" + i).innerHTML = "Xem thêm"
+            }
+        }
+    </script>
+    <script>
+
+        document.getElementById("khuvuc").innerText = localStorage.area;
+        function change_kv(i) {
+            if (i === 1) {
+                localStorage.area = "TP Hồ Chí Minh";
+                document.getElementById("khuvuc").innerText = localStorage.area;
+            }
+            else if (i === 2) {
+                localStorage.area = "Hà Nội";
+                document.getElementById("khuvuc").innerText = localStorage.area;
+            }
+            else if (i === 3) {
+                localStorage.area = "TP Đà Nẵng"
+                document.getElementById("khuvuc").innerText = localStorage.area;
+            }
+            else if (i === 4) {
+                localStorage.area = "Bình Dương";
+                document.getElementById("khuvuc").innerText = localStorage.area;
+            }
+            else if (i === 5) {
+                localStorage.area = "Hải Phòng";
+                document.getElementById("khuvuc").innerText = localStorage.area;
             }
         }
     </script>

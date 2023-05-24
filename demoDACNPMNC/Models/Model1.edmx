@@ -232,6 +232,8 @@
           <Property Name="KichThuoc" Type="nvarchar" MaxLength="50" />
           <Property Name="KhoiLuong" Type="decimal" Precision="10" Scale="2" />
           <Property Name="NgaySX" Type="date" />
+          <Property Name="SoluongTon" Type="int" />
+          <Property Name="TrangThai" Type="bit" />
         </EntityType>
         <EntityType Name="SANPHAM_BRAND">
           <Key>
@@ -975,6 +977,8 @@
           <Property Name="KhoiLuong" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="NgaySX" Type="DateTime" Precision="0" />
           <NavigationProperty Name="COMMENTS" Relationship="QLBANDIENTHOAIModel.FK__COMMENTS__MaDT__2B0A656D" FromRole="SANPHAM" ToRole="COMMENT" />
+          <Property Name="SoluongTon" Type="Int32" />
+          <Property Name="TrangThai" Type="Boolean" />
         </EntityType>
         <EntityType Name="TRANGTHAIDONHANG">
           <Key>
@@ -1592,6 +1596,8 @@
           <EntitySetMapping Name="SANPHAMs">
             <EntityTypeMapping TypeName="QLBANDIENTHOAIModel.SANPHAM">
               <MappingFragment StoreEntitySet="SANPHAM">
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="SoluongTon" ColumnName="SoluongTon" />
                 <ScalarProperty Name="NgaySX" ColumnName="NgaySX" />
                 <ScalarProperty Name="KhoiLuong" ColumnName="KhoiLuong" />
                 <ScalarProperty Name="KichThuoc" ColumnName="KichThuoc" />

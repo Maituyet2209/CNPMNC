@@ -1,0 +1,87 @@
+﻿﻿@using demoDACNPMNC.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<SANPHAM>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/ADLayout.cshtml";
+}
+<style>
+    img {
+        width: 50px;
+    }
+
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
+
+<div style="margin: 10px auto; width: 90%;">
+    <h2 style="text-align: center">THÔNG TIN SẢN PHẨM</h2>
+    <p>
+        @Html.ActionLink("THÊM MỚI", "ThemSP", null, new { @class = "btn btn-outline-info" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Tên Điện Thoại
+            </th>
+            <th>
+                Hình ảnh
+            </th>
+            <th>
+                Đơn giá
+            </th>
+            <th>
+                Hãng
+            </th>
+            <th>
+                Số lượng bán
+            </th>
+            <th>
+                Số lượng tồn
+            </th>
+            <th>
+                Thao tác
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenDT)
+                </td>
+                <td>
+                    <img src="~/images/@Html.DisplayFor(modelItem => item.Hinhminhhoa)" />
+                </td>
+                <td>
+                    @string.Format("{0:N0} đ", Double.Parse(@item.Dongia.ToString()))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BRAND.TenBrand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Soluongban)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoluongTon)
+                </td>
+                <td>
+                    <a href="@Url.Action("SuaSP", new { id = item.MaDT })" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                    <a href="@Url.Action("ChiTietSP", new { id = item.MaDT })" class="btn btn-primary"><i class="fas fa-info-circle"></i></a>
+                    <a href="@Url.Action("XoaSP", new { id = item.MaDT })" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                    @*                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MaDT }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.MaDT }, new { @class = "btn btn-danger" })*@
+                </td>
+
+            </tr>
+        }
+    </table>
+    <br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("SanPham", new { page }))
+    </div>
+</div>

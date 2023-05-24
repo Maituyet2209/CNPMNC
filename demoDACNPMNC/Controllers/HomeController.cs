@@ -115,6 +115,27 @@ namespace demoDACNPMNC.Controllers
                     ViewBag.selectedFilter_rom = selectedFilter_rom;
                     lstBrand = lstBrand.Where(x => x.BoNhoTrong == selectedFilter_rom).ToList();
             }
+            //get filer camera
+            var selectedFilter_camera = HttpContext.Request.Cookies["filter_camera"]?.Value;
+            if (selectedFilter_camera != null)
+            {
+                string digits = new String(selectedFilter_camera.Where(Char.IsDigit).ToArray()); // Lấy chữ số từ chuỗi
+                if (digits != null && digits != "")
+                {
+                    int num_camera = Int32.Parse(digits);
+
+                    ViewBag.selectedFilter_camera = selectedFilter_camera;
+                    lstBrand = lstBrand.Where(x => x.Camera_main.Contains(num_camera.ToString())).ToList();
+                }
+            }
+
+            //get filer screen
+            var selectedFilter_screen = HttpContext.Request.Cookies["filter_screen"]?.Value;
+            if (selectedFilter_screen != null)
+            {
+                    ViewBag.selectedFilter_screen = selectedFilter_screen;
+                    lstBrand = lstBrand.Where(x => x.ManHinh.Contains(selectedFilter_screen)).ToList();
+            }
 
             ViewBag.quantity = lstBrand.Count;
             ViewBag.namebrand = brand;
@@ -173,7 +194,8 @@ namespace demoDACNPMNC.Controllers
             {
                 ViewBag.MessageSeach = "Vui lòng nhập từ khóa tìm kiếm.";
                 ViewBag.inputSearch = search;
-                return View();
+                var songs = db.SANPHAMs.ToList();
+                return View(songs);
             }
             ViewBag.inputSearch = search;
             var products = db.SANPHAMs
@@ -276,10 +298,14 @@ namespace demoDACNPMNC.Controllers
                     ViewBag.inputAddress = "Nhập Địa Chỉ Người Nhận";
                 }
             }
-            ViewBag.inputName = "Nhập Tên Người Nhận";
-            ViewBag.inputEmail = "Nhập Mail Người Nhận";
-            ViewBag.inputPhone = "Nhập SĐT";
-            ViewBag.inputAddress = "Nhập Địa Chỉ Người Nhận";
+            else
+            {
+                ViewBag.inputName = "Nhập Tên Người Nhận";
+                ViewBag.inputEmail = "Nhập Mail Người Nhận";
+                ViewBag.inputPhone = "Nhập SĐT";
+                ViewBag.inputAddress = "Nhập Địa Chỉ Người Nhận";
+            }
+
 
             var getName = form["getName"];
             var getEmail = form["getEmail"];

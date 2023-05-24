@@ -30,18 +30,22 @@
         margin-bottom: 10px;
     }
 
+    form{
+        display: flex;
+    }
+
 </style>
 
 <h2>Tra Cứu Đơn Hàng</h2>
 
 @using (Html.BeginForm("SearchOrder", "Home", FormMethod.Post))
 {
-    <div>
+    @*<div>
         <label for="numberphone">Số Điện Thoại:</label>
         @Html.TextBox("numberphone")
-    </div>
-    <div>
-        <label for="idOrder">Mã Đơn Hàng:</label>
+    </div>*@
+    <div style="margin-right: 10px;">
+        <label for="idOrder" >Mã Đơn Hàng:</label>
         @Html.TextBox("idOrder")
     </div>
     <button type="submit">Kiểm Tra</button>
